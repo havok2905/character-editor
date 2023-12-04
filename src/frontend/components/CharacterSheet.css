@@ -1,0 +1,12 @@
+.character-sheet-ability-skill-group {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.character-sheet-columns {
+  display: flex;
+}
+
+.character-sheet-column {
+  margin-right: 10px;
+}
