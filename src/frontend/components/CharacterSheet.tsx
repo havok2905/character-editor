@@ -20,24 +20,36 @@ export const CharacterSheet: FC<ICharacterSheetProps> = ({
   if (!character) return null;
 
   return (
-    <>
-      <h1>{getNameString(character.biography.name)}</h1>
-      <p>Race: {character.race.name}</p>
-      {character.race.subrace ? <p>Sub Race: {character.race.subrace.name}</p> : null}
-      <p>Background: {character.background.name}</p>
-      <p>Class: {getCharacterClassString(character.classes)}</p>
-      <p>Gender: {getGenderString(character.biography.gender)}</p>
-      <p>Alignment: {character.biography.alignment}</p>
-      <p>Inspiration: {character.inspiration ? 'Yes' : 'None'}</p>
-      <hr/>
+    <div className="character-sheet">
+      <h2>{getNameString(character.biography.name)}</h2>
+      <div className="character-sheet-header-items">
+        <div className="character-sheet-header-item">
+          <p>{character.race.name}</p>
+          <p><strong>Race</strong></p>
+        </div>
+        <div className="character-sheet-header-item">
+          <p>{character.race?.subrace?.name}</p>
+          <p><strong>Subrace</strong></p>
+        </div>
+        <div className="character-sheet-header-item">
+          <p>{getCharacterClassString(character.classes)}</p>
+          <p><strong>Class</strong></p>
+        </div>
+        <div className="character-sheet-header-item">
+          <p>{character.background.name}</p>
+          <p><strong>Background</strong></p>
+        </div>
+        <div className="character-sheet-header-item">
+          <p>{getGenderString(character.biography.gender)}</p>
+          <p><strong>Gender</strong></p>
+        </div>
+        <div className="character-sheet-header-item">
+          <p>{character.biography.alignment}</p>
+          <p><strong>Alignment</strong></p>
+        </div>
+      </div>
       <div className="character-sheet-columns">
         <div className="character-sheet-column">
-          <p>
-            {plusOrNothingForNegative(character.initiative)}{character.initiative} Initiative
-          </p>
-          <p>
-            {plusOrNothingForNegative(character.proficiencyBonus)}{character.proficiencyBonus} Proficiency Bonus
-          </p>
           <div className="character-sheet-ability-skill-group">
             <AbilityScore abilityScore={character.abilityScores.str} label="Strength" />
             <div>
@@ -86,18 +98,21 @@ export const CharacterSheet: FC<ICharacterSheetProps> = ({
           </div>
         </div>
         <div className="character-sheet-column">
-          <p>AC: {character.ac}</p>
-          <p>HP: {getCharacterHpString(character)}</p>
-          <p>Temp HP: {character.hitPoints.temporary}</p>
-          <p>Hit Dice: {character.classes.map(item => `${item.level}d${item.hitDiceValue}`)}</p>
-          <p>Size: {character.race.size}</p>
-          <p>Speed: {getCharacterSpeedString(character.speed)}</p>
-          <p>Languages: {character.languages.join(', ')}</p>
-          <p>Armor Proficiencies: {character.proficiencies.armor.join(', ')}</p>
-          <p>Tool Proficiencies: {character.proficiencies.tool.join(', ')}</p>
-          <p>Weapon Proficiencies: {character.proficiencies.weapon.join(', ')}</p>
+          <p><strong>Inspiration:</strong> {character.inspiration ? 'Yes' : 'None'}</p>
+          <p><strong>Initiative:</strong> {plusOrNothingForNegative(character.initiative)}{character.initiative}</p>
+          <p><strong>Proficiency Bonus:</strong> {plusOrNothingForNegative(character.proficiencyBonus)}{character.proficiencyBonus}</p>
+          <p><strong>AC:</strong> {character.ac}</p>
+          <p><strong>HP:</strong> {getCharacterHpString(character)}</p>
+          <p><strong>Temp HP:</strong> {character.hitPoints.temporary}</p>
+          <p><strong>Hit Dice:</strong> {character.classes.map(item => `${item.level}d${item.hitDiceValue}`)}</p>
+          <p><strong>Size:</strong> {character.race.size}</p>
+          <p><strong>Speed:</strong> {getCharacterSpeedString(character.speed)}</p>
+          <p><strong>Languages:</strong> {character.languages.join(', ')}</p>
+          <p><strong>Armor Proficiencies:</strong> {character.proficiencies.armor.join(', ')}</p>
+          <p><strong>Tool Proficiencies:</strong> {character.proficiencies.tool.join(', ')}</p>
+          <p><strong>Weapon Proficiencies:</strong> {character.proficiencies.weapon.join(', ')}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };

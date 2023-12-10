@@ -1,4 +1,5 @@
-import React, { type FC } from 'react';
+import React, { type FC, useMemo } from 'react';
+import { CheckIcon, DashIcon } from './icons';
 import { type IAbilityScore } from '../../types/dnd/IAbilityScore';
 import { plusOrNothingForNegative } from '../../shared/utils/plusOrNothingForNegative';
 import './AbilityScore.css';
@@ -16,6 +17,11 @@ export const AbilityScore: FC<IAbilityScoreProps> = ({
   },
   label
 }) => {
+  const proficiencyIcon = useMemo(() => {
+    if (savingThrowProficiency) return <CheckIcon/>;
+    return <DashIcon/>;
+  }, [ savingThrowProficiency ]);
+
   return (
     <div className="ability-score">
       <div>
@@ -28,7 +34,7 @@ export const AbilityScore: FC<IAbilityScoreProps> = ({
       </div>
       <div className="ability-score-label">
         <p>{label}</p>
-        <p>{savingThrowProficiency ? '*' : '-'}</p>
+        <p>{proficiencyIcon}</p>
       </div>
     </div>
   );

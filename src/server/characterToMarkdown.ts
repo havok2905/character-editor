@@ -192,7 +192,8 @@ export const characterToMarkdown = (character: ICharacter | null): string => {
   const armor = getMarkdownKeyValuePair('Armor', character.proficiencies.armor.join(', '));
   const background = getMarkdownKeyValuePair('Background', character.background.name);
   const classes = getMarkdownKeyValuePair('Class', getCharacterClassString(character.classes));
-  const gender = getMarkdownKeyValuePair('Gender',getGenderString(character.biography.gender));
+  const gender = getMarkdownKeyValuePair('Gender', getGenderString(character.biography.gender));
+  const hitDice = getMarkdownKeyValuePair('Hit Dice', character.classes.map(item => `${item.level}d${item.hitDiceValue}`));
   const hp = getMarkdownKeyValuePair('HP', getCharacterHpString(character));
   const initiative = getMarkdownKeyValuePair('Initiative', `${plusOrNothingForNegative(character.initiative)}${character.initiative}`);
   const inspiration = getMarkdownKeyValuePair('Inspiration', character.inspiration ? 'yes' : 'none');
@@ -246,6 +247,8 @@ ${ac}
 ${hp}
 
 ${tempHp}
+
+${hitDice}
 
 ${size}
 

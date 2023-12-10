@@ -1,11 +1,13 @@
 import React, { type FC, useEffect, useState } from 'react';
 import { characterSchema } from '../../shared/schema-validators/dnd/characterSchema';
 import { CharacterSheet } from './CharacterSheet';
+import { CheckIcon, XIcon } from './icons';
 import { getCharacter } from '../api/getCharacter';
 import { type ICharacter } from '../../types/dnd/ICharacter';
 import MonacoEditor from '@monaco-editor/react';
 import { useQuery } from 'react-query';
 import { type ZodIssue } from 'zod';
+import './Editor.css';
 
 export const Editor: FC = () => {
   const [ value, setValue ] = useState<string | null>(null);
@@ -43,18 +45,45 @@ export const Editor: FC = () => {
     }
   };
 
+  const handleExportMarkdown = () => {
+    window.location.href = '/character/1/markdown';
+  };
+
+  const handleExportPdf = () => {
+    window.location.href = '/character/1/pdf';
+  };
+
   return (
     <>
-      <div style={{ display: 'flex', height: '50px' }}>
-        <button>
-          Save Character
-        </button>
-        <button>
-          Export PDF
-        </button>
-        <button>
-          Export Markdown
-        </button>
+      <div className="editor-header">
+        <div>
+          <button className="editor-header-button" disabled={!isValid}>
+            Save Character
+          </button>
+          <button
+            className="editor-header-button"
+            onClick={handleExportPdf}>
+            Export PDF
+          </button>
+          <button
+            className="editor-header-button"
+            onClick={handleExportMarkdown}>
+            Export Markdown
+          </button>
+        </div>
+        <p className={`editor-header-validity ${isValid ? 'editor-header-validity-valid' : 'editor-header-validity-invalid'}`}>
+          {
+            isValid ? (
+              <>
+                <CheckIcon/> Character is valid
+              </>
+            ) : (
+              <>
+                <XIcon/> Character is invalid
+              </>
+            )
+          }
+        </p>
       </div>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '50%' }}>
@@ -76,10 +105,7 @@ export const Editor: FC = () => {
           }
         </div>
       </div>
-      <div style={{ backgroundColor: 'black', color: 'white', height: '100px' }}>
-        <p>
-          isValid: { isValid ? 'Yes' : 'No' }
-        </p>
+      <div className="editor-terminal">
         {
           errors.length ? (
             <ul>

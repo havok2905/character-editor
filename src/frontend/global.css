@@ -1,3 +1,32 @@
+h1 {
+  font-size: 3.75rem;  /* 60px */
+}
+
+h2 {
+  font-size: 3rem;  /* 48px */
+}
+
+h3 {
+  font-size: 2.25rem; /* 36px */
+}
+
+h4 {
+  font-size: 1.875rem; /* 30px */
+}
+
+h5 {
+  font-size: 1.5rem; /* 24px */
+}
+
+h6 {
+  font-size: 1.125rem; /* 18px */
+}
+
 p {
-  margin: 10px 0;
+  font-size: 1rem; /* 16px */
+  margin: 0.625rem 0; /* 10px */
+}
+
+strong {
+  font-weight: 900;
 }

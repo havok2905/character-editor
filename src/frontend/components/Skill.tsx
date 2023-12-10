@@ -1,4 +1,9 @@
 import React, { type FC, useMemo } from 'react';
+import {
+  CheckAllIcon,
+  CheckIcon,
+  DashIcon
+} from './icons';
 import { type ISkill } from '../../types/dnd/ISkill';
 import { plusOrNothingForNegative } from '../../shared/utils/plusOrNothingForNegative';
 import './Skill.css';
@@ -15,13 +20,13 @@ export const Skill: FC<ISkillProps> = ({
     proficiency
   }
 }) => {
-  const proficiencyString = useMemo(() => {
-    if (proficiency === 'proficient') return 'P';
-    if (proficiency === 'expertise') return 'E';
-    return '-';
+  const proficiencyIcon = useMemo(() => {
+    if (proficiency === 'proficient') return <CheckIcon/>;
+    if (proficiency === 'expertise') return <CheckAllIcon/>;
+    return <DashIcon/>;
   }, [ proficiency ]);
 
   return (
-    <p className="skill">[{proficiencyString}] {plusOrNothingForNegative(mod)}{mod} {label}</p>
+    <p className="skill">{proficiencyIcon} {plusOrNothingForNegative(mod)}{mod} {label}</p>
   );
 };

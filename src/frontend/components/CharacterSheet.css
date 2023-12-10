@@ -1,12 +1,33 @@
+.character-sheet {
+  font-family: 'Lora', serif;
+  padding: 1rem;
+}
+
 .character-sheet-ability-skill-group {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .character-sheet-columns {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.character-sheet-column {
-  margin-right: 10px;
+.character-sheet-header-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 1rem 0;
+}
+
+.character-sheet-header-item {
+  margin-bottom: 0.625rem;
+}
+
+.character-sheet-header-item p {
+  margin: 0;
+}
+
+.character-sheet-header-item p:first-of-type {
+  border-bottom: solid 1px black;
+  margin-bottom: 0.25rem;
 }

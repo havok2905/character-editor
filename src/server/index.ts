@@ -1,8 +1,8 @@
+import { characterToMarkdown } from './characterToMarkdown';
+import { characterToPdf } from './characterToPdf';
+import { defaultValue } from './data';
 import express from 'express';
 import path from 'path';
-
-import { characterToMarkdown } from './characterToMarkdown';
-import { defaultValue } from './data';
 
 const app = express();
 const port = 3000;
@@ -28,6 +28,19 @@ app.get('/character/:id/markdown', (_request, response) => {
   });
 
   response.send(buffer);
+});
+
+app.get('/character/:id/pdf', (_request, response) => {
+  const doc = characterToPdf(defaultValue);
+  const data = doc.output();
+
+  response.set({
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/pdf',
+    'Content-Disposition': 'attachment; filename=FOO.pdf',
+  });
+
+  response.send(data);
 });
 
 app.listen(port, () => {
