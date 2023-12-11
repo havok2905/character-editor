@@ -5,7 +5,8 @@ import { CheckIcon, XIcon } from './icons';
 import { getCharacter } from '../api/getCharacter';
 import { type ICharacter } from '../../types/dnd/ICharacter';
 import MonacoEditor from '@monaco-editor/react';
-import { useQuery } from 'react-query';
+import { saveCharacter } from '../api/saveCharacter';
+import { useMutation, useQuery } from 'react-query';
 import { type ZodIssue } from 'zod';
 import './Editor.css';
 
@@ -19,7 +20,19 @@ export const Editor: FC = () => {
     data,
     isLoading,
     isSuccess
-  } = useQuery([ 'character', '1' ], getCharacter('1'));
+  } = useQuery([ 'character', 'ella-olkereth' ], getCharacter('ella-olkereth'));
+
+  const mutation = useMutation({
+    mutationFn: ({
+      id,
+      character
+    }: {
+      id: string,
+      character: ICharacter
+    }) => {
+      return saveCharacter(id, character);
+    },
+  });
 
   useEffect(() => {
     if (isSuccess) {
@@ -46,18 +59,30 @@ export const Editor: FC = () => {
   };
 
   const handleExportMarkdown = () => {
-    window.location.href = '/character/1/markdown';
+    window.location.href = '/character/ella-olkereth/markdown';
   };
 
   const handleExportPdf = () => {
-    window.location.href = '/character/1/pdf';
+    window.location.href = '/character/ella-olkereth/pdf';
+  };
+
+  const handleSave = () => {
+    if (valueObject) {
+      mutation.mutate({
+        id: 'ella-olkereth',
+        character: valueObject
+      });
+    }
   };
 
   return (
     <>
       <div className="editor-header">
         <div>
-          <button className="editor-header-button" disabled={!isValid}>
+          <button
+            className="editor-header-button"
+            disabled={!isValid}
+            onClick={handleSave}>
             Save Character
           </button>
           <button
