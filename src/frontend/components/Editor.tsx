@@ -15,6 +15,7 @@ export const Editor: FC = () => {
   const [ valueObject, setValueObject ] = useState<ICharacter | null>(null);
   const [ errors, setErrors ] = useState<ZodIssue[]>([]);
   const [ isValid, setIsValid ] = useState<boolean>(true);
+  const [ saveMessage, setSaveMessage ] = useState<string>('');
 
   const {
     data,
@@ -68,9 +69,17 @@ export const Editor: FC = () => {
 
   const handleSave = () => {
     if (valueObject) {
+      setSaveMessage('');
       mutation.mutate({
         id: 'ella-olkereth',
         character: valueObject
+      }, {
+        onError: () => {
+          setSaveMessage(`Error saving: ${Date.now()}`);
+        },
+        onSuccess: () => {
+          setSaveMessage(`Saved: ${Date.now()}`);
+        }
       });
     }
   };
@@ -83,7 +92,7 @@ export const Editor: FC = () => {
             className="editor-header-button"
             disabled={!isValid}
             onClick={handleSave}>
-            Save Character
+            {mutation.isLoading ? '...' : 'Save Character'}
           </button>
           <button
             className="editor-header-button"
@@ -95,6 +104,9 @@ export const Editor: FC = () => {
             onClick={handleExportMarkdown}>
             Export Markdown
           </button>
+          <span className="editor-header-saved-text">
+            {saveMessage}
+          </span>
         </div>
         <p className={`editor-header-validity ${isValid ? 'editor-header-validity-valid' : 'editor-header-validity-invalid'}`}>
           {

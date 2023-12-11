@@ -1,6 +1,7 @@
 .editor-header {
   align-items: center;
   background-color: #111111;
+  color: #FFFFFF;
   display: flex;
   height: 40px;
   justify-content: space-between;
@@ -24,6 +25,10 @@
 
 .editor-header-button:hover {
   background-color: #333333;
+}
+
+.editor-header-saved-text {
+  margin-left: 40px;
 }
 
 .editor-header-validity {

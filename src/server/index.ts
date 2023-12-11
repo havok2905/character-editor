@@ -41,8 +41,7 @@ app.post('/api/character/:id', jsonParser, (request, response) => {
 
   const character = request.body.character as ICharacter;
   saveCharacter(id, character);
-
-  response.status(200).send();
+  response.json(character);
 });
 
 app.get('/character/:id/markdown', (request, response) => {

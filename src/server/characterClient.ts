@@ -23,7 +23,8 @@ export const getCharacter = (id: string): ICharacter | null => {
   return JSON.parse(contents) as ICharacter;
 };
 
-export const saveCharacter = (id: string, character: ICharacter): void => {
+export const saveCharacter = (id: string, character: ICharacter): ICharacter => {
   const contents = JSON.stringify(character);
   setFileContents(id, 'json', contents);
+  return character;
 };
