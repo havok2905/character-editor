@@ -1,0 +1,22 @@
+{
+  "$id": "/schemas/hitPoints",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HitPoints",
+  "type": "object",
+  "properties": {
+    "current": {
+      "type": "number"
+    },
+    "max": {
+      "type": "number"
+    },
+    "temporary": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "current",
+    "max",
+    "temporary"
+  ]
+}

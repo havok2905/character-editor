@@ -1,0 +1,14 @@
+{
+  "$id": "/schemas/size",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Size",
+  "type": "string",
+  "enum": [
+    "gargantuan",
+    "huge",
+    "large",
+    "medium",
+    "small",
+    "tiny"
+  ]
+}

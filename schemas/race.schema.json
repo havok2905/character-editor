@@ -1,0 +1,29 @@
+{
+  "$id": "/schemas/race",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Race",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "size": {
+      "$ref": "size.schema.json"
+    },
+    "subrace": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "size"
+  ]
+}

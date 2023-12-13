@@ -1,0 +1,34 @@
+{
+  "$id": "/schemas/skill",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill",
+  "type": "object",
+  "properties": {
+    "ability": {
+      "type": "string",
+      "enum": [
+        "str",
+        "dex",
+        "con",
+        "int",
+        "wis",
+        "cha"
+      ]
+    },
+    "mod": {
+      "type": "number"
+    },
+    "proficiency": {
+      "type": "string",
+      "enum": [
+        "none",
+        "proficient",
+        "expertise"
+      ]
+    }
+  },
+  "required": [
+    "ability",
+    "mod"
+  ]
+}

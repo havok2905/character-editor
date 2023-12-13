@@ -1,0 +1,185 @@
+{
+  "abilityScores": {
+    "str": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "dex": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "con": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "int": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "wis": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "cha": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    }
+  },
+  "ac": 10,
+  "background": {
+    "name": ""
+  },
+  "biography": {
+    "alignment": "neutral",
+    "gender": {
+      "name": "non binary",
+      "pronouns": [
+        {
+          "objectivePronoun": "they",
+          "possessivePronoun": "their",
+          "subjectivePronoun": "them"
+        }
+      ]
+    },
+    "name": {
+      "first": "Lorem",
+      "last": "Ipsum"
+    }
+  },
+  "classes": [
+    {
+      "hitDiceValue": 8,
+      "level": 1,
+      "name": "druid"
+    }
+  ],
+  "hitPoints": {
+    "current": 0,
+    "max": 0,
+    "temporary": 0
+  },
+  "initiative": 0,
+  "inspiration": false,
+  "languages": [
+  ],
+  "proficiencies": {
+    "armor": [
+    ],
+    "tool": [
+    ],
+    "weapon": [
+    ]
+  },
+  "proficiencyBonus": 2,
+  "race": {
+    "name": "human",
+    "size": "medium",
+    "subrace": {
+      "name": "variant"
+    }
+  },
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "animalHandling": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "arcana": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "athletics": {
+      "ability": "str",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "deception": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "history": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "insight": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "investigation": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "medicine": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "nature": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "perception": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "performance": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "religion": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "sleightOfHand": {
+      "ability": "dex",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "stealth": {
+      "ability": "dex",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "survival": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    }
+  },
+  "speed": [
+    {
+      "value": 30,
+      "unit": "feet"
+    }
+  ]
+}

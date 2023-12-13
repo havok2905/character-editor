@@ -1,0 +1,245 @@
+{
+  "$id": "/schemas/character",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Character",
+  "type": "object",
+  "properties": {
+    "abilityScores": {
+      "type": "object",
+      "properties": {
+        "str": {
+          "$ref": "abilityScore.schema.json"
+        },
+        "dex": {
+          "$ref": "abilityScore.schema.json"
+        },
+        "con": {
+          "$ref": "abilityScore.schema.json"
+        },
+        "int": {
+          "$ref": "abilityScore.schema.json"
+        },
+        "wis": {
+          "$ref": "abilityScore.schema.json"
+        },
+        "cha": {
+          "$ref": "abilityScore.schema.json"
+        }
+      },
+      "required": [
+        "str",
+        "dex",
+        "con",
+        "int",
+        "wis",
+        "cha"
+      ]
+    },
+    "ac": {
+      "type": "number"
+    },
+    "background": {
+      "$ref": "background.schema.json"
+    },
+    "biography": {
+      "type": "object",
+      "properties": {
+        "alignment": {
+          "$ref": "alignment.schema.json"
+        },
+        "gender": {
+          "$ref": "gender.schema.json"
+        },
+        "name": {
+          "$ref": "name.schema.json"
+        }
+      },
+      "required": [
+        "alignment",
+        "gender",
+        "name"
+      ]
+    },
+    "classes": {
+      "type": "array",
+      "items": {
+        "$ref": "class.schema.json"
+      }
+    },
+    "hitPoints": {
+      "$ref": "hitPoints.schema.json"
+    },
+    "initiative": {
+      "type": "number"
+    },
+    "inspiration": {
+      "type": "boolean"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "language.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "proficiencies": {
+      "type": "object",
+      "properties": {
+        "armor": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "armor.schema.json"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "tool": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "weapon": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "weapon.schema.json"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "armor",
+        "tool",
+        "weapon"
+      ]
+    },
+    "proficiencyBonus": {
+      "type": "number"
+    },
+    "race": {
+      "$ref": "race.schema.json"
+    },
+    "skills": {
+      "type": "object",
+      "properties": {
+        "acrobatics": {
+          "$ref": "skill.schema.json"
+        },
+        "animalHandling": {
+          "$ref": "skill.schema.json"
+        },
+        "arcana": {
+          "$ref": "skill.schema.json"
+        },
+        "athletics": {
+          "$ref": "skill.schema.json"
+        },
+        "deception": {
+          "$ref": "skill.schema.json"
+        },
+        "history": {
+          "$ref": "skill.schema.json"
+        },
+        "insight": {
+          "$ref": "skill.schema.json"
+        },
+        "intimidation": {
+          "$ref": "skill.schema.json"
+        },
+        "investigation": {
+          "$ref": "skill.schema.json"
+        },
+        "medicine": {
+          "$ref": "skill.schema.json"
+        },
+        "nature": {
+          "$ref": "skill.schema.json"
+        },
+        "perception": {
+          "$ref": "skill.schema.json"
+        },
+        "performance": {
+          "$ref": "skill.schema.json"
+        },
+        "persuasion": {
+          "$ref": "skill.schema.json"
+        },
+        "religion": {
+          "$ref": "skill.schema.json"
+        },
+        "sleightOfHand": {
+          "$ref": "skill.schema.json"
+        },
+        "stealth": {
+          "$ref": "skill.schema.json"
+        },
+        "survival": {
+          "$ref": "skill.schema.json"
+        }
+      },
+      "required": [
+        "acrobatics",
+        "animalHandling",
+        "arcana",
+        "athletics",
+        "deception",
+        "history",
+        "insight",
+        "intimidation",
+        "investigation",
+        "medicine",
+        "nature",
+        "perception",
+        "performance",
+        "persuasion",
+        "religion",
+        "sleightOfHand",
+        "stealth",
+        "survival"
+      ]
+    },
+    "speed": {
+      "type": "array",
+      "items": {
+        "$ref": "speed.schema.json"
+      }
+    }
+  },
+  "required": [
+    "abilityScores",
+    "ac",
+    "background",
+    "biography",
+    "classes",
+    "hitPoints",
+    "initiative",
+    "inspiration",
+    "languages",
+    "proficiencies",
+    "proficiencyBonus",
+    "race",
+    "skills",
+    "speed"
+  ]
+}

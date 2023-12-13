@@ -1,0 +1,22 @@
+{
+  "$id": "/schemas/abilityScore",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AbilityScore",
+  "type": "object",
+  "properties": {
+    "mod": {
+      "type": "number"
+    },
+    "savingThrowProficiency": {
+      "type": "boolean"
+    },
+    "score": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "mod",
+    "savingThrowProficiency",
+    "score"
+  ]
+}

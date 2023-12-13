@@ -1,3 +1,6 @@
 .DS_Store
 build/
 node_modules/
+world/**/*.json
+world/**/*.md
+world/**/*.pdf

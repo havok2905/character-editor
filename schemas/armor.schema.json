@@ -1,0 +1,25 @@
+{
+  "$id": "/schemas/armor",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Armor",
+  "type": "string",
+  "enum": [
+    "breastplate",
+    "chain mail",
+    "chain shirt",
+    "halfplate",
+    "heavy armor",
+    "hide",
+    "leather",
+    "light armor",
+    "medium armor",
+    "padded",
+    "plate",
+    "ring mail",
+    "scale mail",
+    "shield",
+    "spiked armor",
+    "splint",
+    "studded leather"
+  ]
+}

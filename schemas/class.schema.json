@@ -1,0 +1,22 @@
+{
+  "$id": "/schemas/class",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Class",
+  "type": "object",
+  "properties": {
+    "hitDiceValue": {
+      "type": "number"
+    },
+    "level": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "hitDiceValue",
+    "level",
+    "name"
+  ]
+}

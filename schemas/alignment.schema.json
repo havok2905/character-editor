@@ -1,0 +1,17 @@
+{
+  "$id": "/schemas/alignment",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alignment",
+  "type": "string",
+  "enum": [
+    "chaotic evil",
+    "chaotic good",
+    "chaotic neutral",
+    "lawful evil",
+    "lawful good",
+    "lawful neutral",
+    "neutral",
+    "neutral evil",
+    "neutral good"
+  ]
+}
