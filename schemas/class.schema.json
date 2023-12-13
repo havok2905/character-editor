@@ -12,6 +12,9 @@
     },
     "name": {
       "type": "string"
+    },
+    "subClass": {
+      "$ref": "subClass.schema.json"
     }
   },
   "required": [

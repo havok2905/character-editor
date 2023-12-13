@@ -10,7 +10,6 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Subclass support
 - Personality traits support
 - Backstory support
 - Character feature supports

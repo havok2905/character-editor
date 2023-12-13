@@ -189,6 +189,11 @@ export interface Class {
   hitDiceValue: number;
   level: number;
   name: string;
+  subClass?: SubClass;
+  [k: string]: unknown;
+}
+export interface SubClass {
+  name: string;
   [k: string]: unknown;
 }
 export interface HitPoints {
