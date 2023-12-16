@@ -10,12 +10,11 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Personality traits support
-- Backstory support
 - Character feature supports
 - Character spellcasting
 - Configurable character download locations
 - Configurable character json locations
+- CLI prompt for character level up
 - CLI prompt for generating characters by class, race, background
 - 5E fixtures import
 - HTML exports

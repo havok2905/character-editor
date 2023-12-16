@@ -47,17 +47,73 @@
         "alignment": {
           "$ref": "alignment.schema.json"
         },
+        "backstory": {
+          "type": "string"
+        },
+        "bonds": {
+          "type": "string"
+        },
+        "flaws": {
+          "type": "string"
+        },
         "gender": {
           "$ref": "gender.schema.json"
         },
+        "ideals": {
+          "type": "string"
+        },
         "name": {
           "$ref": "name.schema.json"
+        },
+        "personalityTraits": {
+          "type": "string"
+        },
+        "physicalDescription": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "dress": {
+              "type": "string"
+            },
+            "eyes": {
+              "type": "string"
+            },
+            "hair": {
+              "type": "string"
+            },
+            "height": {
+              "$ref": "height.schema.json"
+            },
+            "skin": {
+              "type": "string"
+            },
+            "weight": {
+              "$ref": "weight.schema.json"
+            }
+          },
+          "required": [
+            "description",
+            "dress",
+            "eyes",
+            "hair",
+            "height",
+            "skin",
+            "weight"
+          ]
         }
       },
       "required": [
         "alignment",
+        "backstory",
+        "bonds",
+        "flaws",
         "gender",
-        "name"
+        "ideals",
+        "name",
+        "personalityTraits",
+        "physicalDescription"
       ]
     },
     "classes": {

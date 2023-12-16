@@ -37,6 +37,9 @@
   },
   "biography": {
     "alignment": "neutral",
+    "backstory": "",
+    "bonds": "",
+    "flaws": "",
     "gender": {
       "name": "non binary",
       "pronouns": [
@@ -47,9 +50,35 @@
         }
       ]
     },
+    "ideals": "",
     "name": {
       "first": "Lorem",
       "last": "Ipsum"
+    },
+    "personalityTraits": "",
+    "physicalDescription": {
+      "description": "",
+      "dress": "",
+      "eyes": "",
+      "hair": "",
+      "height": {
+        "firstUnit": {
+          "indicator": "'",
+          "name": "feet",
+          "value": 0
+        },
+        "secondUnit": {
+          "indicator": "\"",
+          "name": "inches",
+          "value": 0
+        }
+      },
+      "skin": "",
+      "weight": {
+        "indicator": "lbs",
+        "name": "pounds",
+        "value": 0
+      }
     }
   },
   "classes": [

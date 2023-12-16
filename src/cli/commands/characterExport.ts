@@ -40,12 +40,22 @@ export const characterExport = async () => {
         { title: 'Markdown', value: 'markdown' },
       ],
       initial: 0,
+    },
+    {
+      type: 'select',
+      name: 'override',
+      message: 'Create new file or override?',
+      choices: [
+        { title: 'New', value: 'new' },
+        { title: 'Override', value: 'override' },
+      ],
+      initial: 0,
     }
   ];
 
-  const { fileName, outputExtension } = await prompts(questions);
+  const { fileName, outputExtension, override } = await prompts(questions);
 
-  if (!fileName || !outputExtension) return;
+  if (!fileName || !outputExtension || !override) return;
 
   const character = getCharacter(fileName);
 
@@ -65,11 +75,11 @@ export const characterExport = async () => {
 
   switch (outputExtension) {
     case 'pdf':
-      downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}.pdf`);
+      downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.pdf`);
       characterToPdf(character).save(downloadFilePath);
       break;
     case 'markdown':
-      downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}.md`);
+      downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.md`);
       setFileContents(downloadFilePath, characterToMarkdown(character));
       break;
     default:

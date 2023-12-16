@@ -3,7 +3,9 @@ import { getCharacterClassString } from '../utils/dndStringHelpers/getCharacterC
 import { getCharacterHpString } from '../utils/dndStringHelpers/getCharacterHpString';
 import { getCharacterSpeedString } from '../utils/dndStringHelpers/getCharacterSpeedString';
 import { getGenderString } from '../utils/stringHelpers/getGenderString';
+import { getHeightString } from '../utils/stringHelpers/getHeightString';
 import { getNameString } from '../utils/stringHelpers/getNameString';
+import { getWeightString } from '../utils/stringHelpers/getWeightString';
 import { plusOrNothingForNegative } from '../utils/plusOrNothingForNegative';
 
 interface IMarkdownTableColumn {
@@ -191,22 +193,34 @@ export const characterToMarkdown = (character: Character | null): string => {
   const alignment = getMarkdownKeyValuePair('Alignment', character.biography.alignment);
   const armor = getMarkdownKeyValuePair('Armor', character.proficiencies.armor.join(', '));
   const background = getMarkdownKeyValuePair('Background', character.background.name);
+  const backstory = character.biography.backstory;
+  const bonds = getMarkdownKeyValuePair('Bonds', character.biography.bonds);
   const classes = getMarkdownKeyValuePair('Class', getCharacterClassString(character.classes));
+  const description = getMarkdownKeyValuePair('Description', character.biography.physicalDescription.description);
+  const dress = getMarkdownKeyValuePair('Dress', character.biography.physicalDescription.dress);
+  const eyes = getMarkdownKeyValuePair('Eyes', character.biography.physicalDescription.eyes);
+  const flaws = getMarkdownKeyValuePair('Flaws', character.biography.flaws);
   const gender = getMarkdownKeyValuePair('Gender', getGenderString(character.biography.gender));
+  const hair = getMarkdownKeyValuePair('Hair', character.biography.physicalDescription.hair);
+  const height = getMarkdownKeyValuePair('Height', getHeightString(character.biography.physicalDescription.height));
   const hitDice = getMarkdownKeyValuePair('Hit Dice', character.classes.map(item => `${item.level}d${item.hitDiceValue}`));
   const hp = getMarkdownKeyValuePair('HP', getCharacterHpString(character));
+  const ideals = getMarkdownKeyValuePair('Ideals', character.biography.ideals);
   const initiative = getMarkdownKeyValuePair('Initiative', `${plusOrNothingForNegative(character.initiative)}${character.initiative}`);
   const inspiration = getMarkdownKeyValuePair('Inspiration', character.inspiration ? 'yes' : 'none');
   const languages = getMarkdownKeyValuePair('Languages', character.languages.join(', '));
   const name = getNameString(character.biography.name);
+  const personalityTraits = getMarkdownKeyValuePair('Personality Traits', character.biography.personalityTraits);
   const proficiencyBonus = getMarkdownKeyValuePair('Proficiency Bonus', `${plusOrNothingForNegative(character.proficiencyBonus)}${character.proficiencyBonus}`);
   const race = getMarkdownKeyValuePair('Race', character.race.name);
   const size = getMarkdownKeyValuePair('Size', character.race.size);
+  const skin = getMarkdownKeyValuePair('Skin', character.biography.physicalDescription.skin);
   const speed = getMarkdownKeyValuePair('Speed', getCharacterSpeedString(character.speed));
   const subRace = getMarkdownKeyValuePair('Subrace', character.race.subrace?.name);
   const tempHp = getMarkdownKeyValuePair('Temp HP', character.hitPoints.temporary);
   const tools = getMarkdownKeyValuePair('Tools', character.proficiencies.tool.join(', '));
   const weapons = getMarkdownKeyValuePair('Weapons', character.proficiencies.weapon.join(', '));
+  const weight = getMarkdownKeyValuePair('Weight', getWeightString(character.biography.physicalDescription.weight));
 
   return `# ${name}
 
@@ -262,5 +276,35 @@ ${weapons}
 
 ${tools}
 
-${languages}`;
+${languages}
+
+## Biography
+
+${personalityTraits}
+
+${ideals}
+
+${bonds}
+
+${flaws}
+
+### Physical Description
+
+${dress}
+
+${eyes}
+
+${hair}
+
+${skin}
+
+${height}
+
+${weight}
+
+${description}
+
+### Backstory
+
+${backstory}`;
 };

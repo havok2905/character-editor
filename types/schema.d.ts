@@ -114,8 +114,23 @@ export interface Character {
   background: Background;
   biography: {
     alignment: Alignment;
+    backstory: string;
+    bonds: string;
+    flaws: string;
     gender: Gender;
+    ideals: string;
     name: Name;
+    personalityTraits: string;
+    physicalDescription: {
+      description: string;
+      dress: string;
+      eyes: string;
+      hair: string;
+      height: Height;
+      skin: string;
+      weight: Weight;
+      [k: string]: unknown;
+    };
     [k: string]: unknown;
   };
   classes: Class[];
@@ -183,6 +198,23 @@ export interface Name {
   prefix?: string;
   suffix?: string;
   title?: string;
+  [k: string]: unknown;
+}
+export interface Height {
+  firstUnit: Unit;
+  secondUnit: Unit;
+  [k: string]: unknown;
+}
+export interface Unit {
+  name: string;
+  indicator: string;
+  value: number;
+  [k: string]: unknown;
+}
+export interface Weight {
+  name: string;
+  indicator: string;
+  value: number;
   [k: string]: unknown;
 }
 export interface Class {

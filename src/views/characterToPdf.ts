@@ -7,9 +7,220 @@ import { getCharacterClassString } from '../utils/dndStringHelpers/getCharacterC
 import { getCharacterHpString } from '../utils/dndStringHelpers/getCharacterHpString';
 import { getCharacterSpeedString } from '../utils/dndStringHelpers/getCharacterSpeedString';
 import { getGenderString } from '../utils/stringHelpers/getGenderString';
+import { getHeightString } from '../utils/stringHelpers/getHeightString';
 import { getNameString } from '../utils/stringHelpers/getNameString';
+import { getWeightString } from '../utils/stringHelpers/getWeightString';
 import { jsPDF } from 'jspdf';
 import { plusOrNothingForNegative } from '../utils/plusOrNothingForNegative';
+
+// LAYOUT NUMBERS
+
+const height = 842; // Standard A4 in pixels
+const width = 595; // Standard A4 in pixels
+const pagePadding = 20;
+
+const baseFontLineHeight = 14;
+const baseFontSize = 12;
+const nameFontSize = 40;
+
+const standardHalfColumnGap = 20;
+const standardHalfColumn = (width - (pagePadding * 2) - standardHalfColumnGap) / 2;
+const secondHalfColumnStart = pagePadding + standardHalfColumn + standardHalfColumnGap;
+
+// Only used in headers and do not need gaps
+const standardThirdColumn = (width - (pagePadding * 2)) / 3;
+const secondThirdColumnStart = pagePadding + standardThirdColumn;
+const thirdThirdColumnStart = secondThirdColumnStart + standardThirdColumn;
+
+const boxedContentItemGap = 20;
+const boxedContentItemPadding = 4;
+
+// NAME
+
+const nameX = pagePadding;
+const nameY = pagePadding;
+
+// SUB HEADING
+
+const subHeadingY = 90;
+const subHeadingTwoY = 120;
+
+// ABILITY SCORE
+
+const abilityScoreItemGap = 10;
+const abilityScoreItemSize = 70;
+const abilityScoreItemStrokeWidth = 2;
+const abilityScoreItemSkillGap = 10;
+
+// STRENGTH
+
+const strengthX = pagePadding;
+const strengthY = 150;
+
+const athleticsX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const athleticsY = strengthY;
+
+// DEXTERITY
+
+const dexterityX = pagePadding;
+const dexterityY = strengthY + abilityScoreItemSize + abilityScoreItemGap;
+
+const acrobaticsX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const acrobaticsY = dexterityY;
+
+const sleightOfHandX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const sleightOfHandY = acrobaticsY + baseFontLineHeight;
+
+const stealthX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const stealthY = sleightOfHandY + baseFontLineHeight;
+
+// CONSTITUTION
+
+const constitutionX = pagePadding;
+const constitutionY = dexterityY + abilityScoreItemSize + abilityScoreItemGap;
+
+// INTELLIGENCE
+
+const intelligenceX = pagePadding;
+const intelligenceY = constitutionY + abilityScoreItemSize + abilityScoreItemGap;
+
+const arcanaX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const arcanaY = intelligenceY;
+
+const historyX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const historyY = arcanaY + baseFontLineHeight;
+
+const investigationX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const investigationY = historyY + baseFontLineHeight;
+
+const natureX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const natureY = investigationY + baseFontLineHeight;
+
+const religionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const religionY = natureY + baseFontLineHeight;
+
+// WISDOM
+
+const wisdomX = pagePadding;
+const wisdomY = intelligenceY + abilityScoreItemSize + abilityScoreItemGap;
+
+const animalHandlingX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const animalHandlingY = wisdomY;
+
+const insightX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const insightY = animalHandlingY + baseFontLineHeight;
+
+const medicineX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const medicineY = insightY + baseFontLineHeight;
+
+const perceptionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const perceptionY = medicineY + baseFontLineHeight;
+
+const survivalX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const survivalY = perceptionY + baseFontLineHeight;
+
+// CHARISMA
+
+const charismaX = pagePadding;
+const charismaY = wisdomY + abilityScoreItemSize + abilityScoreItemGap;
+
+const deceptionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const deceptionY = charismaY;
+
+const intimidationX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const intimidationY = deceptionY + baseFontLineHeight;
+
+const performanceX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const performanceY = intimidationY + baseFontLineHeight;
+
+const persuasionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
+const persuasionY = performanceY + baseFontLineHeight;
+
+// KEY VALUE STATS
+
+const inspirationX = secondHalfColumnStart;
+const inspirationY = 150;
+
+const initiativeX = secondHalfColumnStart;
+const initiativeY = inspirationY + baseFontLineHeight;
+
+const proficiencyBonusX = secondHalfColumnStart;
+const proficiencyBonusY = initiativeY + baseFontLineHeight;
+
+const acX = secondHalfColumnStart;
+const acY = proficiencyBonusY + baseFontLineHeight;
+
+const hpX = secondHalfColumnStart;
+const hpY = acY + baseFontLineHeight;
+
+const tempHpX = secondHalfColumnStart;
+const tempHpY = hpY + baseFontLineHeight;
+
+const hitDiceX = secondHalfColumnStart;
+const hitDiceY = tempHpY + baseFontLineHeight;
+
+const sizeX = secondHalfColumnStart;
+const sizeY = hitDiceY + baseFontLineHeight;
+
+const speedX = secondHalfColumnStart;
+const speedY = sizeY + baseFontLineHeight;
+
+// PROFICIENCIES
+
+const proficiencyBoxHeight = 60;
+
+const languagesX = secondHalfColumnStart;
+const languagesY = speedY + 30;
+
+const armorX = secondHalfColumnStart;
+const armorY = languagesY + proficiencyBoxHeight + boxedContentItemGap;
+
+const weaponsX = secondHalfColumnStart;
+const weaponsY = armorY + proficiencyBoxHeight + boxedContentItemGap;
+
+const toolsX = secondHalfColumnStart;
+const toolsY = weaponsY + proficiencyBoxHeight + boxedContentItemGap;
+
+// BIOGRAPHY
+
+const backstoryBoxHeight = 460;
+const personalityTraitBoxHeight = 100;
+
+const backstoryX = secondHalfColumnStart;
+const backstoryY = 150;
+
+const personalityTraitsX = pagePadding;
+const personalityTraitsY = 150;
+
+const idealsX = pagePadding;
+const idealsY = personalityTraitsY + personalityTraitBoxHeight + boxedContentItemGap;
+
+const bondsX = pagePadding;
+const bondsY = idealsY + personalityTraitBoxHeight + boxedContentItemGap;
+
+const flawsX = pagePadding;
+const flawsY = bondsY + personalityTraitBoxHeight + boxedContentItemGap;
+
+const dressX = pagePadding
+const dressY = flawsY + personalityTraitBoxHeight + boxedContentItemGap;
+
+const eyesX = pagePadding
+const eyesY = dressY + baseFontLineHeight;
+
+const hairX = pagePadding
+const hairY = eyesY + baseFontLineHeight;
+
+const skinX = pagePadding
+const skinY = hairY + baseFontLineHeight;
+
+const heightX = pagePadding
+const heightY = skinY + baseFontLineHeight;
+
+const weightX = pagePadding
+const weightY = heightY + baseFontLineHeight;
+
+const descriptionX = pagePadding
+const descriptionY = weightY + baseFontLineHeight;
 
 const setAbilityScore = (
   abilityScore: AbilityScore,
@@ -68,197 +279,11 @@ const setAbilityScore = (
   });
 };
 
-const getProficiencyString = (skill: Skill) => {
-  if (skill.proficiency === 'expertise') return '[E]';
-  if (skill.proficiency === 'proficient') return '[P]';
-  return '[ ]';
-};
-
-export const characterToPdf = (character: Character): jsPDF => {
-
-  // LAYOUT NUMBERS
-
-  const height = 842; // Standard A4 in pixels
-  const width = 595; // Standard A4 in pixels
-  const pagePadding = 20;
-
-  const baseFontLineHeight = 14;
-  const baseFontSize = 12;
-  const nameFontSize = 40;
-
-  const standardHalfColumn = (width - (pagePadding * 2)) / 2;
-  const standardThirdColumn = (width - (pagePadding * 2)) / 3;
-
-  const secondHalfColumnStart = pagePadding + standardHalfColumn;
-  const secondThirdColumnStart = pagePadding + standardThirdColumn;
-  const thirdThirdColumnStart = secondThirdColumnStart + standardThirdColumn;
-
-  // NAME NUMBERS
-
-  const nameX = pagePadding;
-  const nameY = pagePadding;
-
-  // SUB HEADING NUMBERS
-
-  const subHeadingY = 90;
-  const subHeadingTwoY = 120;
-
-  // ABILITY SCORE NUMBERS
-  
-  const abilityScoreItemGap = 10;
-  const abilityScoreItemSize = 70;
-  const abilityScoreItemStrokeWidth = 2;
-  const abilityScoreItemSkillGap = 10;
-
-  // STRENGTH NUMBERS
-
-  const strengthX = pagePadding;
-  const strengthY = 150;
-
-  const athleticsX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const athleticsY = strengthY;
-
-  // DEXTERITY NUMBERS
-
-  const dexterityX = pagePadding;
-  const dexterityY = strengthY + abilityScoreItemSize + abilityScoreItemGap;
-
-  const acrobaticsX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const acrobaticsY = dexterityY;
-
-  const sleightOfHandX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const sleightOfHandY = acrobaticsY + baseFontLineHeight;
-
-  const stealthX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const stealthY = sleightOfHandY + baseFontLineHeight;
-
-  // CONSTITUTION NUMBERS
-
-  const constitutionX = pagePadding;
-  const constitutionY = dexterityY + abilityScoreItemSize + abilityScoreItemGap;
-
-  // INTELLIGENCE NUMBERS
-
-  const intelligenceX = pagePadding;
-  const intelligenceY = constitutionY + abilityScoreItemSize + abilityScoreItemGap;
-
-  const arcanaX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const arcanaY = intelligenceY;
-
-  const historyX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const historyY = arcanaY + baseFontLineHeight;
-
-  const investigationX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const investigationY = historyY + baseFontLineHeight;
-
-  const natureX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const natureY = investigationY + baseFontLineHeight;
-
-  const religionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const religionY = natureY + baseFontLineHeight;
-
-  // WISDOM NUMBERS
-
-  const wisdomX = pagePadding;
-  const wisdomY = intelligenceY + abilityScoreItemSize + abilityScoreItemGap;
-
-  const animalHandlingX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const animalHandlingY = wisdomY;
-
-  const insightX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const insightY = animalHandlingY + baseFontLineHeight;
-
-  const medicineX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const medicineY = insightY + baseFontLineHeight;
-
-  const perceptionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const perceptionY = medicineY + baseFontLineHeight;
-
-  const survivalX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const survivalY = perceptionY + baseFontLineHeight;
-
-  // CHARISMA NUMBERS
-  
-  const charismaX = pagePadding;
-  const charismaY = wisdomY + abilityScoreItemSize + abilityScoreItemGap;
-
-  const deceptionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const deceptionY = charismaY;
-
-  const intimidationX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const intimidationY = deceptionY + baseFontLineHeight;
-
-  const performanceX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const performanceY = intimidationY + baseFontLineHeight;
-
-  const persuasionX = pagePadding + abilityScoreItemSize + abilityScoreItemSkillGap;
-  const persuasionY = performanceY + baseFontLineHeight;
-
-  // KEY VALUE STAT NUMBERS
-
-  const inspirationX = secondHalfColumnStart;
-  const inspirationY = 150;
-
-  const initiativeX = secondHalfColumnStart;
-  const initiativeY = inspirationY + baseFontLineHeight;
-
-  const proficiencyBonusX = secondHalfColumnStart;
-  const proficiencyBonusY = initiativeY + baseFontLineHeight;
-
-  const acX = secondHalfColumnStart;
-  const acY = proficiencyBonusY + baseFontLineHeight;
-
-  const hpX = secondHalfColumnStart;
-  const hpY = acY + baseFontLineHeight;
-
-  const tempHpX = secondHalfColumnStart;
-  const tempHpY = hpY + baseFontLineHeight;
-
-  const hitDiceX = secondHalfColumnStart;
-  const hitDiceY = tempHpY + baseFontLineHeight;
-
-  const sizeX = secondHalfColumnStart;
-  const sizeY = hitDiceY + baseFontLineHeight;
-
-  const speedX = secondHalfColumnStart;
-  const speedY = sizeY + baseFontLineHeight;
-
-  // PROFICIENCIES
-
-  const proficiencyItemGap = 10;
-  const proficiencySectionHeight = 36;
-  const proficiencySectionGap = 14;
-
-  const languagesX = secondHalfColumnStart;
-  const languagesY = speedY + proficiencySectionHeight + proficiencySectionGap;
-
-  const armorX = secondHalfColumnStart;
-  const armorY = languagesY + proficiencySectionHeight + proficiencyItemGap;
-
-  const weaponsX = secondHalfColumnStart;
-  const weaponsY = armorY + proficiencySectionHeight + proficiencyItemGap;
-
-  const toolsX = secondHalfColumnStart;
-  const toolsY = weaponsY + proficiencySectionHeight + proficiencyItemGap;
-
-  // DOC GENERATION
-
-  const doc = new jsPDF({
-    orientation: 'portrait',
-    unit: 'px',
-    format: [ height, width ],
-  });
-
-  doc.setFont('times', 'normal');
-
-  // DOC GENERATION - NAME
-
-  doc.setFontSize(nameFontSize);
-  doc.text(getNameString(character.biography.name), nameX, nameY, {
-    baseline: 'top',
-  });
-
-  // DOC GENERATION - FIRST SUB HEADING
+const setHeader = (
+  character: Character,
+  doc: jsPDF,
+) => {
+  doc.setLineWidth(0);
 
   doc.setFontSize(baseFontSize);
   doc.setFont('times', 'bold');
@@ -283,8 +308,6 @@ export const characterToPdf = (character: Character): jsPDF => {
     baseline: 'bottom',
   });
 
-  // DOC GENERATION - SECOND SUB HEADING
-  
   doc.setFontSize(baseFontSize);
   doc.setFont('times', 'bold');
   doc.line(pagePadding, subHeadingTwoY, width - pagePadding, subHeadingTwoY);
@@ -307,8 +330,109 @@ export const characterToPdf = (character: Character): jsPDF => {
   doc.text(character.biography.alignment, thirdThirdColumnStart, subHeadingTwoY - 2, {
     baseline: 'bottom',
   });
+};
 
-  // DOC GENERATION - ABILITY SCORES - STRENGTH
+const setName = (
+  character: Character,
+  doc: jsPDF,
+) => {
+  doc.setFontSize(nameFontSize);
+  doc.setFont('times', 'normal');
+  doc.text(getNameString(character.biography.name), nameX, nameY, {
+    baseline: 'top',
+  });
+};
+
+const setSkill = (
+  label: string,
+  skill: Skill,
+  doc: jsPDF,
+  x: number,
+  y: number,
+) => {
+  doc.setFontSize(baseFontSize);
+  doc.setFont('times', 'normal');
+  doc.text(
+    `${getProficiencyString(skill)} ${plusOrNothingForNegative(skill.mod)}${skill.mod} ${label}`, 
+    x,
+    y,
+    { baseline: 'top' },
+  );
+};
+
+const setKeyValueStat = (
+  doc: jsPDF,
+  key: string,
+  value: string,
+  x: number,
+  y: number,
+) => {
+  doc.setFontSize(baseFontSize);
+  doc.setFont('times', 'normal');
+  doc.text(`${key}: ${value}`, x, y, {
+    baseline: 'top',
+  });
+};
+
+const setBoxedContent = (
+  doc: jsPDF,
+  key: string,
+  value: string,
+  x: number,
+  y: number,
+  sizeX: number,
+  sizeY: number,
+) => {
+  doc.setFontSize(baseFontSize);
+  doc.setFont('times', 'bold');
+  doc.text(
+    key,
+    x,
+    y,
+    {
+      baseline: 'bottom',
+    }
+  );
+
+  doc.setLineWidth(0);
+  doc.rect(
+    x,
+    y,
+    sizeX,
+    sizeY,
+  );
+
+  doc.setFontSize(baseFontSize);
+  doc.setFont('times', 'normal');
+  doc.text(
+    value,
+    x + boxedContentItemPadding,
+    y + boxedContentItemPadding,
+    {
+      baseline: 'top',
+      maxWidth: standardHalfColumn - boxedContentItemPadding * 2,
+    }
+  );
+};
+
+const getProficiencyString = (skill: Skill) => {
+  if (skill.proficiency === 'expertise') return '[E]';
+  if (skill.proficiency === 'proficient') return '[P]';
+  return '[ ]';
+};
+
+export const characterToPdf = (character: Character): jsPDF => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'px',
+    format: [ height, width ],
+  });
+
+  // CHARACTER PAGE
+
+  setName(character, doc);
+
+  setHeader(character, doc);
 
   setAbilityScore(
     character.abilityScores.str,
@@ -320,16 +444,13 @@ export const characterToPdf = (character: Character): jsPDF => {
     strengthY,
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.athletics)} ${plusOrNothingForNegative(character.skills.athletics.mod)}${character.skills.athletics.mod} Athletics`, 
+  setSkill(
+    'Athletics',
+    character.skills.athletics,
+    doc,
     athleticsX,
     athleticsY,
-    { baseline: 'top' },
   );
-
-  // DOC GENERATION - ABILITY SCORES - DEXTERITY
 
   setAbilityScore(
     character.abilityScores.dex,
@@ -341,33 +462,29 @@ export const characterToPdf = (character: Character): jsPDF => {
     dexterityY,
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.acrobatics)} ${plusOrNothingForNegative(character.skills.acrobatics.mod)}${character.skills.acrobatics.mod} Acrobatics`, acrobaticsX,
+  setSkill(
+    'Acrobatics',
+    character.skills.acrobatics,
+    doc,
+    acrobaticsX,
     acrobaticsY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.sleightOfHand)} ${plusOrNothingForNegative(character.skills.sleightOfHand.mod)}${character.skills.sleightOfHand.mod} Sleight of Hand`,
-    sleightOfHandX,
-    sleightOfHandY,
-    { baseline: 'top' },
-  );
-
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.athletics)} ${plusOrNothingForNegative(character.skills.stealth.mod)}${character.skills.stealth.mod} Stealth`,
+  setSkill(
+    'Stealth',
+    character.skills.stealth,
+    doc,
     stealthX,
     stealthY,
-    { baseline: 'top' },
   );
 
-  // DOC GENERATION - ABILITY SCORES - CONSTITUTION
+  setSkill(
+    'Sleight of Hand',
+    character.skills.sleightOfHand,
+    doc,
+    sleightOfHandX,
+    sleightOfHandY,
+  );
 
   setAbilityScore(
     character.abilityScores.con,
@@ -379,8 +496,6 @@ export const characterToPdf = (character: Character): jsPDF => {
     constitutionY,
   );
 
-  // DOC GENERATION - ABILITY SCORES - INTELLIGENCE
-
   setAbilityScore(
     character.abilityScores.int,
     'INTELLIGENCE',
@@ -391,52 +506,45 @@ export const characterToPdf = (character: Character): jsPDF => {
     intelligenceY,
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.arcana)} ${plusOrNothingForNegative(character.skills.arcana.mod)}${character.skills.arcana.mod} Arcana`,
+  setSkill(
+    'Arcana',
+    character.skills.arcana,
+    doc,
     arcanaX,
     arcanaY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.history)} ${plusOrNothingForNegative(character.skills.history.mod)}${character.skills.history.mod} History`,
+  setSkill(
+    'History',
+    character.skills.history,
+    doc,
     historyX,
     historyY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.investigation)} ${plusOrNothingForNegative(character.skills.investigation.mod)}${character.skills.investigation.mod} Investigation`,
+  setSkill(
+    'Investigation',
+    character.skills.investigation,
+    doc,
     investigationX,
     investigationY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.nature)} ${plusOrNothingForNegative(character.skills.nature.mod)}${character.skills.nature.mod} Nature`,
+  setSkill(
+    'Nature',
+    character.skills.nature,
+    doc,
     natureX,
     natureY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.religion)} ${plusOrNothingForNegative(character.skills.religion.mod)}${character.skills.religion.mod} Religion`,
+  setSkill(
+    'Religion',
+    character.skills.religion,
+    doc,
     religionX,
     religionY,
-    { baseline: 'top' },
   );
-
-  // DOC GENERATION - ABILITY SCORES - WISDOM
 
   setAbilityScore(
     character.abilityScores.wis,
@@ -448,52 +556,45 @@ export const characterToPdf = (character: Character): jsPDF => {
     wisdomY,
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.animalHandling)} ${plusOrNothingForNegative(character.skills.animalHandling.mod)}${character.skills.animalHandling.mod} Animal Handling`,
+  setSkill(
+    'Animal Handling',
+    character.skills.animalHandling,
+    doc,
     animalHandlingX,
     animalHandlingY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.insight)} ${plusOrNothingForNegative(character.skills.insight.mod)}${character.skills.insight.mod} Insight`,
+  setSkill(
+    'Insight',
+    character.skills.insight,
+    doc,
     insightX,
     insightY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.medicine)} ${plusOrNothingForNegative(character.skills.medicine.mod)}${character.skills.medicine.mod} Medicine`,
+  setSkill(
+    'Medicine',
+    character.skills.medicine,
+    doc,
     medicineX,
     medicineY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.perception)} ${plusOrNothingForNegative(character.skills.perception.mod)}${character.skills.perception.mod} Perception`,
+  setSkill(
+    'Perception',
+    character.skills.perception,
+    doc,
     perceptionX,
     perceptionY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.survival)} ${plusOrNothingForNegative(character.skills.survival.mod)}${character.skills.survival.mod} Survival`,
+  setSkill(
+    'Survival',
+    character.skills.survival,
+    doc,
     survivalX,
     survivalY,
-    { baseline: 'top' },
   );
-
-  // DOC GENERATION - ABILITY SCORES - CHARISMA
 
   setAbilityScore(
     character.abilityScores.cha,
@@ -505,125 +606,262 @@ export const characterToPdf = (character: Character): jsPDF => {
     charismaY,
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.deception)} ${plusOrNothingForNegative(character.skills.deception.mod)}${character.skills.deception.mod} Deception`,
+  setSkill(
+    'Deception',
+    character.skills.deception,
+    doc,
     deceptionX,
     deceptionY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.intimidation)} ${plusOrNothingForNegative(character.skills.intimidation.mod)}${character.skills.intimidation.mod} Intimidation`,
+  setSkill(
+    'Intimidation',
+    character.skills.intimidation,
+    doc,
     intimidationX,
     intimidationY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.performance)} ${plusOrNothingForNegative(character.skills.performance.mod)}${character.skills.performance.mod} Performance`,
+  setSkill(
+    'Performance',
+    character.skills.performance,
+    doc,
     performanceX,
     performanceY,
-    { baseline: 'top' },
   );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(
-    `${getProficiencyString(character.skills.persuasion)} ${plusOrNothingForNegative(character.skills.persuasion.mod)}${character.skills.persuasion.mod} Persuasion`,
+  setSkill(
+    'Persuasion',
+    character.skills.persuasion,
+    doc,
     persuasionX,
     persuasionY,
-    { baseline: 'top' },
   );
 
-  // DOC GENERATION - KEY VALUE STATS
+  setKeyValueStat(
+    doc,
+    'Inspiration',
+    (character.inspiration ? 'Yes' : 'No'),
+    inspirationX,
+    inspirationY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Inspiration: ${character.inspiration ? 'Yes' : 'No'}`, inspirationX, inspirationY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'Initiative',
+    `${plusOrNothingForNegative(character.initiative)}${character.initiative}`,
+    initiativeX,
+    initiativeY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Initiative: ${plusOrNothingForNegative(character.initiative)}${character.initiative}`, initiativeX, initiativeY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'Proficiency Bonus',
+    `${plusOrNothingForNegative(character.proficiencyBonus)}${character.proficiencyBonus}`,
+    proficiencyBonusX,
+    proficiencyBonusY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Proficiency Bonus: ${plusOrNothingForNegative(character.proficiencyBonus)}${character.proficiencyBonus}`, proficiencyBonusX, proficiencyBonusY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'AC',
+    `${character.ac}`,
+    acX,
+    acY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`AC: ${character.ac}`, acX, acY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'HP',
+    getCharacterHpString(character),
+    hpX,
+    hpY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`HP: ${getCharacterHpString(character)}`, hpX, hpY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'Temp HP',
+    `${character.hitPoints.temporary}`,
+    tempHpX,
+    tempHpY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Temp HP: ${character.hitPoints.temporary}`, tempHpX, tempHpY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'Hit Dice',
+    `${character.classes.map(item => `${item.level}d${item.hitDiceValue}`)}`,
+    hitDiceX,
+    hitDiceY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Hit Dice: ${character.classes.map(item => `${item.level}d${item.hitDiceValue}`)}`, hitDiceX, hitDiceY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'Size',
+    character.race.size,
+    sizeX,
+    sizeY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Size: ${character.race.size}`, sizeX, sizeY, {
-    baseline: 'top',
-  });
+  setKeyValueStat(
+    doc,
+    'Speed',
+    getCharacterSpeedString(character.speed),
+    speedX,
+    speedY,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Speed: ${getCharacterSpeedString(character.speed)}`, speedX, speedY, {
-    baseline: 'top',
-  });
+  setBoxedContent(
+    doc,
+    'Languages',
+    character.languages.join(', '),
+    languagesX,
+    languagesY,
+    standardHalfColumn,
+    proficiencyBoxHeight,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Languages: ${character.languages.join(', ')}`, languagesX, languagesY, {
-    baseline: 'top',
-    maxWidth: standardHalfColumn,
-  });
+  setBoxedContent(
+    doc,
+    'Armor',
+    character.proficiencies.armor.join(', '),
+    armorX,
+    armorY,
+    standardHalfColumn,
+    proficiencyBoxHeight,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Armor: ${character.proficiencies.armor.join(', ')}`, armorX, armorY, {
-    baseline: 'top',
-    maxWidth: standardHalfColumn,
-  });
+  setBoxedContent(
+    doc,
+    'Weapons',
+    character.proficiencies.weapon.join(', '),
+    weaponsX,
+    weaponsY,
+    standardHalfColumn,
+    proficiencyBoxHeight,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Weapons: ${character.proficiencies.weapon.join(', ')}`, weaponsX, weaponsY, {
-    baseline: 'top',
-    maxWidth: standardHalfColumn,
-  });
+  setBoxedContent(
+    doc,
+    'Tools',
+    character.proficiencies.tool.join(', '),
+    toolsX,
+    toolsY,
+    standardHalfColumn,
+    proficiencyBoxHeight,
+  );
 
-  doc.setFontSize(baseFontSize);
-  doc.setFont('times', 'normal');
-  doc.text(`Tools: ${character.proficiencies.tool.join(', ')}`, toolsX, toolsY, {
-    baseline: 'top',
-    maxWidth: standardHalfColumn,
-  });
+  // BIOGRAPHY PAGE
+
+  doc.addPage();
+
+  setName(character, doc);
+  setHeader(character, doc);
+
+  setBoxedContent(
+    doc,
+    'Personality Traits',
+    character.biography.personalityTraits,
+    personalityTraitsX,
+    personalityTraitsY,
+    standardHalfColumn,
+    personalityTraitBoxHeight,
+  );
+
+  setBoxedContent(
+    doc,
+    'Ideals',
+    character.biography.ideals,
+    idealsX,
+    idealsY,
+    standardHalfColumn,
+    personalityTraitBoxHeight,
+  );
+
+  setBoxedContent(
+    doc,
+    'Bonds',
+    character.biography.bonds,
+    bondsX,
+    bondsY,
+    standardHalfColumn,
+    personalityTraitBoxHeight,
+  );
+
+  setBoxedContent(
+    doc,
+    'Flaws',
+    character.biography.flaws,
+    flawsX,
+    flawsY,
+    standardHalfColumn,
+    personalityTraitBoxHeight,
+  );
+
+  setBoxedContent(
+    doc,
+    'Backstory',
+    character.biography.backstory,
+    backstoryX,
+    backstoryY,
+    standardHalfColumn,
+    backstoryBoxHeight,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Dress',
+    character.biography.physicalDescription.dress,
+    dressX,
+    dressY,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Eyes',
+    character.biography.physicalDescription.eyes,
+    eyesX,
+    eyesY,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Hair',
+    character.biography.physicalDescription.hair,
+    hairX,
+    hairY,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Skin',
+    character.biography.physicalDescription.skin,
+    skinX,
+    skinY,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Height',
+    getHeightString(character.biography.physicalDescription.height),
+    heightX,
+    heightY,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Weight',
+    getWeightString(character.biography.physicalDescription.weight),
+    weightX,
+    weightY,
+  );
+
+  setKeyValueStat(
+    doc,
+    'Description',
+    character.biography.physicalDescription.description,
+    descriptionX,
+    descriptionY,
+  );
 
   return doc;
 };

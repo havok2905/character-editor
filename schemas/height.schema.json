@@ -1,0 +1,18 @@
+{
+  "$id": "/schemas/height",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Height",
+  "type": "object",
+  "properties": {
+    "firstUnit": {
+      "$ref": "unit.schema.json"
+    },
+    "secondUnit": {
+      "$ref": "unit.schema.json"
+    }
+  },
+  "required": [
+    "firstUnit",
+    "secondUnit"
+  ]
+}

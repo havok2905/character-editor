@@ -25,7 +25,7 @@ export const generateCharacter = async () => {
     return;
   }
 
-  const json = getFileContents(path.join(__dirname, '../../fixtures/defaultCharacter.json'));
+  const json = getFileContents(path.join(__dirname, '../../fixtures/default.character.json'));
 
   setFileContents(downloadFilePath, json);
 

@@ -1,0 +1,6 @@
+{
+  "$id": "/schemas/weight",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Weight",
+  "$ref": "unit.schema.json"
+}
