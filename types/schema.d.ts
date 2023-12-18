@@ -177,7 +177,31 @@ export interface AbilityScore {
   [k: string]: unknown;
 }
 export interface Background {
+  features: Feature[];
   name: string;
+  [k: string]: unknown;
+}
+export interface Feature {
+  entries: (List | Table | SubEntry | string)[];
+  name: string;
+  [k: string]: unknown;
+}
+export interface List {
+  type: "list";
+  items: string[];
+  [k: string]: unknown;
+}
+export interface Table {
+  type: "table";
+  caption?: string;
+  columnLabels: string[];
+  rows: string[][];
+  [k: string]: unknown;
+}
+export interface SubEntry {
+  entries: (List | Table | string)[];
+  name: string;
+  type: "subEntry";
   [k: string]: unknown;
 }
 export interface Gender {
@@ -218,6 +242,7 @@ export interface Weight {
   [k: string]: unknown;
 }
 export interface Class {
+  features: Feature[];
   hitDiceValue: number;
   level: number;
   name: string;
@@ -225,6 +250,7 @@ export interface Class {
   [k: string]: unknown;
 }
 export interface SubClass {
+  features: Feature[];
   name: string;
   [k: string]: unknown;
 }
@@ -235,9 +261,11 @@ export interface HitPoints {
   [k: string]: unknown;
 }
 export interface Race {
+  features: Feature[];
   name: string;
   size: Size;
   subrace?: {
+    features: Feature[];
     name: string;
     [k: string]: unknown;
   };

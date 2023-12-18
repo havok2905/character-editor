@@ -1,0 +1,34 @@
+{
+  "$id": "/schemas/feature",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Feature",
+  "type": "object",
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "list.schema.json"
+          },
+          {
+            "$ref": "table.schema.json"
+          },
+          {
+            "$ref": "subEntry.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entries",
+    "name"
+  ]
+}

@@ -1,4 +1,10 @@
-import { type Character } from '../../types/schema';
+import {
+  type Character,
+  type Feature,
+  type List,
+  type SubEntry,
+  type Table,
+} from '../../types/schema';
 import { getCharacterClassString } from '../utils/dndStringHelpers/getCharacterClassString';
 import { getCharacterHpString } from '../utils/dndStringHelpers/getCharacterHpString';
 import { getCharacterSpeedString } from '../utils/dndStringHelpers/getCharacterSpeedString';
@@ -20,7 +26,7 @@ const getMarkdownTable = (
   rows: IMarkdownTableRow[]
 ): string => {
   const headerCells = columns.map((column) => `|${column.label}`);
-  const headerDividers = columns.map((column) => `|${column.label.replace(/[\S]/g, '-')}`);
+  const headerDividers = columns.map((column) => `|${column.label.replace(/[\S\s]/g, '-')}`);
   
   const rowsString = rows.map((row) => {
     const rowString = columns.map((column) => `${row[column.id]}`).join('|');
@@ -34,6 +40,57 @@ ${rowsString}`;
 
 const getMarkdownKeyValuePair = (key: string, value: unknown) => {
   return `**${key}:** ${value}`;
+};
+
+const getMarkdownList = (items: string[]): string => {
+  return items.map(item => `- ${item}`).join('\n');
+};
+
+const getEntry = (entry: List | SubEntry | Table | string, response: string): string => {
+  if (typeof entry === 'string') {
+    return response + `\n${entry}`;
+  } else if (entry.type === 'table') {
+    const columns = entry.columnLabels.map((column) => {
+      return {
+        id: column,
+        label: column,
+      }
+    });
+  
+    const rows = entry.rows.map((row) => {
+      const rowToReturn: Record<string, unknown> = {};
+  
+      columns.forEach((column, index) => {
+        rowToReturn[column.id] = row[index];
+      });
+  
+      return rowToReturn;
+    });
+
+    return response + `\n${getMarkdownTable(columns, rows)}`;
+  } else if (entry.type === 'list') {
+    return `\n${getMarkdownList(entry.items)}`;
+  } else if (entry.type === 'subEntry') {
+    let toReturn = `\n#### ${entry.name}`;
+
+    entry.entries.forEach((item) => {
+      toReturn += getEntry(item, response);
+    });
+
+    return toReturn;
+  }
+
+  // We have reached an unsupported type and just pass along.
+  return response;
+};
+
+const getFeature = (feature: Feature): string => {
+  const entries = feature.entries.map((entry) => {
+    return getEntry(entry, '');
+  }).join('\n');
+
+  return `### ${feature.name}
+${entries}`;
 };
 
 export const characterToMarkdown = (character: Character | null): string => {
@@ -189,13 +246,26 @@ export const characterToMarkdown = (character: Character | null): string => {
     },
   ]);
 
+  const classFeatureItems = [] as Feature[];
+
+  character.classes.forEach((klass) => {
+    klass.features.forEach((feature) => {
+      classFeatureItems.push(feature);
+    });
+    klass.subClass?.features.forEach((feature) => {
+      classFeatureItems.push(feature);
+    });
+  });
+
   const ac = getMarkdownKeyValuePair('AC', character.ac);
   const alignment = getMarkdownKeyValuePair('Alignment', character.biography.alignment);
   const armor = getMarkdownKeyValuePair('Armor', character.proficiencies.armor.join(', '));
   const background = getMarkdownKeyValuePair('Background', character.background.name);
+  const backgroundFeatures = character.background.features.map(feature => getFeature(feature)).join('\n\n');
   const backstory = character.biography.backstory;
   const bonds = getMarkdownKeyValuePair('Bonds', character.biography.bonds);
   const classes = getMarkdownKeyValuePair('Class', getCharacterClassString(character.classes));
+  const classFeatures = classFeatureItems.map(feature => getFeature(feature)).join('\n\n');
   const description = getMarkdownKeyValuePair('Description', character.biography.physicalDescription.description);
   const dress = getMarkdownKeyValuePair('Dress', character.biography.physicalDescription.dress);
   const eyes = getMarkdownKeyValuePair('Eyes', character.biography.physicalDescription.eyes);
@@ -213,10 +283,12 @@ export const characterToMarkdown = (character: Character | null): string => {
   const personalityTraits = getMarkdownKeyValuePair('Personality Traits', character.biography.personalityTraits);
   const proficiencyBonus = getMarkdownKeyValuePair('Proficiency Bonus', `${plusOrNothingForNegative(character.proficiencyBonus)}${character.proficiencyBonus}`);
   const race = getMarkdownKeyValuePair('Race', character.race.name);
+  const raceFeatures = character.race.features.map(feature => getFeature(feature)).join('\n\n');
   const size = getMarkdownKeyValuePair('Size', character.race.size);
   const skin = getMarkdownKeyValuePair('Skin', character.biography.physicalDescription.skin);
   const speed = getMarkdownKeyValuePair('Speed', getCharacterSpeedString(character.speed));
   const subRace = getMarkdownKeyValuePair('Subrace', character.race.subrace?.name);
+  const subraceFeatures = character.race.subrace?.features.map(feature => getFeature(feature)).join('\n\n') ?? '';
   const tempHp = getMarkdownKeyValuePair('Temp HP', character.hitPoints.temporary);
   const tools = getMarkdownKeyValuePair('Tools', character.proficiencies.tool.join(', '));
   const weapons = getMarkdownKeyValuePair('Weapons', character.proficiencies.weapon.join(', '));
@@ -277,6 +349,16 @@ ${weapons}
 ${tools}
 
 ${languages}
+
+## Features
+
+${backgroundFeatures}
+
+${raceFeatures}
+
+${subraceFeatures}
+
+${classFeatures}
 
 ## Biography
 

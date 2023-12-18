@@ -23,6 +23,7 @@
     "jsdom": "^23.0.1",
     "json-schema-to-typescript": "^13.1.1",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.1",
     "prompts": "^2.4.2",
     "ts-node": "^10.9.1",
     "yargs": "^17.7.2"

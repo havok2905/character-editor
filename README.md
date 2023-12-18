@@ -10,17 +10,15 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Character feature supports
-- Character spellcasting
-- Configurable character download locations
-- Configurable character json locations
-- CLI prompt for character level up
-- CLI prompt for generating characters by class, race, background
-- 5E fixtures import
-- HTML exports
 - Creature Schema
 - Item Schema
 - Spell Schema
+- Character spellcasting
+- Character inventory
+- Character item cards
+- Character pets
+- Configurable character download locations
+- Configurable character json locations
 
 ## ENV
 

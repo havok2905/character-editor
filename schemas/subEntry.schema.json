@@ -1,0 +1,38 @@
+{
+  "$id": "/schemas/subEntry",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SubEntry",
+  "type": "object",
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "list.schema.json"
+          },
+          {
+            "$ref": "table.schema.json"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "subEntry"
+      ]
+    }
+  },
+  "required": [
+    "entries",
+    "name",
+    "type"
+  ]
+}

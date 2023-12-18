@@ -1,0 +1,24 @@
+{
+  "$id": "/schemas/list",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "List",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "list"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "items",
+    "type"
+  ]
+}

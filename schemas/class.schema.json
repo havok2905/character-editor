@@ -4,6 +4,12 @@
   "title": "Class",
   "type": "object",
   "properties": {
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "feature.schema.json"
+      }
+    },
     "hitDiceValue": {
       "type": "number"
     },
@@ -18,6 +24,7 @@
     }
   },
   "required": [
+    "features",
     "hitDiceValue",
     "level",
     "name"

@@ -33,6 +33,7 @@
   },
   "ac": 10,
   "background": {
+    "features": [],
     "name": ""
   },
   "biography": {
@@ -83,6 +84,7 @@
   },
   "classes": [
     {
+      "features": [],
       "hitDiceValue": 8,
       "level": 1,
       "name": "druid"
@@ -110,8 +112,10 @@
     "name": "human",
     "size": "medium",
     "subrace": {
-      "name": "variant"
-    }
+      "name": "variant",
+      "features": []
+    },
+    "features": []
   },
   "skills": {
     "acrobatics": {

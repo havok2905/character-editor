@@ -4,6 +4,12 @@
   "title": "Race",
   "type": "object",
   "properties": {
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "feature.schema.json"
+      }
+    },
     "name": {
       "type": "string"
     },
@@ -13,16 +19,24 @@
     "subrace": {
       "type": "object",
       "properties": {
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "feature.schema.json"
+          }
+        },
         "name": {
           "type": "string"
         }
       },
       "required": [
+        "features",
         "name"
       ]
     }
   },
   "required": [
+    "features",
     "name",
     "size"
   ]
