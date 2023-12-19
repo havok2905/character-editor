@@ -1,0 +1,60 @@
+{
+  "$id": "/schemas/spellListWarlock",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SpellListWarlock",
+  "type": "object",
+  "properties": {
+    "ability": {
+      "type": "string",
+      "enum": [
+        "str",
+        "dex",
+        "con",
+        "int",
+        "wis",
+        "cha"
+      ]
+    },
+    "mod": {
+      "type": "number"
+    },
+    "saveDc": {
+      "type": "number"
+    },
+    "cantrips": {
+      "type": "array",
+      "items": {
+        "$ref": "spellItem.schema.json"
+      }
+    },
+    "warlock": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "number"
+        },
+        "spellSlots": {
+          "type": "number"
+        },
+        "spells": {
+          "type": "array",
+          "items": {
+            "$ref": "spellItem.schema.json"
+          }
+        }
+      },
+      "required": [
+        "level",
+        "spellSlots",
+        "spells"
+      ]
+    }
+  },
+  "required": [
+    "ability",
+    "mod",
+    "saveDc",
+    "cantrips",
+    "warlock"
+  ]
+}

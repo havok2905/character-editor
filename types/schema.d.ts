@@ -168,6 +168,7 @@ export interface Character {
     [k: string]: unknown;
   };
   speed: Speed[];
+  spellLists: (SpellList | SpellListWarlock)[];
   [k: string]: unknown;
 }
 export interface AbilityScore {
@@ -281,5 +282,45 @@ export interface Speed {
   name?: string;
   unit: string;
   value: number;
+  [k: string]: unknown;
+}
+export interface SpellList {
+  source: string;
+  ability: "str" | "dex" | "con" | "int" | "wis" | "cha";
+  mod: number;
+  saveDc: number;
+  cantrips: SpellItem[];
+  first: SpellCollection;
+  second: SpellCollection;
+  third: SpellCollection;
+  fourth: SpellCollection;
+  fifth: SpellCollection;
+  sixth: SpellCollection;
+  seventh: SpellCollection;
+  eighth: SpellCollection;
+  ninth: SpellCollection;
+  [k: string]: unknown;
+}
+export interface SpellItem {
+  value: string;
+  alwaysPrepared?: boolean;
+  [k: string]: unknown;
+}
+export interface SpellCollection {
+  spellSlots: number;
+  spells: SpellItem[];
+  [k: string]: unknown;
+}
+export interface SpellListWarlock {
+  ability: "str" | "dex" | "con" | "int" | "wis" | "cha";
+  mod: number;
+  saveDc: number;
+  cantrips: SpellItem[];
+  warlock: {
+    level: number;
+    spellSlots: number;
+    spells: SpellItem[];
+    [k: string]: unknown;
+  };
   [k: string]: unknown;
 }

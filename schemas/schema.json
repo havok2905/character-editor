@@ -280,6 +280,19 @@
       "items": {
         "$ref": "speed.schema.json"
       }
+    },
+    "spellLists": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "spellList.schema.json"
+          },
+          {
+            "$ref": "spellListWarlock.schema.json"
+          }
+        ]
+      }
     }
   },
   "required": [
@@ -296,6 +309,7 @@
     "proficiencyBonus",
     "race",
     "skills",
-    "speed"
+    "speed",
+    "spellLists"
   ]
 }

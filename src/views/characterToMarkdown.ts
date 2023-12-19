@@ -2,6 +2,9 @@ import {
   type Character,
   type Feature,
   type List,
+  type SpellItem,
+  type SpellList,
+  type SpellListWarlock,
   type SubEntry,
   type Table,
 } from '../../types/schema';
@@ -257,6 +260,58 @@ export const characterToMarkdown = (character: Character | null): string => {
     });
   });
 
+  const isSpellListWarlock = (spellList: SpellList | SpellListWarlock): spellList is SpellListWarlock => {
+    return !!spellList.warlock;
+  };
+
+  const getSpellItem = (spellItem: SpellItem) => {
+    return `${spellItem.alwaysPrepared ? '*' : ''}${spellItem.value}`;
+  };
+
+  const spellLists = character.spellLists.map((spellList: SpellList | SpellListWarlock) => {
+    if (isSpellListWarlock(spellList)) {
+      return `### Spell List - Warlock
+
+**Ability:** ${spellList.ability}
+
+**Mod:** ${spellList.mod}
+
+**Save DC:** ${spellList.saveDc}
+
+**Cantrips:** ${spellList.cantrips.map(getSpellItem).join(', ')}
+
+**Spells; Level ${spellList.warlock.level} (${spellList.warlock.spellSlots}):** ${spellList.warlock.spells.map(getSpellItem).join(', ')}`;
+    }
+
+    return `### Spell List - ${spellList.source}
+
+**Ability:** ${spellList.ability}
+
+**Mod:** ${spellList.mod}
+
+**Save DC:** ${spellList.saveDc}
+
+**Cantrips:** ${spellList.cantrips.map(getSpellItem).join(', ')}
+
+**1st (${spellList.first.spellSlots}):** ${spellList.first.spells.map(getSpellItem).join(', ')}
+
+**2nd (${spellList.second.spellSlots}):** ${spellList.second.spells.map(getSpellItem).join(', ')}
+
+**3rd (${spellList.third.spellSlots}):** ${spellList.third.spells.map(getSpellItem).join(', ')}
+
+**4th (${spellList.fourth.spellSlots}):** ${spellList.fourth.spells.map(getSpellItem).join(', ')}
+
+**5th (${spellList.fifth.spellSlots}):** ${spellList.fifth.spells.map(getSpellItem).join(', ')}
+
+**6th (${spellList.sixth.spellSlots}):** ${spellList.sixth.spells.map(getSpellItem).join(', ')}
+
+**7th (${spellList.seventh.spellSlots}):** ${spellList.seventh.spells.map(getSpellItem).join(', ')}
+
+**8th (${spellList.eighth.spellSlots}):** ${spellList.eighth.spells.map(getSpellItem).join(', ')}
+
+**9th (${spellList.ninth.spellSlots}):** ${spellList.ninth.spells.map(getSpellItem).join(', ')}`;
+  });
+
   const ac = getMarkdownKeyValuePair('AC', character.ac);
   const alignment = getMarkdownKeyValuePair('Alignment', character.biography.alignment);
   const armor = getMarkdownKeyValuePair('Armor', character.proficiencies.armor.join(', '));
@@ -359,6 +414,10 @@ ${raceFeatures}
 ${subraceFeatures}
 
 ${classFeatures}
+
+## Spellcasting
+
+${spellLists.join('\n\n')}
 
 ## Biography
 

@@ -12,8 +12,6 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 - Creature Schema
 - Item Schema
-- Spell Schema
-- Character spellcasting
 - Character inventory
 - Character item cards
 - Character pets

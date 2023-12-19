@@ -1,0 +1,21 @@
+{
+  "$id": "/schemas/spellCollection",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SpellCollection",
+  "type": "object",
+  "properties": {
+    "spellSlots": {
+      "type": "number"
+    },
+    "spells": {
+      "type": "array",
+      "items": {
+        "$ref": "spellItem.schema.json"
+      }
+    }
+  },
+  "required": [
+    "spellSlots",
+    "spells"
+  ]
+}
