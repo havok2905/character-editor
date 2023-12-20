@@ -15,6 +15,7 @@ PROJECT IS CURRENTLY A PROTOTYPE
 - Creature and Character Sheet Iconography
 - Configurable download locations
 - Configurable json locations
+- Single build command
 - Split type system from CLI project into its own repo and add as dependency
 
 ## ENV
