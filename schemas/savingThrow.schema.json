@@ -1,26 +1,18 @@
 {
-  "$id": "/schemas/skill",
+  "$id": "/schemas/savingThrow",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Skill",
+  "title": "SavingThrow",
   "type": "object",
   "properties": {
     "ability": {
       "$ref": "abilityAbbreviation.schema.json"
     },
-    "mod": {
+    "dc": {
       "type": "number"
-    },
-    "proficiency": {
-      "type": "string",
-      "enum": [
-        "none",
-        "proficient",
-        "expertise"
-      ]
     }
   },
   "required": [
     "ability",
-    "mod"
+    "dc"
   ]
 }

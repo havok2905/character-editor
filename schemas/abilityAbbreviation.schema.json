@@ -1,0 +1,14 @@
+{
+  "$id": "/schemas/abilityAbbreviation",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AbilityAbbreviation",
+  "type": "string",
+  "enum": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+  ]
+}

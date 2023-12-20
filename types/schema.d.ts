@@ -15,6 +15,36 @@ export type Alignment =
   | "neutral"
   | "neutral evil"
   | "neutral good";
+export type Condition =
+  | "blinded"
+  | "charmed"
+  | "deafened"
+  | "frightened"
+  | "grappled"
+  | "incapacitated"
+  | "invisible"
+  | "paralyzed"
+  | "petrified"
+  | "poisoned"
+  | "prone"
+  | "restrained"
+  | "stunned"
+  | "unconscious"
+  | "exhaustion";
+export type Damage =
+  | "acid"
+  | "bludgeoning"
+  | "cold"
+  | "fire"
+  | "force"
+  | "lightning"
+  | "necrotic"
+  | "piercing"
+  | "poison"
+  | "psychic"
+  | "radiant"
+  | "slashing"
+  | "thunder";
 export type Language =
   | "abyssal"
   | "celestial"
@@ -33,6 +63,60 @@ export type Language =
   | "primordial"
   | "sylvan"
   | "undercommon";
+export type ActionType = "melee spell attack" | "melee weapon attack" | "ranged spell attack" | "ranged weapon attack";
+export type AbilityAbbreviation = "str" | "dex" | "con" | "int" | "wis" | "cha";
+export type Cr =
+  | "0"
+  | "1/8"
+  | "1/4"
+  | "1/2"
+  | "1"
+  | "2"
+  | "3"
+  | "4"
+  | "5"
+  | "6"
+  | "7"
+  | "8"
+  | "9"
+  | "10"
+  | "11"
+  | "12"
+  | "13"
+  | "14"
+  | "15"
+  | "16"
+  | "17"
+  | "18"
+  | "19"
+  | "20"
+  | "21"
+  | "22"
+  | "23"
+  | "24"
+  | "25"
+  | "26"
+  | "27"
+  | "28"
+  | "29"
+  | "30"
+  | "none";
+export type CreatureType =
+  | "aberration"
+  | "beast"
+  | "celestial"
+  | "construct"
+  | "dragon"
+  | "elemental"
+  | "fey"
+  | "fiend"
+  | "giant"
+  | "humanoid"
+  | "monstrosity"
+  | "ooze"
+  | "plant"
+  | "undead";
+export type Size = "gargantuan" | "huge" | "large" | "medium" | "small" | "tiny";
 export type Armor =
   | "breastplate"
   | "chain mail"
@@ -98,7 +182,6 @@ export type Weapon =
   | "war pick"
   | "warhammer"
   | "whip";
-export type Size = "gargantuan" | "huge" | "large" | "medium" | "small" | "tiny";
 
 export interface Character {
   abilityScores: {
@@ -134,10 +217,18 @@ export interface Character {
     [k: string]: unknown;
   };
   classes: Class[];
+  conditionImmunities: (Condition | string)[];
+  conditionResistances: (Condition | string)[];
+  conditionVulnerabilities: (Condition | string)[];
+  damageImmunities: (Damage | string)[];
+  damageResistances: (Damage | string)[];
+  damageVulnerabilities: (Damage | string)[];
   hitPoints: HitPoints;
   initiative: number;
   inspiration: boolean;
+  inventory: InventoryItem[];
   languages: (Language | string)[];
+  pets: Creature[];
   proficiencies: {
     armor: (Armor | string)[];
     tool: string[];
@@ -146,6 +237,7 @@ export interface Character {
   };
   proficiencyBonus: number;
   race: Race;
+  senses: string[];
   skills: {
     acrobatics: Skill;
     animalHandling: Skill;
@@ -168,6 +260,7 @@ export interface Character {
     [k: string]: unknown;
   };
   speed: Speed[];
+  spellSlots: number[];
   spellLists: (SpellList | SpellListWarlock)[];
   [k: string]: unknown;
 }
@@ -261,19 +354,96 @@ export interface HitPoints {
   temporary: number;
   [k: string]: unknown;
 }
-export interface Race {
-  features: Feature[];
+export interface InventoryItem {
   name: string;
-  size: Size;
-  subrace?: {
-    features: Feature[];
-    name: string;
+  total: number;
+  description?: string;
+  [k: string]: unknown;
+}
+export interface Creature {
+  abilityScores: {
+    str: AbilityScore;
+    dex: AbilityScore;
+    con: AbilityScore;
+    int: AbilityScore;
+    wis: AbilityScore;
+    cha: AbilityScore;
     [k: string]: unknown;
   };
+  ac: number;
+  actions: Action[];
+  alignment: Alignment;
+  conditionImmunities: (Condition | string)[];
+  conditionResistances: (Condition | string)[];
+  conditionVulnerabilities: (Condition | string)[];
+  cr: Cr;
+  creatureType: CreatureType;
+  damageImmunities: (Damage | string)[];
+  damageResistances: (Damage | string)[];
+  damageVulnerabilities: (Damage | string)[];
+  features: Feature[];
+  hitPoints: HitPoints;
+  languages: (Language | string)[];
+  lairActions: Action[];
+  lairActionsText: string;
+  legendaryActions: Action[];
+  legendaryActionsText: string;
+  name: string;
+  proficiencyBonus: number;
+  reactions: Action[];
+  senses: string[];
+  skills: {
+    acrobatics: Skill;
+    animalHandling: Skill;
+    arcana: Skill;
+    athletics: Skill;
+    deception: Skill;
+    history: Skill;
+    insight: Skill;
+    intimidation: Skill;
+    investigation: Skill;
+    medicine: Skill;
+    nature: Skill;
+    perception: Skill;
+    performance: Skill;
+    persuasion: Skill;
+    religion: Skill;
+    sleightOfHand: Skill;
+    stealth: Skill;
+    survival: Skill;
+    [k: string]: unknown;
+  };
+  size: Size;
+  speed: Speed[];
+  spellSlots: number[];
+  spellLists: (SpellList | SpellListWarlock)[];
+  [k: string]: unknown;
+}
+export interface Action {
+  attackType?: ActionType;
+  damageFormulas?: DamageFormula[];
+  entries: (List | Table | SubEntry | string)[];
+  name: string;
+  range?: Unit;
+  reach?: Unit;
+  savingThrows?: SavingThrow[];
+  target?: string;
+  toHit?: number;
+  [k: string]: unknown;
+}
+export interface DamageFormula {
+  average?: string;
+  formula: string;
+  damageType: Damage;
+  [k: string]: unknown;
+}
+export interface SavingThrow {
+  ability: AbilityAbbreviation;
+  dc: number;
   [k: string]: unknown;
 }
 export interface Skill {
-  ability: "str" | "dex" | "con" | "int" | "wis" | "cha";
+  ability: AbilityAbbreviation;
   mod: number;
   proficiency?: "none" | "proficient" | "expertise";
   [k: string]: unknown;
@@ -307,12 +477,11 @@ export interface SpellItem {
   [k: string]: unknown;
 }
 export interface SpellCollection {
-  spellSlots: number;
   spells: SpellItem[];
   [k: string]: unknown;
 }
 export interface SpellListWarlock {
-  ability: "str" | "dex" | "con" | "int" | "wis" | "cha";
+  ability: AbilityAbbreviation;
   mod: number;
   saveDc: number;
   cantrips: SpellItem[];
@@ -320,6 +489,17 @@ export interface SpellListWarlock {
     level: number;
     spellSlots: number;
     spells: SpellItem[];
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+export interface Race {
+  features: Feature[];
+  name: string;
+  size: Size;
+  subrace?: {
+    features: Feature[];
+    name: string;
     [k: string]: unknown;
   };
   [k: string]: unknown;

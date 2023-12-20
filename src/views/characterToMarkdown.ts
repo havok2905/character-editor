@@ -9,10 +9,10 @@ import {
   type Table,
 } from '../../types/schema';
 import { getCharacterClassString } from '../utils/dndStringHelpers/getCharacterClassString';
-import { getCharacterHpString } from '../utils/dndStringHelpers/getCharacterHpString';
 import { getCharacterSpeedString } from '../utils/dndStringHelpers/getCharacterSpeedString';
 import { getGenderString } from '../utils/stringHelpers/getGenderString';
 import { getHeightString } from '../utils/stringHelpers/getHeightString';
+import { getHpString } from '../utils/dndStringHelpers/getHpString';
 import { getNameString } from '../utils/stringHelpers/getNameString';
 import { getWeightString } from '../utils/stringHelpers/getWeightString';
 import { plusOrNothingForNegative } from '../utils/plusOrNothingForNegative';
@@ -57,7 +57,7 @@ const getEntry = (entry: List | SubEntry | Table | string, response: string): st
       return {
         id: column,
         label: column,
-      }
+      };
     });
   
     const rows = entry.rows.map((row) => {
@@ -268,6 +268,8 @@ export const characterToMarkdown = (character: Character | null): string => {
     return `${spellItem.alwaysPrepared ? '*' : ''}${spellItem.value}`;
   };
 
+  const spellSlots = `Spell Slots: ${character.spellSlots.join(', ')}`;
+
   const spellLists = character.spellLists.map((spellList: SpellList | SpellListWarlock) => {
     if (isSpellListWarlock(spellList)) {
       return `### Spell List - Warlock
@@ -293,23 +295,23 @@ export const characterToMarkdown = (character: Character | null): string => {
 
 **Cantrips:** ${spellList.cantrips.map(getSpellItem).join(', ')}
 
-**1st (${spellList.first.spellSlots}):** ${spellList.first.spells.map(getSpellItem).join(', ')}
+**1st:** ${spellList.first.spells.map(getSpellItem).join(', ')}
 
-**2nd (${spellList.second.spellSlots}):** ${spellList.second.spells.map(getSpellItem).join(', ')}
+**2nd:** ${spellList.second.spells.map(getSpellItem).join(', ')}
 
-**3rd (${spellList.third.spellSlots}):** ${spellList.third.spells.map(getSpellItem).join(', ')}
+**3rd:** ${spellList.third.spells.map(getSpellItem).join(', ')}
 
-**4th (${spellList.fourth.spellSlots}):** ${spellList.fourth.spells.map(getSpellItem).join(', ')}
+**4th:** ${spellList.fourth.spells.map(getSpellItem).join(', ')}
 
-**5th (${spellList.fifth.spellSlots}):** ${spellList.fifth.spells.map(getSpellItem).join(', ')}
+**5th:** ${spellList.fifth.spells.map(getSpellItem).join(', ')}
 
-**6th (${spellList.sixth.spellSlots}):** ${spellList.sixth.spells.map(getSpellItem).join(', ')}
+**6th:** ${spellList.sixth.spells.map(getSpellItem).join(', ')}
 
-**7th (${spellList.seventh.spellSlots}):** ${spellList.seventh.spells.map(getSpellItem).join(', ')}
+**7th:** ${spellList.seventh.spells.map(getSpellItem).join(', ')}
 
-**8th (${spellList.eighth.spellSlots}):** ${spellList.eighth.spells.map(getSpellItem).join(', ')}
+**8th:** ${spellList.eighth.spells.map(getSpellItem).join(', ')}
 
-**9th (${spellList.ninth.spellSlots}):** ${spellList.ninth.spells.map(getSpellItem).join(', ')}`;
+**9th:** ${spellList.ninth.spells.map(getSpellItem).join(', ')}`;
   });
 
   const ac = getMarkdownKeyValuePair('AC', character.ac);
@@ -329,7 +331,7 @@ export const characterToMarkdown = (character: Character | null): string => {
   const hair = getMarkdownKeyValuePair('Hair', character.biography.physicalDescription.hair);
   const height = getMarkdownKeyValuePair('Height', getHeightString(character.biography.physicalDescription.height));
   const hitDice = getMarkdownKeyValuePair('Hit Dice', character.classes.map(item => `${item.level}d${item.hitDiceValue}`));
-  const hp = getMarkdownKeyValuePair('HP', getCharacterHpString(character));
+  const hp = getMarkdownKeyValuePair('HP', getHpString(character));
   const ideals = getMarkdownKeyValuePair('Ideals', character.biography.ideals);
   const initiative = getMarkdownKeyValuePair('Initiative', `${plusOrNothingForNegative(character.initiative)}${character.initiative}`);
   const inspiration = getMarkdownKeyValuePair('Inspiration', character.inspiration ? 'yes' : 'none');
@@ -416,6 +418,8 @@ ${subraceFeatures}
 ${classFeatures}
 
 ## Spellcasting
+
+${spellSlots}
 
 ${spellLists.join('\n\n')}
 

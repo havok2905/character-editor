@@ -6,6 +6,8 @@ export const pagePadding = 20;
 
 export const baseFontLineHeight = 14;
 export const baseFontSize = 12;
+export const largeFontLineHeight = 22;
+export const largeFontSize = 20;
 export const nameFontSize = 40;
 
 export const standardSingleColumn = width - pagePadding * 2;

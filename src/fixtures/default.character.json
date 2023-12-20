@@ -90,6 +90,12 @@
       "name": "druid"
     }
   ],
+  "conditionImmunities": [],
+  "conditionResistances": [],
+  "conditionVulnerabilities": [],
+  "damageImmunities": [],
+  "damageResistances": [],
+  "damageVulnerabilities": [],
   "hitPoints": {
     "current": 0,
     "max": 0,
@@ -97,8 +103,10 @@
   },
   "initiative": 0,
   "inspiration": false,
-  "languages": [
-  ],
+  "inventory": [],
+  "languages": [],
+  "pets": [],
+  "senses": [],
   "proficiencies": {
     "armor": [
     ],
@@ -214,5 +222,7 @@
       "value": 30,
       "unit": "feet"
     }
-  ]
+  ],
+  "spellSlots": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "spellLists": []
 }

@@ -3,39 +3,57 @@ import {
   abilityScoreItemSize,
   baseFontLineHeight,
   baseFontSize,
-  boxedContentItemGap,
   pagePadding,
+  nameFontSize,
   proficiencyBoxHeight,
   secondHalfColumnStart,
   skillWidth,
   standardHalfColumn,
+  standardSingleColumn,
 } from './constants';
-import { type Character } from '../../../types/schema';
+import { type Creature } from '../../../types/schema';
 import { getCharacterSpeedString } from '../../utils/dndStringHelpers/getCharacterSpeedString';
 import { getHpString } from '../../utils/dndStringHelpers/getHpString';
-import { plusOrNothingForNegative } from '../../utils/plusOrNothingForNegative';
 import { type jsPDF } from 'jspdf';
 import { PdfContent } from '../pdfContent';
+import { plusOrNothingForNegative } from '../../utils/plusOrNothingForNegative';
 import {
-  getNameAndHeader,
   setAbilityScore,
   setBoxedContent,
   setKeyValueStat,
   setSkill,
 } from './shared';
 
-export const characterSheet = (character: Character, doc: jsPDF) => {
+export const creatureSheet = (
+  creature: Creature,
+  doc: jsPDF
+) => {
+  const name = new PdfContent(
+    (x: number, y: number) => {
+      doc.setFontSize(nameFontSize);
+      doc.setFont('times', 'normal');
+      doc.text(creature.name, x, y, {
+        baseline: 'top',
+      });
+    },
+    nameFontSize,
+    standardSingleColumn,
+    pagePadding,
+    pagePadding,
+    'top',
+  );
+
   const str = new PdfContent(
-    (x: number, y: number) => { setAbilityScore(character.abilityScores.str, 'STRENGTH', doc, x, y); },
+    (x: number, y: number) => { setAbilityScore(creature.abilityScores.str, 'STRENGTH', doc, x, y); },
     abilityScoreItemSize,
     abilityScoreItemSize,
     pagePadding,
-    150,
+    name.getBottom() + 20,
     'top',
   );
 
   const dex = new PdfContent(
-    (x: number, y: number) => { setAbilityScore(character.abilityScores.dex, 'DEXTERITY', doc, x, y); },
+    (x: number, y: number) => { setAbilityScore(creature.abilityScores.dex, 'DEXTERITY', doc, x, y); },
     abilityScoreItemSize,
     abilityScoreItemSize,
     pagePadding,
@@ -44,7 +62,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const con = new PdfContent(
-    (x: number, y: number) => { setAbilityScore(character.abilityScores.con, 'CONSTITUTION', doc, x, y); },
+    (x: number, y: number) => { setAbilityScore(creature.abilityScores.con, 'CONSTITUTION', doc, x, y); },
     abilityScoreItemSize,
     abilityScoreItemSize,
     pagePadding,
@@ -53,7 +71,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const int = new PdfContent(
-    (x: number, y: number) => { setAbilityScore(character.abilityScores.int, 'INTELLIGENCE', doc, x, y); },
+    (x: number, y: number) => { setAbilityScore(creature.abilityScores.int, 'INTELLIGENCE', doc, x, y); },
     abilityScoreItemSize,
     abilityScoreItemSize,
     pagePadding,
@@ -62,7 +80,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const wis = new PdfContent(
-    (x: number, y: number) => { setAbilityScore(character.abilityScores.wis, 'WISDOM', doc, x, y); },
+    (x: number, y: number) => { setAbilityScore(creature.abilityScores.wis, 'WISDOM', doc, x, y); },
     abilityScoreItemSize,
     abilityScoreItemSize,
     pagePadding,
@@ -71,7 +89,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const cha = new PdfContent(
-    (x: number, y: number) => { setAbilityScore(character.abilityScores.cha, 'CHARISMA', doc, x, y); },
+    (x: number, y: number) => { setAbilityScore(creature.abilityScores.cha, 'CHARISMA', doc, x, y); },
     abilityScoreItemSize,
     abilityScoreItemSize,
     pagePadding,
@@ -80,7 +98,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const athletics = new PdfContent(
-    (x: number, y: number) => { setSkill('Athletics', character.skills.athletics, doc, x, y); },
+    (x: number, y: number) => { setSkill('Athletics', creature.skills.athletics, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     str.getRight() + abilityScoreItemGap,
@@ -89,7 +107,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const acrobatics = new PdfContent(
-    (x: number, y: number) => { setSkill('Acrobatics', character.skills.acrobatics, doc, x, y); },
+    (x: number, y: number) => { setSkill('Acrobatics', creature.skills.acrobatics, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     dex.getRight() + abilityScoreItemGap,
@@ -98,7 +116,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const stealth = new PdfContent(
-    (x: number, y: number) => { setSkill('Stealth', character.skills.stealth, doc, x, y); },
+    (x: number, y: number) => { setSkill('Stealth', creature.skills.stealth, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     dex.getRight() + abilityScoreItemGap,
@@ -107,7 +125,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const sleightOfHand = new PdfContent(
-    (x: number, y: number) => { setSkill('Sleight of Hand', character.skills.sleightOfHand, doc, x, y); },
+    (x: number, y: number) => { setSkill('Sleight of Hand', creature.skills.sleightOfHand, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     dex.getRight() + abilityScoreItemGap,
@@ -116,7 +134,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const arcana = new PdfContent(
-    (x: number, y: number) => { setSkill('Arcana', character.skills.arcana, doc, x, y); },
+    (x: number, y: number) => { setSkill('Arcana', creature.skills.arcana, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     int.getRight() + abilityScoreItemGap,
@@ -125,7 +143,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const history = new PdfContent(
-    (x: number, y: number) => { setSkill('History', character.skills.history, doc, x, y); },
+    (x: number, y: number) => { setSkill('History', creature.skills.history, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     int.getRight() + abilityScoreItemGap,
@@ -134,7 +152,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const investigation = new PdfContent(
-    (x: number, y: number) => { setSkill('Investigation', character.skills.investigation, doc, x, y); },
+    (x: number, y: number) => { setSkill('Investigation', creature.skills.investigation, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     int.getRight() + abilityScoreItemGap,
@@ -143,7 +161,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const nature = new PdfContent(
-    (x: number, y: number) => { setSkill('Nature', character.skills.nature, doc, x, y); },
+    (x: number, y: number) => { setSkill('Nature', creature.skills.nature, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     int.getRight() + abilityScoreItemGap,
@@ -152,7 +170,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const religion = new PdfContent(
-    (x: number, y: number) => { setSkill('Religion', character.skills.religion, doc, x, y); },
+    (x: number, y: number) => { setSkill('Religion', creature.skills.religion, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     int.getRight() + abilityScoreItemGap,
@@ -161,7 +179,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const animalHandling = new PdfContent(
-    (x: number, y: number) => { setSkill('Animal Handling', character.skills.animalHandling, doc, x, y); },
+    (x: number, y: number) => { setSkill('Animal Handling', creature.skills.animalHandling, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     wis.getRight() + abilityScoreItemGap,
@@ -170,7 +188,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const insight = new PdfContent(
-    (x: number, y: number) => { setSkill('Insight', character.skills.insight, doc, x, y); },
+    (x: number, y: number) => { setSkill('Insight', creature.skills.insight, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     wis.getRight() + abilityScoreItemGap,
@@ -179,7 +197,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const medicine = new PdfContent(
-    (x: number, y: number) => { setSkill('Medicine', character.skills.medicine, doc, x, y); },
+    (x: number, y: number) => { setSkill('Medicine', creature.skills.medicine, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     wis.getRight() + abilityScoreItemGap,
@@ -188,7 +206,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const perception = new PdfContent(
-    (x: number, y: number) => { setSkill('Perception', character.skills.perception, doc, x, y); },
+    (x: number, y: number) => { setSkill('Perception', creature.skills.perception, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     wis.getRight() + abilityScoreItemGap,
@@ -197,7 +215,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const survival = new PdfContent(
-    (x: number, y: number) => { setSkill('Survival', character.skills.survival, doc, x, y); },
+    (x: number, y: number) => { setSkill('Survival', creature.skills.survival, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     wis.getRight() + abilityScoreItemGap,
@@ -206,7 +224,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const deception = new PdfContent(
-    (x: number, y: number) => { setSkill('Deception', character.skills.deception, doc, x, y); },
+    (x: number, y: number) => { setSkill('Deception', creature.skills.deception, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     cha.getRight() + abilityScoreItemGap,
@@ -215,7 +233,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const intimidation = new PdfContent(
-    (x: number, y: number) => { setSkill('Intimidation', character.skills.intimidation, doc, x, y); },
+    (x: number, y: number) => { setSkill('Intimidation', creature.skills.intimidation, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     cha.getRight() + abilityScoreItemGap,
@@ -224,7 +242,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const performance = new PdfContent(
-    (x: number, y: number) => { setSkill('Performance', character.skills.performance, doc, x, y); },
+    (x: number, y: number) => { setSkill('Performance', creature.skills.performance, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     cha.getRight() + abilityScoreItemGap,
@@ -233,7 +251,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const persuasion = new PdfContent(
-    (x: number, y: number) => { setSkill('Persuasion', character.skills.persuasion, doc, x, y); },
+    (x: number, y: number) => { setSkill('Persuasion', creature.skills.persuasion, doc, x, y); },
     baseFontLineHeight,
     skillWidth,
     cha.getRight() + abilityScoreItemGap,
@@ -241,44 +259,35 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
     'top',
   );
 
-  const inspiration = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Inspiration', (character.inspiration ? 'Yes' : 'No'), x, y); },
-    baseFontLineHeight,
-    standardHalfColumn,
-    secondHalfColumnStart,
-    150,
-    'top',
-  );
-
-  const initiative = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Initiative', `${plusOrNothingForNegative(character.initiative)}${character.initiative}`, x, y); },
-    baseFontLineHeight,
-    standardHalfColumn,
-    secondHalfColumnStart,
-    inspiration.getBottom(),
-    'top',
-  );
-
   const proficiencyBonus = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Proficiency Bonus', `${plusOrNothingForNegative(character.proficiencyBonus)}${character.proficiencyBonus}`, x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Proficiency Bonus', `${plusOrNothingForNegative(creature.proficiencyBonus)}${creature.proficiencyBonus}`, x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
-    initiative.getBottom(),
+    name.getBottom() + 20,
+    'top',
+  );
+
+  const cr = new PdfContent(
+    (x: number, y: number) => { setKeyValueStat(doc, 'CR', creature.cr, x, y); },
+    baseFontLineHeight,
+    standardHalfColumn,
+    secondHalfColumnStart,
+    proficiencyBonus.getBottom() + 20,
     'top',
   );
 
   const ac = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'AC', `${character.ac}`, x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'AC', `${creature.ac}`, x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
-    proficiencyBonus.getBottom(),
+    cr.getBottom(),
     'top',
   );
 
   const hp = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'HP', getHpString(character), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'HP', getHpString(creature), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -287,7 +296,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const tempHp = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Temp HP', `${character.hitPoints.temporary}`, x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Temp HP', `${creature.hitPoints.temporary}`, x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -295,8 +304,8 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
     'top',
   );
 
-  const hitDice = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Hit Dice', `${character.classes.map(item => `${item.level}d${item.hitDiceValue}`)}`, x, y); },
+  const type = new PdfContent(
+    (x: number, y: number) => { setKeyValueStat(doc, 'Type', creature.creatureType, x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -305,16 +314,16 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const size = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Size', character.race.size, x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Size', creature.size, x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
-    hitDice.getBottom(),
+    type.getBottom(),
     'top',
   );
 
   const speed = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Speed', getCharacterSpeedString(character.speed), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Speed', getCharacterSpeedString(creature.speed), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -323,7 +332,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const conditionImmunities = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Condition Immunities', character.conditionImmunities.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Condition Immunities', creature.conditionImmunities.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -332,7 +341,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const conditionResistances = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Condition Resistances', character.conditionResistances.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Condition Resistances', creature.conditionResistances.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -341,7 +350,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const conditionVulnerabilities = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Condition Vulnerabilities', character.conditionVulnerabilities.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Condition Vulnerabilities', creature.conditionVulnerabilities.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -350,7 +359,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const damageImmunities = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Damage Immunities', character.damageImmunities.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Damage Immunities', creature.damageImmunities.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -359,7 +368,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const damageResistances = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Damage Resistances', character.damageResistances.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Damage Resistances', creature.damageResistances.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -368,7 +377,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const damageVulnerabilities = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Damage Vulnerabilities', character.damageVulnerabilities.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Damage Vulnerabilities', creature.damageVulnerabilities.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -377,7 +386,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   );
 
   const senses = new PdfContent(
-    (x: number, y: number) => { setKeyValueStat(doc, 'Senses', character.senses.join(', '), x, y); },
+    (x: number, y: number) => { setKeyValueStat(doc, 'Senses', creature.senses.join(', '), x, y); },
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
@@ -390,7 +399,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
       setBoxedContent(
         doc,
         'Languages',
-        character.languages.join(', '),
+        creature.languages.join(', '),
         x,
         y,
         standardHalfColumn,
@@ -404,64 +413,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
     'top',
   );
 
-  const armor = new PdfContent(
-    (x: number, y: number) => {
-      setBoxedContent(
-        doc,
-        'Armor',
-        character.proficiencies.armor.join(', '),
-        x,
-        y,
-        standardHalfColumn,
-        proficiencyBoxHeight,
-      );
-    },
-    baseFontSize + proficiencyBoxHeight,
-    standardHalfColumn,
-    secondHalfColumnStart,
-    languages.getBottom() + boxedContentItemGap,
-    'top',
-  );
-
-  const weapons = new PdfContent(
-    (x: number, y: number) => {
-      setBoxedContent(
-        doc,
-        'Weapons',
-        character.proficiencies.weapon.join(', '),
-        x,
-        y,
-        standardHalfColumn,
-        proficiencyBoxHeight,
-      );    
-    },
-    baseFontSize + proficiencyBoxHeight,
-    standardHalfColumn,
-    secondHalfColumnStart,
-    armor.getBottom() + boxedContentItemGap,
-    'top',
-  );
-
-  const tools = new PdfContent(
-    (x: number, y: number) => {
-      setBoxedContent(
-        doc,
-        'Tools',
-        character.proficiencies.tool.join(', '),
-        x,
-        y,
-        standardHalfColumn,
-        proficiencyBoxHeight,
-      );
-    },
-    baseFontSize + proficiencyBoxHeight,
-    standardHalfColumn,
-    secondHalfColumnStart,
-    weapons.getBottom() + boxedContentItemGap,
-    'top',
-  );
-
-  getNameAndHeader(character, doc);
+  name.render();
 
   str.render();
   dex.render();
@@ -493,13 +445,12 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   performance.render();
   persuasion.render();
 
-  inspiration.render();
-  initiative.render();
   proficiencyBonus.render();
+  cr.render();
   ac.render();
   hp.render();
   tempHp.render();
-  hitDice.render();
+  type.render();
   size.render();
   speed.render();
 
@@ -512,7 +463,4 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   senses.render();
 
   languages.render();
-  armor.render();
-  weapons.render();
-  tools.render();
 };

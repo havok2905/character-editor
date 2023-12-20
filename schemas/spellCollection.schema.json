@@ -4,9 +4,6 @@
   "title": "SpellCollection",
   "type": "object",
   "properties": {
-    "spellSlots": {
-      "type": "number"
-    },
     "spells": {
       "type": "array",
       "items": {
@@ -15,7 +12,6 @@
     }
   },
   "required": [
-    "spellSlots",
     "spells"
   ]
 }

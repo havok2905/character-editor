@@ -1,0 +1,22 @@
+{
+  "$id": "/schemas/creatureType",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreatureType",
+  "type": "string",
+  "enum": [
+    "aberration",
+    "beast",
+    "celestial",
+    "construct",
+    "dragon",
+    "elemental",
+    "fey",
+    "fiend",
+    "giant",
+    "humanoid",
+    "monstrosity",
+    "ooze",
+    "plant",
+    "undead"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$id": "/schemas/actionType",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ActionType",
+  "type": "string",
+  "enum": [
+    "melee spell attack",
+    "melee weapon attack",
+    "ranged spell attack",
+    "ranged weapon attack"
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "$id": "/schemas/character",
+  "$id": "/schemas/creature",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Character",
+  "title": "Creature",
   "type": "object",
   "properties": {
     "abilityScores": {
@@ -38,89 +38,14 @@
     "ac": {
       "type": "number"
     },
-    "background": {
-      "$ref": "background.schema.json"
-    },
-    "biography": {
-      "type": "object",
-      "properties": {
-        "alignment": {
-          "$ref": "alignment.schema.json"
-        },
-        "backstory": {
-          "type": "string"
-        },
-        "bonds": {
-          "type": "string"
-        },
-        "flaws": {
-          "type": "string"
-        },
-        "gender": {
-          "$ref": "gender.schema.json"
-        },
-        "ideals": {
-          "type": "string"
-        },
-        "name": {
-          "$ref": "name.schema.json"
-        },
-        "personalityTraits": {
-          "type": "string"
-        },
-        "physicalDescription": {
-          "type": "object",
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "dress": {
-              "type": "string"
-            },
-            "eyes": {
-              "type": "string"
-            },
-            "hair": {
-              "type": "string"
-            },
-            "height": {
-              "$ref": "height.schema.json"
-            },
-            "skin": {
-              "type": "string"
-            },
-            "weight": {
-              "$ref": "weight.schema.json"
-            }
-          },
-          "required": [
-            "description",
-            "dress",
-            "eyes",
-            "hair",
-            "height",
-            "skin",
-            "weight"
-          ]
-        }
-      },
-      "required": [
-        "alignment",
-        "backstory",
-        "bonds",
-        "flaws",
-        "gender",
-        "ideals",
-        "name",
-        "personalityTraits",
-        "physicalDescription"
-      ]
-    },
-    "classes": {
+    "actions": {
       "type": "array",
       "items": {
-        "$ref": "class.schema.json"
+        "$ref": "action.schema.json"
       }
+    },
+    "alignment": {
+      "$ref": "alignment.schema.json"
     },
     "conditionImmunities": {
       "type": "array",
@@ -161,6 +86,12 @@
         ]
       }
     },
+    "cr": {
+      "$ref": "cr.schema.json"
+    },
+    "creatureType": {
+      "$ref": "creatureType.schema.json"
+    },
     "damageImmunities": {
       "type": "array",
       "items": {
@@ -200,20 +131,14 @@
         ]
       }
     },
-    "hitPoints": {
-      "$ref": "hitPoints.schema.json"
-    },
-    "initiative": {
-      "type": "number"
-    },
-    "inspiration": {
-      "type": "boolean"
-    },
-    "inventory": {
+    "features": {
       "type": "array",
       "items": {
-        "$ref": "inventoryItem.schema.json"
+        "$ref": "feature.schema.json"
       }
+    },
+    "hitPoints": {
+      "$ref": "hitPoints.schema.json"
     },
     "languages": {
       "type": "array",
@@ -228,63 +153,35 @@
         ]
       }
     },
-    "pets": {
+    "lairActions": {
       "type": "array",
       "items": {
-        "$ref": "creature.schema.json"
+        "$ref": "action.schema.json"
       }
     },
-    "proficiencies": {
-      "type": "object",
-      "properties": {
-        "armor": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "armor.schema.json"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          }
-        },
-        "tool": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "type": "string"
-              }
-            ]
-          }
-        },
-        "weapon": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "weapon.schema.json"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          }
-        }
-      },
-      "required": [
-        "armor",
-        "tool",
-        "weapon"
-      ]
+    "lairActionsText": {
+      "type": "string"
+    },
+    "legendaryActions": {
+      "type": "array",
+      "items": {
+        "$ref": "action.schema.json"
+      }
+    },
+    "legendaryActionsText": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
     },
     "proficiencyBonus": {
       "type": "number"
     },
-    "race": {
-      "$ref": "race.schema.json"
+    "reactions": {
+      "type": "array",
+      "items": {
+        "$ref": "action.schema.json"
+      }
     },
     "senses": {
       "type": "array",
@@ -371,6 +268,9 @@
         "survival"
       ]
     },
+    "size": {
+      "$ref": "size.schema.json"
+    },
     "speed": {
       "type": "array",
       "items": {
@@ -399,27 +299,30 @@
   },
   "required": [
     "abilityScores",
+    "actions",
+    "alignment",
     "ac",
-    "background",
-    "biography",
-    "classes",
     "conditionImmunities",
     "conditionResistances",
     "conditionVulnerabilities",
+    "cr",
+    "creatureType",
     "damageImmunities",
     "damageResistances",
     "damageVulnerabilities",
+    "features",
     "hitPoints",
-    "initiative",
-    "inspiration",
-    "inventory",
     "languages",
-    "pets",
-    "proficiencies",
+    "lairActions",
+    "lairActionsText",
+    "legendaryActions",
+    "legendaryActionsText",
+    "name",
     "proficiencyBonus",
-    "race",
+    "reactions",
     "senses",
     "skills",
+    "size",
     "speed",
     "spellLists",
     "spellSlots"

@@ -7,16 +7,17 @@ PROJECT IS CURRENTLY A PROTOTYPE
 - CLI for D&D character JSON boilerplate
 - JSON to PDF and Markdown converter for D&D character sheets
 - JSON Schema for D&D characters
+- Typescript types for D&D development
 
 ## Current Roadmap
 
-- Creature Schema
-- Item Schema
-- Character inventory
-- Character item cards
-- Character pets
+- Character Images
+- Creature Images
+- Iconography
 - Configurable character download locations
 - Configurable character json locations
+- Types documentation
+- Split type system from CLI project into its own repo
 
 ## ENV
 

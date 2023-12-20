@@ -2,48 +2,23 @@ import {
   backstoryBoxHeight,
   baseFontLineHeight,
   boxedContentItemGap,
-  nameFontSize,
   pagePadding,
   personalityTraitBoxHeight,
   secondHalfColumnStart,
   standardHalfColumn,
-  standardSingleColumn,
 } from './constants';
 import { type Character } from '../../../types/schema';
 import { getHeightString } from '../../utils/stringHelpers/getHeightString';
 import { getWeightString } from '../../utils/stringHelpers/getWeightString';
-import { jsPDF } from 'jspdf';
+import { type jsPDF } from 'jspdf';
 import { PdfContent } from '../pdfContent';
 import {
+  getNameAndHeader,
   setBoxedContent,
-  setHeader,
   setKeyValueStat,
-  setName,
 } from './shared';
 
 export const biographySheet = (character: Character, doc: jsPDF) => {
-  const name = new PdfContent(
-    (x: number, y: number) => {
-      setName(character, doc, x, y);
-    },
-    nameFontSize,
-    standardSingleColumn,
-    pagePadding,
-    pagePadding,
-    'top',
-  );
-
-  const header = new PdfContent(
-    (x: number, y: number) => {
-      setHeader(character, doc, x, y);
-    },
-    60,
-    standardSingleColumn,
-    pagePadding,
-    name.getBottom() + 20,
-    'top',
-  );
-
   const personalityTraits = new PdfContent(
     (x: number, y: number) => {
       setBoxedContent(
@@ -258,8 +233,7 @@ export const biographySheet = (character: Character, doc: jsPDF) => {
     'top',
   );
 
-  name.render();
-  header.render();
+  getNameAndHeader(character, doc);
 
   personalityTraits.render();
   ideals.render();

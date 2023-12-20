@@ -7,16 +7,18 @@ import {
 } from './constants';
 import {
   type Character,
+  type Creature,
   type SpellItem,
   type SpellList,
   type SpellListWarlock,
 } from '../../../types/schema';
-import { jsPDF } from 'jspdf';
+import { type jsPDF } from 'jspdf';
 import { PdfContent } from '../pdfContent';
-import {
-  setHeader,
-  setName,
-} from './shared';
+import { getNameAndHeader } from './shared';
+
+const isCreature = (character: Character | Creature): character is Creature => {
+  return typeof character.cr === 'string';
+};
 
 const isSpellListWarlock = (spellList: SpellList | SpellListWarlock): spellList is SpellListWarlock => {
   return !!spellList.warlock;
@@ -26,30 +28,25 @@ const getSpellItem = (spellItem: SpellItem): string => {
   return `${spellItem.alwaysPrepared ? '*' : ''}${spellItem.value}`;
 };
 
-export const spellSheet = (character: Character, doc: jsPDF) => {
-  const name = new PdfContent(
+export const spellSheet = (character: Character | Creature, doc: jsPDF) => {
+  const startY = isCreature(character) ? nameFontSize + pagePadding + 20 : 150;
+
+  const spellSlots = new PdfContent(
     (x: number, y: number) => {
-      setName(character, doc, x, y);
+      doc.setFontSize(baseFontSize);
+      doc.setFont('times', 'normal');
+      doc.text(`Spell Slots: ${character.spellSlots.join(', ')}`, x, y, {
+        baseline: 'top',
+      });
     },
-    nameFontSize,
+    baseFontLineHeight,
     standardSingleColumn,
     pagePadding,
-    pagePadding,
+    startY,
     'top',
   );
 
-  const header = new PdfContent(
-    (x: number, y: number) => {
-      setHeader(character, doc, x, y);
-    },
-    60,
-    standardSingleColumn,
-    pagePadding,
-    name.getBottom() + 20,
-    'top',
-  );
-
-  let spellListY = header.getBottom() + 20;
+  let spellListY = spellSlots.getBottom() + 20;
   const spellListToRender = [] as PdfContent[];
 
   character.spellLists.forEach((list) => {
@@ -58,7 +55,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'bold');
-          doc.text(`Spell List - Warlock`, x, y, {
+          doc.text('Spell List - Warlock', x, y, {
             baseline: 'top',
           });
         },
@@ -256,7 +253,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`1st (${list.first.spellSlots}): ${list.first.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`1st: ${list.first.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -274,7 +271,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`2nd (${list.second.spellSlots}): ${list.second.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`2nd: ${list.second.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -292,7 +289,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`3rd (${list.third.spellSlots}): ${list.third.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`3rd: ${list.third.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -310,7 +307,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`4th (${list.fourth.spellSlots}): ${list.fourth.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`4th: ${list.fourth.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -328,7 +325,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`5th (${list.fifth.spellSlots}): ${list.fifth.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`5th: ${list.fifth.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -346,7 +343,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`6th (${list.sixth.spellSlots}): ${list.sixth.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`6th: ${list.sixth.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -364,7 +361,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`7th (${list.seventh.spellSlots}): ${list.seventh.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`7th: ${list.seventh.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -382,7 +379,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`8th (${list.eighth.spellSlots}): ${list.eighth.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`8th: ${list.eighth.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -400,7 +397,7 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
         (x: number, y: number) => {
           doc.setFontSize(baseFontSize);
           doc.setFont('times', 'normal');
-          doc.text(`9th (${list.ninth.spellSlots}): ${list.ninth.spells.map(getSpellItem).join(', ')}`, x, y, {
+          doc.text(`9th: ${list.ninth.spells.map(getSpellItem).join(', ')}`, x, y, {
             baseline: 'top',
           });
         },
@@ -416,8 +413,17 @@ export const spellSheet = (character: Character, doc: jsPDF) => {
     }
   });
 
-  name.render();
-  header.render();
+  if (!isCreature(character)) {
+    getNameAndHeader(character, doc);
+  } else {
+    doc.setFontSize(nameFontSize);
+    doc.setFont('times', 'normal');
+    doc.text(character.name, pagePadding, pagePadding, {
+      baseline: 'top',
+    });
+  }
+
+  spellSlots.render();
   
   spellListToRender.forEach((item) => {
     item.render();
