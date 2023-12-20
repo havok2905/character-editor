@@ -273,7 +273,7 @@ export const creatureSheet = (
     baseFontLineHeight,
     standardHalfColumn,
     secondHalfColumnStart,
-    proficiencyBonus.getBottom() + 20,
+    proficiencyBonus.getBottom(),
     'top',
   );
 
