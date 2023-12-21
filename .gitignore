@@ -4,3 +4,4 @@ node_modules/
 world/**/*.json
 world/**/*.md
 world/**/*.pdf
+world/**/*.png

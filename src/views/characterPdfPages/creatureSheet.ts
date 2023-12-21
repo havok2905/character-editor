@@ -3,6 +3,7 @@ import {
   abilityScoreItemSize,
   baseFontLineHeight,
   baseFontSize,
+  height,
   pagePadding,
   nameFontSize,
   proficiencyBoxHeight,
@@ -23,6 +24,8 @@ import {
   setKeyValueStat,
   setSkill,
 } from './shared';
+import fs from 'fs';
+import path from 'path';
 
 export const creatureSheet = (
   creature: Creature,
@@ -463,4 +466,11 @@ export const creatureSheet = (
   senses.render();
 
   languages.render();
+
+  if (creature.token) {
+    const tokenPath = path.resolve(path.join(__dirname, `../../../world/tokens/${creature.token}`));
+    const token = fs.readFileSync(tokenPath, { encoding: 'base64' });
+  
+    doc.addImage(token, 'PNG', pagePadding, height - pagePadding - 150, 150, 150);
+  }
 };

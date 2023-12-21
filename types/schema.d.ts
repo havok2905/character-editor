@@ -205,6 +205,7 @@ export interface Character {
     name: Name;
     personalityTraits: string;
     physicalDescription: {
+      age: number;
       description: string;
       dress: string;
       eyes: string;
@@ -262,6 +263,7 @@ export interface Character {
   speed: Speed[];
   spellSlots: number[];
   spellLists: (SpellList | SpellListWarlock)[];
+  token: string;
   [k: string]: unknown;
 }
 export interface AbilityScore {
@@ -417,6 +419,7 @@ export interface Creature {
   speed: Speed[];
   spellSlots: number[];
   spellLists: (SpellList | SpellListWarlock)[];
+  token: string;
   [k: string]: unknown;
 }
 export interface Action {

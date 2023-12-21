@@ -71,6 +71,9 @@
         "physicalDescription": {
           "type": "object",
           "properties": {
+            "age": {
+              "type": "number"
+            },
             "description": {
               "type": "string"
             },
@@ -94,6 +97,7 @@
             }
           },
           "required": [
+            "age",
             "description",
             "dress",
             "eyes",
@@ -395,6 +399,9 @@
           }
         ]
       }
+    },
+    "token": {
+      "type": "string"
     }
   },
   "required": [
@@ -422,6 +429,7 @@
     "skills",
     "speed",
     "spellLists",
-    "spellSlots"
+    "spellSlots",
+    "token"
   ]
 }

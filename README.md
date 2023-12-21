@@ -11,11 +11,8 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Creature and Character Images
-- Creature and Character Sheet Iconography
-- Configurable download locations
-- Configurable json locations
-- Single build command
+- Add HTML views and cli command
+- Single export command: export-all
 - Split type system from CLI project into its own repo and add as dependency
 
 ## ENV
@@ -31,6 +28,7 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## NPM Scripts
 
+- `build-all`: Generates documentation for Typescript types, as well as the Typescript types.
 - `build-docs`: Generates documentation for Typescript types.
 - `build-types`: Generates Typescript types from schemas in `schemas/`. This should be run after any change is made to a file in the `schemas/` directory.
 - `cli`: Runs the project cli. Run `npm run cli -- --help` for more information.

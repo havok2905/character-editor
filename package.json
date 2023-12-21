@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-all": "npm run build-types && npm run build-docs",
     "build-docs": "typedoc ./types/schema.d.ts",
     "build-types": "ts-node src/devScripts/compileSchemaToTsTypes.ts",
     "cli": "ts-node src/cli/index.ts",

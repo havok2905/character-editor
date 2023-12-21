@@ -58,6 +58,7 @@
     },
     "personalityTraits": "",
     "physicalDescription": {
+      "age": 0,
       "description": "",
       "dress": "",
       "eyes": "",
@@ -224,5 +225,6 @@
     }
   ],
   "spellSlots": [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  "spellLists": []
+  "spellLists": [],
+  "token": ""
 }

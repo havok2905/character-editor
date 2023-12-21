@@ -114,6 +114,23 @@ export const biographySheet = (character: Character, doc: jsPDF) => {
     'top',
   );
 
+  const age = new PdfContent(
+    (x: number, y: number) => {
+      setKeyValueStat(
+        doc,
+        'Age',
+        String(character.biography.physicalDescription.age),
+        x,
+        y,
+      );
+    },
+    baseFontLineHeight,
+    standardHalfColumn,
+    pagePadding,
+    flaws.getBottom() + boxedContentItemGap,
+    'top',
+  );
+
   const dress = new PdfContent(
     (x: number, y: number) => {
       setKeyValueStat(
@@ -127,7 +144,7 @@ export const biographySheet = (character: Character, doc: jsPDF) => {
     baseFontLineHeight,
     standardHalfColumn,
     pagePadding,
-    flaws.getBottom() + boxedContentItemGap,
+    age.getBottom(),
     'top',
   );
 
@@ -241,6 +258,7 @@ export const biographySheet = (character: Character, doc: jsPDF) => {
   flaws.render();
   backstory.render();
 
+  age.render();
   dress.render();
   eyes.render();
   hair.render();

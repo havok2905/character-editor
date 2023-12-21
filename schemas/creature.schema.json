@@ -295,6 +295,9 @@
           }
         ]
       }
+    },
+    "token": {
+      "type": "string"
     }
   },
   "required": [
@@ -325,6 +328,7 @@
     "size",
     "speed",
     "spellLists",
-    "spellSlots"
+    "spellSlots",
+    "token"
   ]
 }

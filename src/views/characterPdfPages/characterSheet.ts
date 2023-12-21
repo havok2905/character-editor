@@ -4,6 +4,7 @@ import {
   baseFontLineHeight,
   baseFontSize,
   boxedContentItemGap,
+  height,
   pagePadding,
   proficiencyBoxHeight,
   secondHalfColumnStart,
@@ -23,6 +24,8 @@ import {
   setKeyValueStat,
   setSkill,
 } from './shared';
+import fs from 'fs';
+import path from 'path';
 
 export const characterSheet = (character: Character, doc: jsPDF) => {
   const str = new PdfContent(
@@ -515,4 +518,11 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   armor.render();
   weapons.render();
   tools.render();
+
+  if (character.token) {
+    const tokenPath = path.resolve(path.join(__dirname, `../../../world/tokens/${character.token}`));
+    const token = fs.readFileSync(tokenPath, { encoding: 'base64' });
+  
+    doc.addImage(token, 'PNG', pagePadding, height - pagePadding - 150, 150, 150);
+  }
 };

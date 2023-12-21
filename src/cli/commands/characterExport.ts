@@ -1,9 +1,7 @@
 import fs from 'fs';
 import { type Character } from '../../../types/schema';
 import { characterToPdf } from '../../views/characterToPdf';
-import { characterToMarkdown } from '../../views/characterToMarkdown';
 import { getFileContents } from '../../utils/fileSystem/getFileContents';
-import { setFileContents } from '../../utils/fileSystem/setFileContents';
 import path from 'path';
 import prompts, { type PromptObject } from 'prompts';
 
@@ -37,7 +35,6 @@ export const characterExport = async () => {
       message: 'Which export type?',
       choices: [
         { title: 'PDF', value: 'pdf' },
-        { title: 'Markdown', value: 'markdown' },
       ],
       initial: 0,
     },
@@ -77,10 +74,6 @@ export const characterExport = async () => {
     case 'pdf':
       downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.pdf`);
       characterToPdf(character).save(downloadFilePath);
-      break;
-    case 'markdown':
-      downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.md`);
-      setFileContents(downloadFilePath, characterToMarkdown(character));
       break;
     default:
       console.error('Could not save. No valid export type was chosen');
