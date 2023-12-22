@@ -11,9 +11,13 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Add HTML views and cli command
-- Single export command: export-all
-- Split type system from CLI project into its own repo and add as dependency
+- Fix Simon
+- Bring in Ella
+- Bring in Victoria
+- Build character directory
+- Write character directory export command
+- Bring in character directory export command into export all command
+- Split type system from main project and add as dependency
 
 ## ENV
 

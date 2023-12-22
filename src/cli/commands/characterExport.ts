@@ -1,32 +1,51 @@
 import fs from 'fs';
 import { type Character } from '../../../types/schema';
+import { characterToHtml } from '../../views/characterToHtml';
 import { characterToPdf } from '../../views/characterToPdf';
 import { getFileContents } from '../../utils/fileSystem/getFileContents';
 import path from 'path';
 import prompts, { type PromptObject } from 'prompts';
 
-const getCharacter = (fileName: string): Character | null => {
+const getCharacterFiles = () => {
+  return fs.readdirSync(path.join(__dirname, '../../../world/characters'));
+};
+
+const getCharacter = (fileName: string): [(Character | null), string] => {
   const contents = getFileContents(path.join(__dirname, `../../../world/characters/${fileName}`));
-  if (!contents) return null;
-  return JSON.parse(contents);
+
+  return [
+    !contents ? null : JSON.parse(contents),
+    fileName,
+  ];
+};
+
+const getCharacters = (): [(Character | null), string][] => {
+  const characterFiles = getCharacterFiles();
+  return characterFiles.map((fileName) => getCharacter(fileName));
 };
 
 export const characterExport = async () => {
-  const characterFiles = fs.readdirSync(path.join(__dirname, '../../../world/characters'));
+  const characterFiles = getCharacterFiles();
   
   const questions: PromptObject<string>[] = [
     {
       type: 'select',
       name: 'fileName',
       message: 'Which character?',
-      choices: characterFiles.filter(item => {
-        return item !== '.gitkeep';
-      }).map(file => {
-        return {
-          title: file,
-          value: file,
-        };
-      }),
+      choices: [
+        {
+          title: 'All',
+          value: 'all',
+        },
+        ...characterFiles.filter(item => {
+          return item !== '.gitkeep';
+        }).map(file => {
+          return {
+            title: file,
+            value: file,
+          };
+        })
+      ],
       initial: 0,
     },
     {
@@ -34,6 +53,8 @@ export const characterExport = async () => {
       name: 'outputExtension',
       message: 'Which export type?',
       choices: [
+        { title: 'All (HTML and PDF)', value: 'all' },
+        { title: 'HTML', value: 'html' },
         { title: 'PDF', value: 'pdf' },
       ],
       initial: 0,
@@ -43,8 +64,8 @@ export const characterExport = async () => {
       name: 'override',
       message: 'Create new file or override?',
       choices: [
-        { title: 'New', value: 'new' },
         { title: 'Override', value: 'override' },
+        { title: 'New', value: 'new' },
       ],
       initial: 0,
     }
@@ -54,31 +75,57 @@ export const characterExport = async () => {
 
   if (!fileName || !outputExtension || !override) return;
 
-  const character = getCharacter(fileName);
+  const characters = fileName === 'all'
+    ? getCharacters()
+    : [ getCharacter(fileName) ];
 
-  if (!character) {
-    console.error('There was an issue fetching this character.');
+  if (!characters.filter((character) => {
+    return character[0] !== null;
+  }).length) {
+    console.error('There was an issue fetching characters.');
     return;
   }
 
-  const characterFileName = path.parse(fileName).name;
+  characters.forEach(([ character, fileName ]) => {
+    const characterFileName = path.parse(fileName).name;
 
-  if (!characterFileName) {
-    console.log('There was an issue parsing the character file name');
-    return;
-  }
+    console.log(characterFileName);
 
-  let downloadFilePath = '';
-
-  switch (outputExtension) {
-    case 'pdf':
-      downloadFilePath = path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.pdf`);
-      characterToPdf(character).save(downloadFilePath);
-      break;
-    default:
-      console.error('Could not save. No valid export type was chosen');
+    if (!characterFileName) {
+      console.log('There was an issue parsing the character file name');
       return;
-  }
-
-  console.log(`Character saved at: ${downloadFilePath}`);
+    }
+  
+    let downloadFilePaths = [];
+  
+    switch (outputExtension) {
+      case 'all':
+        downloadFilePaths = [
+          path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.html`),
+          path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.pdf`)
+        ];
+        characterToHtml(character as Character, downloadFilePaths[0]);
+        characterToPdf(character as Character).save(downloadFilePaths[1]);
+        break;
+      case 'html':
+        downloadFilePaths = [
+          path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.html`)
+        ];
+        characterToHtml(character as Character, downloadFilePaths[0]);
+        break;
+      case 'pdf':
+        downloadFilePaths = [
+          path.join(__dirname, `../../../world/downloads/${characterFileName}${override === 'new' ? Date.now() : ''}.pdf`)
+        ];
+        characterToPdf(character as Character).save(downloadFilePaths[0]);
+        break;
+      default:
+        console.error('Could not save. No valid export type was chosen');
+        return;
+    }
+  
+    downloadFilePaths.forEach((filePath) => {
+      console.log(`Characters saved at: ${filePath}`);
+    });
+  });  
 };
