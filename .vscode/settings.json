@@ -5,7 +5,7 @@
         "*character.json"
       ],
       
-      "url": "./schemas/schema.json"
+      "url": "./schemas/character.json"
     }
   ]  
 }

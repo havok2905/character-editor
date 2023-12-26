@@ -9,7 +9,7 @@ import path from 'path';
  * via the cwd option for compileFromFile. This is a work around
  * until that issue is patched.
  */
-compileFromFile(path.join(__dirname, '../../schemas/schema.json'), {
+compileFromFile(path.join(__dirname, '../../schemas/character.json'), {
   $refOptions: {
     resolve: {
       file: {

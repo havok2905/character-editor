@@ -6,8 +6,7 @@
 <li>Typescript types for D&amp;D development</li>
 </ul>
 <a id="md:current-roadmap" class="tsd-anchor"></a><h2><a href="#md:current-roadmap">Current Roadmap</a></h2><ul>
-<li>Split world, public assets, and bundle directories</li>
-<li>Split character components</li>
+<li>Split character schema from creature schema</li>
 <li>Split type system from main project and add as dependency</li>
 </ul>
 <a id="md:env" class="tsd-anchor"></a><h2><a href="#md:env">ENV</a></h2><p><strong>Node:</strong> v18.13.0</p>
@@ -17,11 +16,16 @@
 <li><code>npm i</code></li>
 </ol>
 <a id="md:npm-scripts" class="tsd-anchor"></a><h2><a href="#md:npm-scripts">NPM Scripts</a></h2><ul>
-<li><code>build-all</code>: Generates documentation for Typescript types, as well as the Typescript types.</li>
+<li><code>build-all</code>: Runs all build commands</li>
 <li><code>build-docs</code>: Generates documentation for Typescript types.</li>
+<li><code>build-site</code>: Generates HTML and PDF files for characters in the build/ directory</li>
 <li><code>build-types</code>: Generates Typescript types from schemas in <code>schemas/</code>. This should be run after any change is made to a file in the <code>schemas/</code> directory.</li>
-<li><code>cli</code>: Runs the project cli. Run <code>npm run cli -- --help</code> for more information.</li>
 <li><code>eslint</code>: Runs linting rules against Typescript.</li>
+<li><code>generate-character</code>: generates a new blank character json file:<ul>
+<li><code>npm run generate-character my-character</code></li>
+<li><code>/assets/characters/my-character.character.json</code></li>
+</ul>
+</li>
 </ul>
 <a id="md:project-directory" class="tsd-anchor"></a><h2><a href="#md:project-directory">Project Directory</a></h2><ul>
 <li>assets/ ( Files you generate that are specific to your project )<ul>
