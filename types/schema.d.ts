@@ -197,7 +197,10 @@ export interface Character {
   background: Background;
   biography: {
     alignment: Alignment;
-    backstory: string;
+    backstory: {
+      entries: (List | Table | SubEntry | string)[];
+      [k: string]: unknown;
+    };
     bonds: string;
     flaws: string;
     gender: Gender;

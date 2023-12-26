@@ -16,6 +16,7 @@ import {
   height,
   nameFontSize,
   pagePadding,
+  secondHalfColumnStart,
   secondThirdColumnStart,
   standardHalfColumn,
   standardSingleColumn,
@@ -547,6 +548,95 @@ export const getActions = (
         });
       }
     });
+  });
+
+  return itemY;
+};
+
+/**
+ * This is more or less a copy of getFeatures.
+ */
+export const getBackstory = (
+  character: Character,
+  doc: jsPDF,
+  startY: number,
+): number => {
+  let itemY = startY + 4;
+
+  const renderListItem = (item: string) => {
+    doc.setFontSize(baseFontSize);
+    doc.setFont('times', 'normal');
+    doc.text('- ' + item, secondHalfColumnStart + 4, itemY, {
+      baseline: 'top',
+      maxWidth: standardHalfColumn - 8,
+    });
+  };
+
+  const renderStringItem = (item: string) => {
+    doc.setFontSize(baseFontSize);
+    doc.setFont('times', 'normal');
+    doc.text(item, secondHalfColumnStart + 4, itemY, {
+      baseline: 'top',
+      maxWidth: standardHalfColumn - 8,
+    });
+  };
+
+  const renderTable = (entry: Table) => {
+    autoTable(doc, {
+      head: [ entry.columnLabels ],
+      body: entry.rows,
+      startY: itemY + 10,
+    });
+  };
+
+  character.biography.backstory.entries.forEach((entry) => {
+    const characterLengthPerLine = 70;
+    const regex = new RegExp('.{1,' + characterLengthPerLine + '}', 'g');
+
+    if (typeof entry === 'string') {
+      const numLines = (entry.match(regex) ?? []).length;
+      const itemHeight = baseFontSize * numLines;
+      renderStringItem(entry);
+      itemY += itemHeight;
+    } else if (entry.type === 'list') {
+      entry.items.forEach((item) => {
+        const numLines = (item.match(regex) ?? []).length;
+        const itemHeight = baseFontSize * numLines;
+        renderListItem(item);
+        itemY += itemHeight;
+      });
+    } else if (entry.type === 'table') {
+      const itemHeight = ((entry.rows.length) * 22) + 22;
+      renderTable(entry);
+      itemY += itemHeight;
+    } else if (entry.type === 'subEntry') {
+      doc.setFontSize(baseFontSize);
+      doc.setFont('times', 'italic');
+      doc.text(entry.name, pagePadding, itemY, {
+        baseline: 'top',
+      });
+      itemY += baseFontSize;
+
+      entry.entries.forEach((entry) => {
+        if (typeof entry === 'string') {
+          const numLines = (entry.match(regex) ?? []).length;
+          const itemHeight = baseFontSize * numLines;
+          renderStringItem(entry);
+          itemY += itemHeight;
+        } else if (entry.type === 'list') {
+          entry.items.forEach((item) => {
+            const numLines = (item.match(regex) ?? []).length;
+            const itemHeight = baseFontSize * numLines;
+            renderListItem(item);
+            itemY += itemHeight;
+          });
+        } else if (entry.type === 'table') {
+          const itemHeight = (entry.rows.length + 1) * 20;
+          renderTable(entry);
+          itemY += itemHeight;
+        }
+      });
+    }
   });
 
   return itemY;

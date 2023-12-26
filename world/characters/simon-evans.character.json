@@ -45,7 +45,16 @@
   },
   "biography": {
     "alignment": "neutral good",
-    "backstory": "Simon grew up never knowing his parents, Mirabella and Rory Evans. They perished in an accident just after his birth after experimenting with new arcane methods to power the Archive. Since the accident, his Uncle has been raising him and acting as his boss/mentor at their family repair shop.\n\nSimon works with his Uncle as an apprentice, running repair jobs for the town and also producing glass. In secret Simon pours over books, learning all that he can about history, the arcane, and the outside world. He also secretly works on small gadgets, most notably his bolt gun. All of this he does against the wishes of his Uncle, who only wishes for Simon to live a normal and accident free, life.\n\nDespite his desire to study magic, he does love his work as a handyman for the townsfolk.\n\nSimon's time spent studying in isolation awakened an innate sorcery within him, a power to summon souls to his side. He has since constructed a sentient contruct by the name of Pie, a homunculus by the name of Buttons, and a familiar stoat by the name of Snowball. Since his first attempts to summon, he has learned to fasion new host bodies for his summoned companions and resummon them at will.\n\nApart from summoning magic, Simon excells at spacial magic, using the manipulation of gravity and space, as well as teleportation, to manipulate the battlefield in his favor.\n\nIn the long term, Simon aims to found an arcane academy, where those are free to teach and study magic at will.",
+    "backstory": {
+      "entries": [
+        "Simon grew up never knowing his parents, Mirabella and Rory Evans. They perished in an accident just after his birth after experimenting with new arcane methods to power the Archive. Since the accident, his Uncle has been raising him and acting as his boss/mentor at their family repair shop.",
+        "Simon works with his Uncle as an apprentice, running repair jobs for the town and also producing glass. In secret Simon pours over books, learning all that he can about history, the arcane, and the outside world. He also secretly works on small gadgets, most notably his bolt gun. All of this he does against the wishes of his Uncle, who only wishes for Simon to live a normal and accident free, life.",
+        "Despite his desire to study magic, he does love his work as a handyman for the townsfolk.",
+        "Simon's time spent studying in isolation awakened an innate sorcery within him, a power to summon souls to his side. He has since constructed a sentient construct by the name of Pie, a homunculus by the name of Buttons, and a familiar stoat by the name of Snowball. Since his first attempts to summon, he has learned to fashion new host bodies for his summoned companions and resummon them at will.",
+        "Apart from summoning magic, Simon excels at spacial magic, using the manipulation of gravity and space, as well as teleportation, to manipulate the battlefield in his favor.",
+        "In the long term, Simon aims to found an arcane academy, where those are free to teach and study magic at will."
+      ]
+    },
     "bonds": "I have an Uncle, Rufus Drogo, who wants me to be something I'm not. I attend a local high school in the archive with Willow. Tselana was a mentor to me, and I looked up to her a big sister. Pie, Buttons, and Snowball are my responsibility to keep safe.",
     "flaws": "I am prone to self doubt and fear.",
     "gender": {

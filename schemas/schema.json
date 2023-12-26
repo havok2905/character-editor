@@ -48,7 +48,31 @@
           "$ref": "alignment.schema.json"
         },
         "backstory": {
-          "type": "string"
+          "type": "object",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "list.schema.json"
+                  },
+                  {
+                    "$ref": "table.schema.json"
+                  },
+                  {
+                    "$ref": "subEntry.schema.json"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "entries"
+          ]
         },
         "bonds": {
           "type": "string"

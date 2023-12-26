@@ -13,6 +13,7 @@ import { getWeightString } from '../../utils/stringHelpers/getWeightString';
 import { type jsPDF } from 'jspdf';
 import { PdfContent } from '../pdfContent';
 import {
+  getBackstory,
   getNameAndHeader,
   setBoxedContent,
   setKeyValueStat,
@@ -100,12 +101,14 @@ export const biographySheet = (character: Character, doc: jsPDF) => {
       setBoxedContent(
         doc,
         'Backstory',
-        character.biography.backstory,
+        '',
         x,
         y,
         standardHalfColumn,
         backstoryBoxHeight,
       );
+
+      getBackstory(character, doc, y);
     },
     backstoryBoxHeight,
     standardHalfColumn,

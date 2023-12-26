@@ -38,7 +38,9 @@
   },
   "biography": {
     "alignment": "neutral",
-    "backstory": "",
+    "backstory": {
+      "entries": []
+    },
     "bonds": "",
     "flaws": "",
     "gender": {

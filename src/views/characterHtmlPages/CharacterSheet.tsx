@@ -475,7 +475,9 @@ export const CharacterSheet: FC<CharacterSheetProps> = ({
       <p><strong>Bonds:</strong> {character.biography.bonds}</p>
       <p><strong>Flaws:</strong> {character.biography.flaws}</p>
       <h3>Backstory</h3>
-      <p>{character.biography.backstory}</p>
+      {
+        character.biography.backstory.entries.map((item, index) => <Entry key={index} entry={item}/>)
+      }
       <h3>Physical Description</h3>
       <p><strong>Age:</strong> {character.biography.physicalDescription.age}</p>
       <p><strong>Dress:</strong> {character.biography.physicalDescription.dress}</p>
@@ -505,6 +507,29 @@ export const CharacterSheet: FC<CharacterSheetProps> = ({
           </>
         ) : null
       }
+      <h2>Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Total</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            character.inventory.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{item.name}</td>
+                  <td>{item.total}</td>
+                  <td>{item.description}</td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
       {
         character.pets.map((pet, index) => <CreatureSheet key={index} creature={pet}/>)
       }

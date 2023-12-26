@@ -11,9 +11,6 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Fix Simon
-- Bring in Ella
-- Bring in Victoria
 - Build character directory
 - Write character directory export command
 - Bring in character directory export command into export all command
