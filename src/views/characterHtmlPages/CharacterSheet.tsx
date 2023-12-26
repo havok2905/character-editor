@@ -1,18 +1,9 @@
 import { type FC } from 'react';
-import {
-  type AbilityScore,
-  type Action,
-  type Feature,
-  type Character,
-  type Creature,
-  type List,
-  type Skill,
-  type SpellItem,
-  type SpellList,
-  type SpellListWarlock,
-  type SubEntry,
-  type Table
-} from '../../../types/schema';
+import { AbilityScoreBlock } from './AbilityScoreBlock';
+import { ActionItem } from './ActionItem';
+import { type Character, type Creature } from '../../../types/schema';
+import { Entry } from './Entry';
+import { Feature } from './Feature';
 import { getCharacterClassString } from '../../utils/dndStringHelpers/getCharacterClassString';
 import { getCharacterSpeedString } from '../../utils/dndStringHelpers/getCharacterSpeedString';
 import { getGenderString } from '../../utils/stringHelpers/getGenderString';
@@ -21,192 +12,7 @@ import { getHpString } from '../../utils/dndStringHelpers/getHpString';
 import { getNameString } from '../../utils/stringHelpers/getNameString';
 import { getWeightString } from '../../utils/stringHelpers/getWeightString';
 import { Layout } from './Layout';
-import { plusOrNothingForNegative } from '../../utils/plusOrNothingForNegative';
-
-interface EntryProps {
-  entry: Table | List | SubEntry | string;
-}
-
-const Entry: FC<EntryProps> = ({
-  entry
-}) => {
-  if (typeof entry === 'string') return <p>{entry}</p>;
-
-  if (entry.type === 'list') {
-    return (
-      <ul>
-        {
-          entry.items.map((item, index) => <li key={index}>{item}</li>)
-        }
-      </ul>
-    );
-  }
-
-  if (entry.type === 'table') {
-    return (
-      <table>
-        <thead>
-          <tr>
-            {
-              entry.columnLabels.map((label, index) => {
-                return (
-                  <th key={index} scope='col'>
-                    {label}
-                  </th>
-                );
-              })
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {
-            entry.rows.map((row, index) => {
-              return (
-                <tr key={index}>
-                  {
-                    row.map((rowString, index) => <td key={index}>{rowString}</td>)
-                  }
-                </tr>
-              );
-            })
-          }
-        </tbody>
-      </table>
-    );
-  }
-
-  if (entry.type === 'subEntry') {
-    return (
-      <>
-        <p><strong>{entry.name}</strong></p>
-        {
-          entry.entries.map((e, index) => <Entry entry={e} key={index}/>)
-        }
-      </>
-    );
-  }
-
-  return null;
-};
-
-interface ActionItemProps {
-  action: Action;
-}
-
-const ActionItem: FC<ActionItemProps> = ({
-  action,
-}) => {
-  return (
-    <div>
-      <h3>{action.name}</h3>
-      {
-        action.entries.map((entry, index) => <Entry entry={entry} key={index}/>)
-      }
-    </div>
-  );
-};
-
-interface FeatureProps {
-  feature: Feature;
-}
-
-const Feature: FC<FeatureProps> = ({
-  feature,
-}) => {
-  return (
-    <div>
-      <h3>{feature.name}</h3>
-      {
-        feature.entries.map((entry, index) => <Entry entry={entry} key={index}/>)
-      }
-    </div>
-  );
-};
-
-interface AbilityScoreBlockProps {
-  abilityScore: AbilityScore;
-  label: string;
-  skills: [Skill, string][];
-}
-
-const AbilityScoreBlock: FC<AbilityScoreBlockProps> = ({
-  abilityScore,
-  label,
-  skills,
-}) => {
-  return (
-    <div className="havok-design-system-ability-score-container">
-      <div className="havok-design-system-ability-score">
-        <p>{plusOrNothingForNegative(abilityScore.mod)}{abilityScore.mod}</p>
-        <p className="havok-design-system-ability-score-score">
-          {abilityScore.score}
-        </p>
-        <p>{label}</p>
-        <p>{abilityScore.savingThrowProficiency ? '*' : '-'}</p>
-      </div>
-      <div>
-        {
-          skills.map(([ skill, label ], index) => {
-            const proficiencyString = skill.proficiency === 'proficient' ? 'P' : skill.proficiency === 'expertise' ? 'E' : '';
-            return (
-              <p key={index}>
-                [{proficiencyString}] {plusOrNothingForNegative(skill.mod)}{skill.mod} {label}
-              </p>
-            );
-          })
-        }
-      </div>
-    </div>
-  );
-};
-
-interface SpellListProps {
-  spellList: SpellList | SpellListWarlock;
-}
-
-const SpellList: FC<SpellListProps> = ({
-  spellList,
-}) => {
-  const isSpellListWarlock = (spellList: SpellList | SpellListWarlock): spellList is SpellListWarlock => {
-    return !!spellList.warlock;
-  };
-
-  const getSpellItem = (spellItem: SpellItem): string => {
-    return `${spellItem.alwaysPrepared ? '*' : ''}${spellItem.value}`;
-  };
-
-  if (isSpellListWarlock(spellList)) {
-    return (
-      <>
-        <h3>Spell List - Warlock</h3>
-        <p><strong>Ability:</strong> {spellList.ability}</p>
-        <p><strong>Mod:</strong> {spellList.mod}</p>
-        <p><strong>Save DC:</strong> {spellList.saveDc}</p>
-        <p><strong>Cantrips:</strong> {spellList.cantrips.map(getSpellItem).join(', ')}</p>
-        <p><strong>{`Spells; Level ${spellList.warlock.level} (${spellList.warlock.spellSlots})`}:</strong> ${`${spellList.warlock.spells.map(getSpellItem).join(', ')}`}</p>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <h3>Spell List - {spellList.source}</h3>
-      <p><strong>Ability:</strong> {spellList.ability}</p>
-      <p><strong>Mod:</strong> {spellList.mod}</p>
-      <p><strong>Save DC:</strong> {spellList.saveDc}</p>
-      <p><strong>Cantrips:</strong> {spellList.cantrips.map(getSpellItem).join(', ')}</p>
-      <p><strong>1st:</strong> {spellList.first.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>2nd:</strong> {spellList.second.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>3rd:</strong> {spellList.third.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>4th:</strong> {spellList.fourth.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>5th:</strong> {spellList.fifth.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>6th:</strong> {spellList.sixth.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>7th:</strong> {spellList.seventh.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>8th:</strong> {spellList.eighth.spells.map(getSpellItem).join(', ')}</p>
-      <p><strong>9th:</strong> {spellList.ninth.spells.map(getSpellItem).join(', ')}</p>
-    </>
-  );
-};
+import { SpellList } from './SpellList';
 
 interface CreatureSheetProps {
   creature: Creature;
@@ -218,7 +24,7 @@ const CreatureSheet: FC<CreatureSheetProps> = ({
   return (
     <>
       <h1>{creature.name}</h1>
-      <img className="havok-design-system-token" src={`../tokens/${creature.token}`}/>
+      <img className="havok-design-system-token" src={`./${creature.token}`}/>
       <div className="havok-design-system-half-column">
         <div>
           <AbilityScoreBlock
@@ -367,7 +173,7 @@ export const CharacterSheet: FC<CharacterSheetProps> = ({
   return (
     <Layout title={`Character - ${name}`}>
       <h1>{name}</h1>
-      <img className="havok-design-system-token" src={`../tokens/${character.token}`}/>
+      <img className="havok-design-system-token" src={`./${character.token}`}/>
       <div className="havok-design-system-sheet-header">
         <div>
           <p>{character.race.name}</p>

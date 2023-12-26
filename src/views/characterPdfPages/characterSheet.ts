@@ -520,7 +520,7 @@ export const characterSheet = (character: Character, doc: jsPDF) => {
   tools.render();
 
   if (character.token) {
-    const tokenPath = path.resolve(path.join(__dirname, `../../../world/tokens/${character.token}`));
+    const tokenPath = path.resolve(path.join(__dirname, `../../../assets/tokens/${character.token}`));
     const token = fs.readFileSync(tokenPath, { encoding: 'base64' });
   
     doc.addImage(token, 'PNG', pagePadding, height - pagePadding - 150, 150, 150);

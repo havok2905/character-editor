@@ -19,6 +19,7 @@ export const Layout: FC<LayoutProps> = ({
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=''/>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="./reset.css"/>
         <link rel="stylesheet" href="./main.css"/>
       </head>
       <body>
