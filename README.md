@@ -11,9 +11,7 @@ PROJECT IS CURRENTLY A PROTOTYPE
 
 ## Current Roadmap
 
-- Build character directory
-- Write character directory export command
-- Bring in character directory export command into export all command
+- Split world, public assets, and bundle directories
 - Split type system from main project and add as dependency
 
 ## ENV
