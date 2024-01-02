@@ -635,6 +635,7 @@
           ]
         }
       ],
+      "regionalEffects": [],
       "senses": [
         "darkvision 60ft."
       ],
@@ -843,6 +844,7 @@
           ]
         }
       ],
+      "regionalEffects": [],
       "senses": [
         "darkvision 60ft."
       ],
@@ -1041,6 +1043,7 @@
       "name": "Weasel",
       "proficiencyBonus": 2,
       "reactions": [],
+      "regionalEffects": [],
       "senses": [],
       "size": "tiny",
       "skills": {
@@ -1264,6 +1267,7 @@
           ]
         }
       ],
+      "regionalEffects": [],
       "senses": [],
       "size": "medium",
       "skills": {

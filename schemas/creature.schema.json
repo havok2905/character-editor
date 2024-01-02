@@ -183,6 +183,12 @@
         "$ref": "action.schema.json"
       }
     },
+    "regionalEffects": {
+      "type": "array",
+      "items": {
+        "$ref": "action.schema.json"
+      }
+    },
     "senses": {
       "type": "array",
       "items": {
@@ -323,6 +329,7 @@
     "name",
     "proficiencyBonus",
     "reactions",
+    "regionalEffects",
     "senses",
     "skills",
     "size",

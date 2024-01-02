@@ -7,10 +7,7 @@ import {
   pagePadding,
   standardSingleColumn,
 } from './constants';
-import {
-  type Character,
-  type Creature,
-} from '../../../types/schema';
+import { type Creature } from '../../../types/schema';
 import { type jsPDF } from 'jspdf';
 import {
   getActions,
@@ -20,7 +17,6 @@ import { PdfContent } from '../pdfContent';
 
 export const creatureFeatureSheet = (
   creature: Creature,
-  character: Character,
   doc: jsPDF
 ) => {
   const name = new PdfContent(
@@ -62,7 +58,7 @@ export const creatureFeatureSheet = (
     y = featuresTitle.getBottom();
     featuresTitle.render();
 
-    y = getFeatures(character, creature.features, doc, y);
+    y = getFeatures(null, creature.features, doc, y);
   }
 
   if (creature.actions.length) {
@@ -85,7 +81,7 @@ export const creatureFeatureSheet = (
     y = actionsTitle.getBottom();
     actionsTitle.render();
 
-    y = getActions(character, creature.actions, doc, y);
+    y = getActions(null, creature.actions, doc, y);
   }
 
   if (creature.reactions.length) {
@@ -108,7 +104,7 @@ export const creatureFeatureSheet = (
     y = reactionsTitle.getBottom();
     reactionsTitle.render();
   
-    y = getActions(character, creature.reactions, doc, y);
+    y = getActions(null, creature.reactions, doc, y);
   }
 
   if (creature.legendaryActions.length) {
@@ -152,7 +148,7 @@ export const creatureFeatureSheet = (
       legendaryActionsText.render();
     }
 
-    getActions(character, creature.legendaryActions, doc, y);
+    y = getActions(null, creature.legendaryActions, doc, y);
   }
 
   if (creature.lairActions.length) {
@@ -196,6 +192,29 @@ export const creatureFeatureSheet = (
       lairActionsText.render();
     }
 
-    getActions(character, creature.lairActions, doc, y);
+    y = getActions(null, creature.lairActions, doc, y);
+  }
+
+  if (creature.regionalEffects.length) {
+    const regionalEffectsTitle = new PdfContent(
+      (x: number, y: number) => {
+        doc.setFontSize(largeFontSize);
+        doc.setFont('times', 'normal');
+        doc.text('Regional Effects', x, y, {
+          baseline: 'top',
+          maxWidth: standardSingleColumn,
+        });
+      },
+      largeFontLineHeight,
+      standardSingleColumn,
+      pagePadding,
+      y,
+      'top',
+    );
+
+    y = regionalEffectsTitle.getBottom();
+    regionalEffectsTitle.render();
+
+    y = getActions(null, creature.regionalEffects, doc, y);
   }
 };

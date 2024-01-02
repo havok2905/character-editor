@@ -305,7 +305,7 @@ export const getNameAndHeader = (
  * moment, to allow for true dynamic content and precalculated sizing.
  */
 export const getFeatures = (
-  character: Character,
+  character: Character | null,
   features: Feature[],
   doc: jsPDF,
   startY: number,
@@ -315,7 +315,7 @@ export const getFeatures = (
   const newPageWhenOutOfBounds = (y: number, itemHeight: number): boolean => {
     if (y + itemHeight + (pagePadding * 2) > height) {
       doc.addPage();
-      getNameAndHeader(character, doc);
+      if (character) getNameAndHeader(character, doc);
       return true;
     }
  
@@ -431,7 +431,7 @@ export const getFeatures = (
  * This is more or less a copy of getFeatures.
  */
 export const getActions = (
-  character: Character,
+  character: Character | null,
   actions: Action[],
   doc: jsPDF,
   startY: number,
@@ -441,7 +441,7 @@ export const getActions = (
   const newPageWhenOutOfBounds = (y: number, itemHeight: number): boolean => {
     if (y + itemHeight + (pagePadding * 2) > height) {
       doc.addPage();
-      getNameAndHeader(character, doc);
+      if (character) getNameAndHeader(character, doc);
       return true;
     }
  

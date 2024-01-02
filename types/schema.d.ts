@@ -396,6 +396,7 @@ export interface Creature {
   name: string;
   proficiencyBonus: number;
   reactions: Action[];
+  regionalEffects: Action[];
   senses: string[];
   skills: {
     acrobatics: Skill;

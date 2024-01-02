@@ -9,7 +9,8 @@
     "build-site": "ts-node src/devScripts/compileSite.ts",
     "build-types": "ts-node src/devScripts/compileSchemaToTsTypes.ts",
     "eslint": "eslint . --ext .ts",
-    "generate-character": "ts-node src/devScripts/generateCharacter.ts"
+    "generate-character": "ts-node src/devScripts/generateCharacter.ts",
+    "generate-creature": "ts-node src/devScripts/generateCreature.ts"
   },
   "author": "",
   "license": "ISC",

@@ -1,0 +1,163 @@
+{
+  "abilityScores": {
+    "str": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "dex": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "con": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "int": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "wis": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "cha": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    }
+  },
+  "actions": [],
+  "ac": 0,
+  "alignment": "neutral",
+  "conditionImmunities": [],
+  "conditionResistances": [],
+  "conditionVulnerabilities": [],
+  "cr": "0",
+  "creatureType": "aberration",
+  "damageImmunities": [],
+  "damageResistances": [],
+  "damageVulnerabilities": [],
+  "features": [],
+  "hitPoints": {
+    "current": 0,
+    "max": 0,
+    "temporary": 0
+  },
+  "lairActions": [],
+  "lairActionsText": "",
+  "languages": [],
+  "legendaryActions": [],
+  "legendaryActionsText": "",
+  "name": "Lorem Ipsum",
+  "proficiencyBonus": 2,
+  "reactions": [],
+  "regionalEffects": [],
+  "senses": [],
+  "size": "medium",
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "animalHandling": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "arcana": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "athletics": {
+      "ability": "str",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "deception": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "history": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "insight": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "investigation": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "medicine": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "nature": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "perception": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "performance": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "religion": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "sleightOfHand": {
+      "ability": "dex",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "stealth": {
+      "ability": "dex",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "survival": {
+      "ability": "wis",
+      "mod": 0,
+      "proficiency": "none"
+    }
+  },
+  "speed": [
+    {
+      "value": 30,
+      "unit": "feet"
+    }
+  ],
+  "spellLists": [],
+  "spellSlots": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "token": ""
+}

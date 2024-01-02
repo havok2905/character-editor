@@ -4,8 +4,13 @@
       "fileMatch": [
         "*character.json"
       ],
-      
-      "url": "./schemas/character.json"
+      "url": "./schemas/character.schema.json"
+    },
+    {
+      "fileMatch": [
+        "*creature.json"
+      ],
+      "url": "./schemas/creature.schema.json"
     }
-  ]  
+  ]
 }

@@ -1,0 +1,360 @@
+{
+  "abilityScores": {
+    "str": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "dex": {
+      "mod": 3,
+      "savingThrowProficiency": false,
+      "score": 16
+    },
+    "con": {
+      "mod": 2,
+      "savingThrowProficiency": false,
+      "score": 14
+    },
+    "int": {
+      "mod": 6,
+      "savingThrowProficiency": true,
+      "score": 22
+    },
+    "wis": {
+      "mod": 2,
+      "savingThrowProficiency": true,
+      "score": 14
+    },
+    "cha": {
+      "mod": 5,
+      "savingThrowProficiency": true,
+      "score": 20
+    }
+  },
+  "actions": [
+    {
+      "attackType": "ranged spell attack",
+      "entries": [
+        "Ranged Spell Attack: The Seer magically emits creates blasts of energy in space. Creatures of the Seer's choice within 60 feet of it must succeed on a DC20 Strength saving throw or take 7d10+5 force damage, half as much on a success, and be knocked prone."
+      ],
+      "damageFormulas": [
+        {
+          "average": "40",
+          "damageType": "force",
+          "formula": "7d10+5"
+        }
+      ],
+      "name": "Mind Blast (Recharge 5-6)",
+      "range": {
+        "name": "Feet",
+        "indicator": "ft.",
+        "value": 60
+      },
+      "savingThrows": [
+        {
+          "ability": "dex",
+          "dc": 20
+        }
+      ],
+      "target": "Creatures of the Seer's choice within range"
+    },
+    {
+      "attackType": "melee spell attack",
+      "damageFormulas": [
+        {
+          "average": "9",
+          "damageType": "psychic",
+          "formula": "3d6"
+        }
+      ],
+      "entries": [
+        "Melee Spell Attack: +12 to hit, reach 5ft. Hit: 3d6 Psychic damage. The target must succeed on a DC 20 Constitution saving throw or be Poisoned for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the Effect on itself on a success."
+      ],
+      "name": "Transmuting Touch",
+      "reach": {
+        "indicator": "ft.",
+        "name": "Feet",
+        "value": 5
+      },
+      "savingThrows": [
+        {
+          "ability": "con",
+          "dc": 20
+        }
+      ],
+      "target": "One target"
+    }
+  ],
+  "ac": 20,
+  "alignment": "neutral",
+  "conditionImmunities": [],
+  "conditionResistances": [],
+  "conditionVulnerabilities": [],
+  "cr": "20",
+  "creatureType": "celestial",
+  "damageImmunities": [],
+  "damageResistances": [],
+  "damageVulnerabilities": [],
+  "features": [
+    {
+      "name": "Legendary Resistance (3/Day)",
+      "entries": [
+        "If the Seer fails a saving throw, it can choose to succeed instead."
+      ]
+    },
+    {
+      "name": "Magic Resistance",
+      "entries": [
+        "The Seer has advantage on saving throws against spells and other magical effects."
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "entries": [
+        "This creature is a 18th-level spellcaster. Their spellcasting ability is Intelligence (spell save DC 20; +12 to hit with spell attacks). they have the following spells prepared:"
+      ]
+    }
+  ],
+  "hitPoints": {
+    "current": 370,
+    "max": 370,
+    "temporary": 0
+  },
+  "lairActions": [
+    {
+      "name": "actions",
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A strong force of gravity manifests at a single point, causing the spell Magnify Gravity to fire at 4th level.",
+            "Four five foot wide patches of the ground begin to melt and act as quick sand. Each player on a patch must succeed a DC 15 DEX saving throw or be restrained. This can be contested at the end of each player's turn.",
+            "Four players instantly swap positions with each other. If a play that has no fly speed and cannot hover is swapped with a player that is currently in the air, the new player will fall and take the resulting fall damage."
+          ]
+        }
+      ]
+    }
+  ],
+  "lairActionsText": "The Seers reside on the little known Plane of Observation, a plane that acts as a nexus between the other planes of existence. It is a cold, barren, and alien place, largely devoid of life. The Seers reside in metal underground bunkers, where they tend to their larvae and observe the other planes from afar. On initiative 20, the Seer takes a lair action to cause one of the following effects; the Seer can't use the same effect two rounds in a row.",
+  "languages": [
+    "celestial",
+    "telepathy 120ft."
+  ],
+  "legendaryActions": [
+    {
+      "name": "Cantrip",
+      "entries": [
+        "The Seer uses a cantrip. " 
+      ]
+    },
+    {
+      "name": "Polymorph (Costs 3 Actions)",
+      "entries": [
+        "The Seer uses the Polymorph spell without the use of a spell slot."
+      ]
+    },
+    {
+      "name": "Transmuting Touch (Costs 2 Actions)",
+      "entries": [
+        "The Seer uses its Transmuting Touch."
+      ]
+    }
+  ],
+  "legendaryActionsText": "This creature can take 3 Legendary Actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary Actions are regained at the start of each turn.",
+  "name": "Seer",
+  "proficiencyBonus": 6,
+  "reactions": [],
+  "regionalEffects": [
+    {
+      "name": "effects",
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "The fabric between planes is extraordinarily weak, causing a random elemental plane to partially leak into the Plane of Observation.",
+            "The terrain takes on an otherworldly quality. Gravity becomes inconsistent, the ground and air may vary wildly in temperature, light may bend and warp in unnatural ways.",
+            "When the Seer dies, these effects may fade over the course of 1d10 days."
+          ]
+        }
+      ]
+    }
+  ],
+  "senses": [
+    "Darkvision 120ft."
+  ],
+  "size": "huge",
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "animalHandling": {
+      "ability": "wis",
+      "mod": 2,
+      "proficiency": "none"
+    },
+    "arcana": {
+      "ability": "int",
+      "mod": 6,
+      "proficiency": "none"
+    },
+    "athletics": {
+      "ability": "str",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "deception": {
+      "ability": "cha",
+      "mod": 5,
+      "proficiency": "none"
+    },
+    "history": {
+      "ability": "int",
+      "mod": 18,
+      "proficiency": "expertise"
+    },
+    "insight": {
+      "ability": "wis",
+      "mod": 2,
+      "proficiency": "none"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "mod": 5,
+      "proficiency": "none"
+    },
+    "investigation": {
+      "ability": "int",
+      "mod": 6,
+      "proficiency": "none"
+    },
+    "medicine": {
+      "ability": "wis",
+      "mod": 2,
+      "proficiency": "none"
+    },
+    "nature": {
+      "ability": "int",
+      "mod": 18,
+      "proficiency": "expertise"
+    },
+    "perception": {
+      "ability": "wis",
+      "mod": 14,
+      "proficiency": "expertise"
+    },
+    "performance": {
+      "ability": "cha",
+      "mod": 17,
+      "proficiency": "expertise"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "mod": 5,
+      "proficiency": "none"
+    },
+    "religion": {
+      "ability": "int",
+      "mod": 6,
+      "proficiency": "none"
+    },
+    "sleightOfHand": {
+      "ability": "dex",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "stealth": {
+      "ability": "dex",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "survival": {
+      "ability": "wis",
+      "mod": 2,
+      "proficiency": "none"
+    }
+  },
+  "speed": [
+    {
+      "value": 30,
+      "unit": "feet"
+    }
+  ],
+  "spellLists": [
+    {
+      "source": "Innate Spellcasting",
+      "ability": "int",
+      "mod": 12,
+      "saveDc": 20,
+      "cantrips": [
+        { "value": "Mage Hand" },
+        { "value": "Mending" },
+        { "value": "Mind Sliver" }
+      ],
+      "first": {
+        "spells": [
+          { "value": "Charm Person" },
+          { "value": "Magic Missile" },
+          { "value": "Shield" },
+          { "value": "Thunder Wave" }
+        ]        
+      },
+      "second": {
+        "spells": [
+          { "value": "Crown of Madness" },
+          { "value": "Detect Thoughts" },
+          { "value": "Hold Person" },
+          { "value": "Invisibility" },
+          { "value": "Mirror Image" }
+        ]        
+      },
+      "third": {
+        "spells": [
+          { "value": "Blink" },
+          { "value": "Counterspell" },
+          { "value": "Dispel Magic" },
+          { "value": "Fireball" }
+        ]
+      },
+      "fourth": {
+        "spells": [
+          { "value": "Blight" },
+          { "value": "Hallucinatory Terrain" },
+          { "value": "Polymorph" }
+        ]        
+      },
+      "fifth": {
+        "spells": [
+          { "value": "Conjure Elemental" },
+          { "value": "Scrying" }
+        ]
+      },
+      "sixth": {
+        "spells": [
+          { "value": "Disintegrate" },
+          { "value": "Globe of Invulnerability" }
+        ]
+      },
+      "seventh": {
+        "spells": [
+          { "value": "Finger of Death" },
+          { "value": "Reverse Gravity" }
+        ]        
+      },
+      "eighth": {
+        "spells": [
+          { "value": "Dominate Monster" },
+          { "value": "Feeblemind" }
+        ]        
+      },
+      "ninth": {
+        "spells": [
+          { "value": "Time Stop" }
+        ]        
+      }
+    }
+  ],
+  "spellSlots": [4, 3, 3, 3, 3, 1, 1, 1, 1],
+  "token": "seer-token.png"
+}

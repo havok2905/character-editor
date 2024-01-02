@@ -63,7 +63,7 @@ export const characterToPdf = (character: Character): jsPDF => {
       pet.legendaryActions.length
     ) {
       doc.addPage();
-      creatureFeatureSheet(pet, character, doc);
+      creatureFeatureSheet(pet, doc);
     }  
 
     if (pet.spellLists.length) {
