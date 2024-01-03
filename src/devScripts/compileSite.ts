@@ -73,7 +73,10 @@ const compileSite = async () => {
     }
 
     characterToHtml(contents, htmlFilePath);
-    characterToPdf(contents).save(pdfFilePath);
+  
+    const pdf = characterToPdf(contents);
+    pdf.pipe(fs.createWriteStream(pdfFilePath));
+    pdf.end();
 
     console.log(`Characters saved at: ${htmlFilePath}`);
     console.log(`Characters saved at: ${pdfFilePath}`);
@@ -93,7 +96,10 @@ const compileSite = async () => {
     }
 
     creatureToHtml(contents, htmlFilePath);
-    creatureToPdf(contents).save(pdfFilePath);
+
+    const pdf = creatureToPdf(contents);
+    pdf.pipe(fs.createWriteStream(pdfFilePath));
+    pdf.end();
 
     console.log(`Creatures saved at: ${htmlFilePath}`);
     console.log(`Creatures saved at: ${pdfFilePath}`);

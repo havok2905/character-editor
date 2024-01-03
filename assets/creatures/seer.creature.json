@@ -122,7 +122,7 @@
   },
   "lairActions": [
     {
-      "name": "actions",
+      "name": "Actions",
       "entries": [
         {
           "type": "list",
@@ -166,7 +166,7 @@
   "reactions": [],
   "regionalEffects": [
     {
-      "name": "effects",
+      "name": "Effects",
       "entries": [
         {
           "type": "list",
