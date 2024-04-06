@@ -151,6 +151,11 @@ export const CharacterSheet: FC<CharacterSheetProps> = ({
       {character.race.features.map((feature, index) => <Feature key={index} feature={feature}/>)}
       {character.race.subrace?.features.map((feature, index) => <Feature key={index} feature={feature}/>)}
       {
+        character.feats.map((feat) => {
+          return feat.features.map((feature, index) => <Feature key={index} feature={feature}/>);
+        })
+      }
+      {
         character.classes.map((klass) => {
           return (
             <>

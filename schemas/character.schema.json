@@ -228,6 +228,12 @@
         ]
       }
     },
+    "feats": {
+      "type": "array",
+      "items": {
+        "$ref": "feat.schema.json"
+      }
+    },
     "hitPoints": {
       "$ref": "hitPoints.schema.json"
     },
@@ -440,6 +446,7 @@
     "damageImmunities",
     "damageResistances",
     "damageVulnerabilities",
+    "feats",
     "hitPoints",
     "initiative",
     "inspiration",

@@ -506,6 +506,7 @@
   "damageImmunities": [],
   "damageResistances": [],
   "damageVulnerabilities": [],
+  "feats": [],
   "hitPoints": {
     "current": 73,
     "max": 73,

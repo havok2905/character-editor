@@ -227,6 +227,7 @@ export interface Character {
   damageImmunities: (Damage | string)[];
   damageResistances: (Damage | string)[];
   damageVulnerabilities: (Damage | string)[];
+  feats: Feat[];
   hitPoints: HitPoints;
   initiative: number;
   inspiration: boolean;
@@ -349,6 +350,11 @@ export interface Class {
   [k: string]: unknown;
 }
 export interface SubClass {
+  features: Feature[];
+  name: string;
+  [k: string]: unknown;
+}
+export interface Feat {
   features: Feature[];
   name: string;
   [k: string]: unknown;

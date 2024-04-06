@@ -99,6 +99,7 @@
   "damageImmunities": [],
   "damageResistances": [],
   "damageVulnerabilities": [],
+  "feats": [],
   "hitPoints": {
     "current": 0,
     "max": 0,

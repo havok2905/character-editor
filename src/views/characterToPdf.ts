@@ -38,6 +38,7 @@ export const characterToPdf = (character: Character) => {
   const tokenPath = path.resolve(path.join(__dirname, `../../assets/tokens/${character.token}`));
 
   const classFeatures = [] as Feature[];
+  const featFeatures = [] as Feature[];
 
   character.classes.forEach((klass) => {
     klass.features.forEach((feature) => {
@@ -48,10 +49,17 @@ export const characterToPdf = (character: Character) => {
     });
   });
 
+  character.feats.forEach((feat) => {
+    feat.features.forEach((feature) => {
+      featFeatures.push(feature);
+    });
+  });
+
   const characterFeatures = [
     ...character.background.features,
     ...character.race.features,
     ...character.race.subrace?.features ?? [],
+    ...featFeatures,
     ...classFeatures,
   ];
 
