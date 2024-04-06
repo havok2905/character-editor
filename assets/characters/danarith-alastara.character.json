@@ -1,0 +1,578 @@
+{
+  "abilityScores": {
+    "str": {
+      "mod": -1,
+      "savingThrowProficiency": false,
+      "score": 8
+    },
+    "dex": {
+      "mod": 3,
+      "savingThrowProficiency": false,
+      "score": 16
+    },
+    "con": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "int": {
+      "mod": 1,
+      "savingThrowProficiency": false,
+      "score": 13
+    },
+    "wis": {
+      "mod": 4,
+      "savingThrowProficiency": true,
+      "score": 18
+    },
+    "cha": {
+      "mod": 1,
+      "savingThrowProficiency": true,
+      "score": 12
+    }
+  },
+  "ac": 15,
+  "background": {
+    "features": [
+      {
+        "name": "Specialty",
+        "entries": [
+          "Scribe"
+        ]
+      },
+      {
+        "name": "Researcher",
+        "entries": [
+          "When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found. Unearthing the deepest secrets of the multiverse can require an adventure or even a whole campaign."
+        ]
+      }
+    ],
+    "name": "Sage"
+  },
+  "biography": {
+    "alignment": "chaotic good",
+    "backstory": {
+      "entries": [
+        "Dani was raised as an orphan in a Temple of Lathander, learning the teachings of the morning lord and his prayers. It was there that she learned to heal the wounded, scribe holy text, and appraise artifacts brought in front for the church for examination. Blake's true sense of peace, however, came from their moonlight strolls under the light of the moon and stars.",
+        "It was one of these moonlight strolls that Dani came across a violent mugging of an elderly man. They were too late to respond and could not stop the bleeding. Unable to call upon holy magic yet, Dani called out to Lathander and no answer was given.",
+        "Dani brought the elderly man to the church to be revived and had her request denied by the clergy, reasoning that \"the lord's will was already done\". Dani rejected the answer of the clergy and dove into holy texts of Lathander, Shar,  Selune, and more for guidance, finding her truth in several domains.",
+        "Over time Dani's differences with the clergy became too much to bare and she was asked to leave. Without a home to call her own, she approached the Silverhand Guild -- looking for a group with which to rest their head, refine their faith, and help others."
+      ]
+    },
+    "bonds": "I had a falling out with my church. I now follow the words and wisdom of my own belief, not knowing where that will guide me.",
+    "flaws": "I'd rather eat my armor than admit when I'm wrong.",
+    "gender": {
+      "name": "non binary",
+      "pronouns": [
+        {
+          "objectivePronoun": "they",
+          "possessivePronoun": "their",
+          "subjectivePronoun": "she"
+        }
+      ]
+    },
+    "ideals": "Selflessness: Seek not the light given to us, but the light we have to give to others. Sincerity: There's no good pretending to be something I'm not.",
+    "name": {
+      "first": "Danarith",
+      "last": "Alastara"
+    },
+    "personalityTraits": "I am a voracious reader, especially for fiction and stories of heroes. I have a tendency to keep tabs on everyone in my group, much to their annoyance. I am horribly, horribly awkward in social situations.",
+    "physicalDescription": {
+      "age": 24,
+      "description": "",
+      "dress": "Dani wears all black; most commonly a long black skirt, heavy boots, and black and gold bracelets. Their clothes are symbolic of a bright star shining against the night sky, accentuating the brightness of their spell casting.",
+      "eyes": "Brown",
+      "hair": "Black",
+      "height": {
+        "firstUnit": {
+          "indicator": "'",
+          "name": "feet",
+          "value": 5
+        },
+        "secondUnit": {
+          "indicator": "\"",
+          "name": "inches",
+          "value": 4
+        }
+      },
+      "skin": "Pale",
+      "weight": {
+        "indicator": "lbs",
+        "name": "pounds",
+        "value": 125
+      }
+    }
+  },
+  "classes": [
+    {
+      "subClass": {
+        "name": "Twilight Domain",
+        "features": [
+          {
+            "name": "Bonus Proficiencies",
+            "entries": [
+              "At 1st level, you gain proficiency with martial weapons and heavy armor."
+            ]
+          },
+          {
+            "name": "Eyes of Night",
+            "entries": [
+              "Starting at 1st level, you can see through the deepest gloom. You have darkvision out to a range of 300 feet. In that radius, you can see in dim light as if it were bright light and in darkness as if it were dim light.",
+              "As an action, you can magically share the darkvision of this feature with willing creatures you can see within 10 feet of you, up to a number of creatures equal to your Wisdom modifier (minimum of one creature). The shared darkvision lasts for 1 hour. Once you share it, you can't do so again until you finish a long rest, unless you expend a spell slot of any level to share it again."
+            ]
+          },
+          {
+            "name": "Vigilant Blessing",
+            "entries": [
+              "At 1st level, the night has taught you to be vigilant. As an action, you give one creature you touch (including possibly yourself) advantage on the next initiative roll the creature makes. This benefit ends immediately after the roll or if you use this feature again."
+            ]
+          },
+          {
+            "name": "Channel Divinity: Twilight Sanctuary",
+            "entries": [
+              "At 2nd level, you can use your Channel Divinity to refresh your allies with soothing twilight.",
+              "As an action, you present your holy symbol, and a sphere of twilight emanates from you. The sphere is centered on you, has a 30-foot radius, and is filled with dim light. The sphere moves with you, and it lasts for 1 minute or until you are incapacitated or die. Whenever a creature (including you) ends its turn in the sphere, you can grant that creature one of these benefits:",
+              {
+                "type": "list",
+                "items": [
+                  "You grant it temporary hit points equal to 1d6 plus your cleric level.",
+                  "You end one effect on it causing it to be charmed or frightened."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "features": [
+        {
+          "name": "Spellcasting",
+          "entries": [
+            "As a conduit for divine power, you can cast cleric spells.",
+            {
+              "name": "Cantrips",
+              "type": "subEntry",
+              "entries": [
+                "At 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table."
+              ]
+            },
+            {
+              "name": "Spell Slots",
+              "type": "subEntry",
+              "entries": [
+                "The Cleric table shows how many spell slots you have to cast your cleric spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+                "You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots.",
+                "For example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell Cure Wounds, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+                "You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list."
+              ]
+            },
+            {
+              "name": "Spellcasting Ability",
+              "type": "subEntry",
+              "entries": [
+                "Wisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.",
+                "Spell save DC = 8 + your proficiency bonus + your Wisdom modifier",
+                "Spell attack modifier = your proficiency bonus + your Wisdom modifier"
+              ]
+            },
+            {
+              "name": "Ritual Casting",
+              "type": "subEntry",
+              "entries": [
+                "You can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared."
+              ]
+            },
+            {
+              "name": "Spellcasting Focus",
+              "type": "subEntry",
+              "entries": [
+                "You can use a holy symbol as a spellcasting focus for your cleric spells."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Divine Domain",
+          "entries": [
+            "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
+            {
+              "name": "Domain Spells",
+              "type": "subEntry",
+              "entries": [
+                "Each domain has a list of spells-its domain spells that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.",
+                "If you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Channel Divinity",
+          "entries": [
+            "At 2nd level, you gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn Undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description.",
+            "When you use your Channel Divinity, you choose which effect to create. You must then finish a short or long rest to use your Channel Divinity again.",
+            "Some Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your cleric spell save DC.",
+            "Beginning at 6th level, you can use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests. When you finish a short or long rest, you regain your expended uses.",
+            {
+              "name": "Channel Divinity: Turn Undead",
+              "type": "subEntry",
+              "entries": [
+                "As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes any damage.",
+                "A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ability Score Improvement",
+          "entries": [
+            "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+          ]
+        }
+      ],
+      "hitDiceValue": 8,
+      "level": 4,
+      "name": "cleric"
+    }
+  ],
+  "conditionImmunities": [],
+  "conditionResistances": [],
+  "conditionVulnerabilities": [],
+  "damageImmunities": [],
+  "damageResistances": [],
+  "damageVulnerabilities": [],
+  "hitPoints": {
+    "current": 18,
+    "max": 18,
+    "temporary": 0
+  },
+  "initiative": 2,
+  "inspiration": false,
+  "inventory": [
+    {
+      "name": "Rapier",
+      "total": 1
+    },
+    {
+      "name": "Shield",
+      "total": 1
+    },
+    {
+      "name": "Leather Armor",
+      "total": 1
+    },
+    {
+      "name": "Light Crossbow",
+      "total": 1
+    },
+    {
+      "name": "Crossbow Bolt",
+      "total": 20
+    },
+    {
+      "name": "Ink ( 1oz Bottle )",
+      "total": 1
+    },
+    {
+      "name": "Backpack",
+      "total": 1
+    },
+    {
+      "name": "Common Clothes",
+      "total": 1
+    },
+    {
+      "name": "Amulet",
+      "total": 1
+    },
+    {
+      "name": "Small Knife",
+      "total": 1
+    },
+    {
+      "name": "Bedroll",
+      "total": 1
+    },
+    {
+      "name": "Mess Kit",
+      "total": 1
+    },
+    {
+      "name": "Rations",
+      "total": 9
+    },
+    {
+      "name": "Tinderbox",
+      "total": 1
+    },
+    {
+      "name": "Torch",
+      "total": 9
+    },
+    {
+      "name": "Waterskin",
+      "total": 1
+    },
+    {
+      "name": "Healing Potion",
+      "total": 2
+    }
+  ],
+  "languages": [
+    "abyssal",
+    "celestial",
+    "common",
+    "infernal"
+  ],
+  "pets": [],
+  "senses": [
+    "darkvision 300ft."
+  ],
+  "proficiencies": {
+    "armor": [
+      "heavy armor",
+      "light armor",
+      "medium armor",
+      "shield"
+    ],
+    "tool": [
+    ],
+    "weapon": [
+      "martial weapon",
+      "simple weapon"
+    ]
+  },
+  "proficiencyBonus": 2,
+  "race": {
+    "name": "human",
+    "size": "medium",
+    "subrace": {
+      "name": "variant",
+      "features": []
+    },
+    "features": []
+  },
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "animalHandling": {
+      "ability": "wis",
+      "mod": 4,
+      "proficiency": "none"
+    },
+    "arcana": {
+      "ability": "int",
+      "mod": 3,
+      "proficiency": "proficient"
+    },
+    "athletics": {
+      "ability": "str",
+      "mod": -1,
+      "proficiency": "none"
+    },
+    "deception": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "history": {
+      "ability": "int",
+      "mod": 3,
+      "proficiency": "proficient"
+    },
+    "insight": {
+      "ability": "wis",
+      "mod": 6,
+      "proficiency": "proficient"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "investigation": {
+      "ability": "int",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "medicine": {
+      "ability": "wis",
+      "mod": 4,
+      "proficiency": "none"
+    },
+    "nature": {
+      "ability": "int",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "perception": {
+      "ability": "wis",
+      "mod": 4,
+      "proficiency": "none"
+    },
+    "performance": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "religion": {
+      "ability": "int",
+      "mod": 3,
+      "proficiency": "proficient"
+    },
+    "sleightOfHand": {
+      "ability": "dex",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "stealth": {
+      "ability": "dex",
+      "mod": 5,
+      "proficiency": "proficient"
+    },
+    "survival": {
+      "ability": "wis",
+      "mod": 4,
+      "proficiency": "none"
+    }
+  },
+  "speed": [
+    {
+      "value": 30,
+      "unit": "feet"
+    }
+  ],
+  "spellSlots": [4, 3, 0, 0, 0, 0, 0, 0, 0],
+  "spellLists": [
+    {
+      "ability": "wis",
+      "mod": 6,
+      "saveDc": 14,
+      "source": "Cleric",
+      "cantrips": [
+        {
+          "alwaysPrepared": false,
+          "value": "Guidance"
+        },
+        {
+          "alwaysPrepared": false,
+          "value": "Sacred Flame"
+        },
+        {
+          "alwaysPrepared": false,
+          "value": "Spare the Dying"
+        },
+        {
+          "alwaysPrepared": false,
+          "value": "Thaumaturgy"
+        }
+      ],
+      "first": {
+        "spells": [
+          {
+            "alwaysPrepared": false,
+            "value": "Bless"
+          },
+          {
+            "alwaysPrepared": true,
+            "value": "Color Spray"
+          },
+          {
+            "alwaysPrepared": false,
+            "value": "Cure Wounds"
+          },
+          {
+            "alwaysPrepared": false,
+            "value": "Detect Magic"
+          },
+          {
+            "alwaysPrepared": true,
+            "value": "Faerie Fire"
+          },
+          {
+            "alwaysPrepared": false,
+            "value": "Guiding Bolt"
+          },
+          {
+            "alwaysPrepared": false,
+            "value": "Healing Word"
+          },
+          {
+            "alwaysPrepared": false,
+            "value": "Sanctuary"
+          },
+          {
+            "alwaysPrepared": false,
+            "value": "Silence"
+          },
+          {
+            "alwaysPrepared": true,
+            "value": "Sleep"
+          }
+        ]
+      },
+      "second": {
+        "spells": [
+          {
+            "alwaysPrepared": false,
+            "value": "Hold Person"
+          },
+          {
+            "alwaysPrepared": true,
+            "value": "Invisibility"
+          },
+          {
+            "alwaysPrepared": true,
+            "value": "Moonbeam"
+          },
+          {
+            "alwaysPrepared": true,
+            "value": "See Invisibility"
+          }
+        ]
+      },
+      "third": {
+        "spells": [
+
+        ]
+      },
+      "fourth": {
+        "spells": [
+
+        ]
+      },
+      "fifth": {
+        "spells": [
+
+        ]
+      },
+      "sixth": {
+        "spells": [
+
+        ]
+      },
+      "seventh": {
+        "spells": [
+
+        ]
+      },
+      "eighth": {
+        "spells": [
+
+        ]
+      },
+      "ninth": {
+        "spells": [
+
+        ]
+      }
+    }
+  ],
+  "token": "danarith-alastara-token.png"
+}
