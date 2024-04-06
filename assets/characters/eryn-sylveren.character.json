@@ -1,0 +1,429 @@
+{
+  "abilityScores": {
+    "str": {
+      "mod": -1,
+      "savingThrowProficiency": true,
+      "score": 8
+    },
+    "dex": {
+      "mod": 3,
+      "savingThrowProficiency": true,
+      "score": 16
+    },
+    "con": {
+      "mod": 1,
+      "savingThrowProficiency": false,
+      "score": 13
+    },
+    "int": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "wis": {
+      "mod": 3,
+      "savingThrowProficiency": false,
+      "score": 16
+    },
+    "cha": {
+      "mod": 1,
+      "savingThrowProficiency": false,
+      "score": 12
+    }
+  },
+  "ac": 14,
+  "background": {
+    "features": [
+      {
+        "name": "Defining Event",
+        "entries": [
+          "You previously pursued a simple profession among the peasantry, perhaps as a farmer, miner, servant, shepherd, woodcutter, or gravedigger. But something happened that set you on a different path and marked you for greater things. Choose or randomly determine a defining event that marked you as a hero of the people.",
+          {
+            "type": "table",
+            "columnLabels": [
+              "d10",
+              "defining event"
+            ],
+            "rows": [
+              ["1", "I stood up to a tyrant's agents."],
+              ["2", "I saved people during a natural disaster."],
+              ["3", "I stood alone against a terrible monster."],
+              ["4", "I stole from a corrupt merchant to help the poor."],
+              ["5", "I led a militia to fight off an invading army."],
+              ["6", "I broke into a tyrant's castle and stole weapons to arm the people."],
+              ["7", "I trained the peasantry to use farm implements as weapons against a tyrant's soldiers."],
+              ["8", "A lord rescinded an unpopular decree after I led a symbolic act of protest against it."],
+              ["9", "A celestial, fey, or similar creature gave me a blessing or revealed my secret origin."],
+              ["10", "Recruited into a lord's army, I rose to leadership and was commended for my heroism."]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Rustic Hospitality",
+        "entries": [
+          "Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among other commoners, unless you have shown yourself to be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you."
+        ]
+      }
+    ],
+    "name": "Folk Hero"
+  },
+  "biography": {
+    "alignment": "chaotic good",
+    "backstory": {
+      "entries": [
+      ]
+    },
+    "bonds": "I found a dragon egg, stolen by a creature I slew in my village - I now care for it as if it was my own. I never knew my father, but I resent him for abandoning my mother and I.",
+    "flaws": "I don't take orders well. I'd rather eat my armor than admit when I'm wrong.",
+    "gender": {
+      "name": "female",
+      "pronouns": [
+        {
+          "objectivePronoun": "she",
+          "possessivePronoun": "her",
+          "subjectivePronoun": "her"
+        }
+      ]
+    },
+    "ideals": "It is the responsibility of the powerful to protect the weak.",
+    "name": {
+      "first": "Eryn",
+      "last": "Sylveren"
+    },
+    "personalityTraits": "I take every opportunity I can to be outside and explore new places. I feel tremendous empathy for all who suffer.",
+    "physicalDescription": {
+      "age": 25,
+      "description": "",
+      "dress": "Long brown cloak - clasped with a bronze clip, heavy boots, and two short swords clipped to my hip.",
+      "eyes": "amber",
+      "hair": "white",
+      "height": {
+        "firstUnit": {
+          "indicator": "'",
+          "name": "feet",
+          "value": 5
+        },
+        "secondUnit": {
+          "indicator": "\"",
+          "name": "inches",
+          "value": 1
+        }
+      },
+      "skin": "pale",
+      "weight": {
+        "indicator": "lbs",
+        "name": "pounds",
+        "value": 120
+      }
+    }
+  },
+  "classes": [
+    {
+      "features": [
+        {
+          "name": "Favored Foe",
+          "entries": [
+            "This 1st-level feature replaces the Favored Enemy feature and works with the Foe Slayer feature. You gain no benefit from the replaced feature and don't qualify for anything in the game that requires it.",
+            "When you hit a creature with an attack roll, you can call on your mystical bond with nature to mark the target as your favored enemy for 1 minute or until you lose your concentration (as if you were concentrating on a spell).",
+            "The first time on each of your turns that you hit the favored enemy and deal damage to it, including when you mark it, you increase that damage by 1d4.",
+            "You can use this feature to mark a favored enemy a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+            "This feature's extra damage increases when you reach certain levels in this class: to 1d6 at 6th level and to 1d8 at 14th level."
+          ]
+        },
+        {
+          "name": "Deft Explorer",
+          "entries": [
+            "This 1st-level feature replaces the Natural Explorer feature. You gain no benefit from the replaced feature and don't qualify for anything in the game that requires it.",
+            "You are an unsurpassed explorer and survivor, both in the wilderness and in dealing with others on your travels. You gain the Canny benefit below, and you gain an additional benefit when you reach 6th level and 10th level in this class.",
+            {
+              "type": "subEntry",
+              "name": "Canny (1st Level)",
+              "entries": [
+                "Choose one of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make using the chosen skill.",
+                "You can also speak, read, and write 2 additional languages of your choice."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Roving (6th Level)",
+              "entries": [
+                "Your walking speed increases by 5, and you gain a climbing speed and a swimming speed equal to your walking speed."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Tireless (10th Level)",
+              "entries": [
+                "As an action, you can give yourself a number of temporary hit points equal to 1d8 + your Wisdom modifier (minimum of 1 temporary hit point). You can use this action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+                "In addition, whenever you finish a short rest, your exhaustion level, if any, is decreased by 1."
+              ]
+            }
+          ]
+        }
+      ],
+      "hitDiceValue": 10,
+      "level": 1,
+      "name": "ranger"
+    }
+  ],
+  "conditionImmunities": [],
+  "conditionResistances": [],
+  "conditionVulnerabilities": [],
+  "damageImmunities": [],
+  "damageResistances": [],
+  "damageVulnerabilities": [],
+  "feats": [
+    {
+      "name": "Fey Touched",
+      "features": [
+        {
+          "name": "Fey Touched Features",
+          "entries": [
+            "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "You learn the Misty Step spell and one 1st-level spell of your choice. The 1st-level spell must be from the Divination or Enchantment school of magic. You can cast each of these spells without expending a spell slot. Once you cast either of these spells in this way, you can't cast that spell in this way again until you finish a long rest. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+          ]
+        }
+      ]
+    }
+  ],
+  "hitPoints": {
+    "current": 11,
+    "max": 11,
+    "temporary": 0
+  },
+  "initiative": 3,
+  "inspiration": false,
+  "inventory": [
+    {
+      "name": "Leather Armor",
+      "total": 1
+    },
+    {
+      "name": "Short Sword",
+      "total": 2
+    },
+    {
+      "name": "Explorer's Pack",
+      "total": 1
+    },
+    {
+      "name": "Long Bow",
+      "total": 1
+    },
+    {
+      "name": "Arrows",
+      "total": 20
+    },
+    {
+      "name": "Cooking Utensils",
+      "total": 1
+    },
+    {
+      "name": "Shovel",
+      "total": 1
+    },
+    {
+      "name": "Iron Pot",
+      "total": 1
+    },
+    {
+      "name": "Common Clothes",
+      "total": 1
+    }
+  ],
+  "languages": [
+    "common",
+    "draconic",
+    "elvish",
+    "giant"
+  ],
+  "pets": [],
+  "senses": [],
+  "proficiencies": {
+    "armor": [
+      "light armor",
+      "medium armor",
+      "shield"
+    ],
+    "tool": [
+      "cooking utensils",
+      "vehicles (land)"
+    ],
+    "weapon": [
+      "simple weapon",
+      "martial weapon"
+    ]
+  },
+  "proficiencyBonus": 2,
+  "race": {
+    "name": "human",
+    "size": "medium",
+    "subrace": {
+      "name": "variant",
+      "features": []
+    },
+    "features": []
+  },
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "mod": 5,
+      "proficiency": "proficient"
+    },
+    "animalHandling": {
+      "ability": "wis",
+      "mod": 5,
+      "proficiency": "proficient"
+    },
+    "arcana": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "athletics": {
+      "ability": "str",
+      "mod": -1,
+      "proficiency": "none"
+    },
+    "deception": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "history": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "insight": {
+      "ability": "wis",
+      "mod": 5,
+      "proficiency": "proficient"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "investigation": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "medicine": {
+      "ability": "wis",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "nature": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "perception": {
+      "ability": "wis",
+      "mod": 7,
+      "proficiency": "expertise"
+    },
+    "performance": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "religion": {
+      "ability": "int",
+      "mod": 0,
+      "proficiency": "none"
+    },
+    "sleightOfHand": {
+      "ability": "dex",
+      "mod": 3,
+      "proficiency": "none"
+    },
+    "stealth": {
+      "ability": "dex",
+      "mod": 5,
+      "proficiency": "proficient"
+    },
+    "survival": {
+      "ability": "wis",
+      "mod": 5,
+      "proficiency": "proficient"
+    }
+  },
+  "speed": [
+    {
+      "value": 30,
+      "unit": "feet"
+    }
+  ],
+  "spellSlots": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "spellLists": [
+    {
+      "ability": "wis",
+      "mod": 5,
+      "saveDc": 13,
+      "source": "Ranger",
+      "cantrips": [
+      ],
+      "first": {
+        "spells": [
+          {
+            "alwaysPrepared": true,
+            "value": "Speak with Animals"
+          }
+        ]
+      },
+      "second": {
+        "spells": [
+          {
+            "alwaysPrepared": true,
+            "value": "Misty Step"
+          }
+        ]
+      },
+      "third": {
+        "spells": [
+
+        ]
+      },
+      "fourth": {
+        "spells": [
+
+        ]
+      },
+      "fifth": {
+        "spells": [
+
+        ]
+      },
+      "sixth": {
+        "spells": [
+
+        ]
+      },
+      "seventh": {
+        "spells": [
+
+        ]
+      },
+      "eighth": {
+        "spells": [
+
+        ]
+      },
+      "ninth": {
+        "spells": [
+
+        ]
+      }
+    }
+  ],
+  "token": "eryn-sylveren-token.png"
+}
