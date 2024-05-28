@@ -1,0 +1,759 @@
+{
+  "abilityScores": {
+    "str": {
+      "mod": -1,
+      "savingThrowProficiency": false,
+      "score": 8
+    },
+    "dex": {
+      "mod": 2,
+      "savingThrowProficiency": false,
+      "score": 14
+    },
+    "con": {
+      "mod": 0,
+      "savingThrowProficiency": false,
+      "score": 10
+    },
+    "int": {
+      "mod": 4,
+      "savingThrowProficiency": true,
+      "score": 18
+    },
+    "wis": {
+      "mod": 1,
+      "savingThrowProficiency": true,
+      "score": 13
+    },
+    "cha": {
+      "mod": 1,
+      "savingThrowProficiency": false,
+      "score": 12
+    }
+  },
+  "ac": 12,
+  "background": {
+    "features": [
+      {
+        "name": "Skill Proficiencies",
+        "entries": [
+          "Choose two from among Insight, Investigation, or Perception ( Investigation, Perception )"
+        ]
+      },
+      {
+        "name": "Tool Proficiencies",
+        "entries": [
+          "Modded: Dropped Disguise kit and added Musical Instrument",
+          "Musical Instrument, Thieves' Tools"
+        ]
+      },
+      {
+        "name": "Equipment ( Modded )",
+        "entries": [
+          "Modded: Dropped Magnifying Glass and added Harmonica",
+          "Harmonica, evidence from a past case (choose one or roll for a trinket from the Horror Trinkets table) a set of common clothes, and 10gp."
+        ]
+      },
+      {
+        "name": "Official Inquiry",
+        "entries": [
+          "You're experienced at gaining access to people and places to get the information you need. Through a combination of fast-talking, determination, and official-looking documentation, you can gain access to a place or an individual related to a crime you're investigating. Those who aren't involved in your investigation avoid impeding you or pass along your requests. Additionally, local law enforcement has firm opinions about you, viewing you as either a nuisance or one of their own."
+        ]
+      }
+    ],
+    "name": "Investigator"
+  },
+  "biography": {
+    "alignment": "neutral good",
+    "backstory": {
+      "entries": [
+        "Victoria grew up an orphan and city urchin, developing her skills in petty thievery and speed to survive. This worked for a time, until in her teenage years. She attempted to pickpocket, unbeknownst to Victoria, a local investigator by the name of Nicholae Rainward. Seeing promise in the young girl's talents, he offered her a deal; if she could land a single blow on him, she can keep the money, otherwise she would come with him to study and leave the streets for good. After a shocking long sparring match, she succeeded, but expended all of her energy in the process and collapsed. He let her keep the money and she began her training the following morning.",
+        "The next few years were spent studying the arcane, history, swordsmanship, and music with Nicholae - all while helping out with menial chores around his private practice. When she was old enough, she also started joining Nicholae on investigations as his partner.",
+        "There was one job that Victoria was never allowed to help with though and to this day, she still does not know the details. This job consumed her mentor's attention until the day he was murdered. His body was found torn to shreds in a back alleyway and their practice, including all of his research, were burned to the ground. Victoria blames herself, deep down, for not being there for her mentor. She now wanders, searching for evidence that could lead to the discovery of her mentor's killer. The experience has jaded her however. Once confident, lively, and ambitious, Victoria has now turned cynical and untrusting."
+      ]
+    },
+    "bonds": "My mentor, later investigative partner, took me off of the streets when I was a teenager and was a father to me. Since his murder I aim to find those responsible for his death.",
+    "flaws": "I do not trust in strangers, even if they have good intentions. Most people are just out to get theirs and everybody lies.",
+    "gender": {
+      "name": "woman",
+      "pronouns": [
+        {
+          "objectivePronoun": "she",
+          "possessivePronoun": "hers",
+          "subjectivePronoun": "her"
+        }
+      ]
+    },
+    "ideals": "Money does not buy class. The circumstances of one's station never defines one's character. It is what we do that matters.",
+    "name": {
+      "first": "Victoria",
+      "last": "Faerith"
+    },
+    "personalityTraits": "I am an avid blues harmonica player. While I am standoffish in sharing my thoughts with others, I vent through my music. I adhere to a strict training regimen and not a single day will be missed.",
+    "physicalDescription": {
+      "age": 26,
+      "description": "No tail and thin horns that bend backwards towards that back of her head.",
+      "dress": "Black trench coat",
+      "eyes": "Blue",
+      "hair": "White",
+      "height": {
+        "firstUnit": {
+          "indicator": "'",
+          "name": "feet",
+          "value": 5
+        },
+        "secondUnit": {
+          "indicator": "\"",
+          "name": "inches",
+          "value": 2
+        }
+      },
+      "skin": "Pale",
+      "weight": {
+        "indicator": "lbs",
+        "name": "pounds",
+        "value": 120
+      }
+    }
+  },
+  "classes": [
+    {
+      "features": [
+        {
+          "name": "Spellcasting",
+          "entries": [
+            "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.",
+            {
+              "type": "subEntry",
+              "name": "Cantrips",
+              "entries": [
+                "At 1st level, you know three cantrips of your choice from the wizard spell list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Spellbook",
+              "entries": [
+                "At 1st level, you have a spellbook containing six 1st-level wizard spells of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.",
+                "The spells that you add to your spellbook as you gain levels reflect the arcane research you conduct on your own, as well as intellectual breakthroughs you have had about the nature of the multiverse. You might find other spells during your adventures. You could discover a spell recorded on a scroll in an evil wizard's chest, for example, or in a dusty tome in an ancient library.",
+                "Copying a Spell into the Book. When you find a wizard spell of 1st level or higher, you can add it to your spellbook if it is of a spell level you can prepare and if you can spare the time to decipher and copy it.",
+                "Copying a spell into your spellbook involves reproducing the basic form of the spell, then deciphering the unique system of notation used by the wizard who wrote it. You must practice the spell until you understand the sounds or gestures required, then transcribe it into your spellbook using your own notation.",
+                "For each level of the spell, the process takes 2 hours and costs 50 gp. The cost represents material components you expend as you experiment with the spell to master it, as well as the fine inks you need to record it. Once you have spent this time and money, you can prepare the spell just like your other spells.",
+                "Replacing the Book. You can copy a spell from your own spellbook into another book-for example, if you want to make a backup copy of your spellbook. This is just like copying a new spell into your spellbook, but faster and easier, since you understand your own notation and already know how to cast the spell. You need spend only 1 hour and 10 gp for each level of the copied spell.",
+                "If you lose your spellbook, you can use the same procedure to transcribe the spells that you have prepared into a new spellbook. Filling out the remainder of your spellbook requires you to find new spells to do so, as normal. For this reason, many wizards keep backup spellbooks in a safe place.",
+                "The Book's Appearance. Your spellbook is a unique compilation of spells, with its own decorative flourishes and margin notes. It might be a plain, functional leather volume that you received as a gift from your master, a finely bound gilt-edged tome you found in an ancient library or even a loose collection of notes scrounged together after you lost your previous spellbook in a mishap."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Preparing and Casting Spells",
+              "entries": [
+                "The Wizard table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+                "You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.",
+                "For example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell magic missile, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+                "You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Spellcasting Ability",
+              "entries": [
+                "Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.",
+                "Spell save DC = 8 + your proficiency bonus + your Intelligence modifier",
+                "Spell attack modifier = your proficiency bonus + your Intelligence modifier"
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Ritual Casting",
+              "entries": [
+                "You can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Spellcasting Focus",
+              "entries": [
+                "You can use an arcane focus as a spellcasting focus for your wizard spells."
+              ]
+            },
+            {
+              "type": "subEntry",
+              "name": "Learning Spells of 1st Level and Higher",
+              "entries": [
+                "Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Arcane Recovery",
+          "entries": [
+            "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.",
+            "For example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots."
+          ]
+        },
+        {
+          "name": "Arcane Tradition",
+          "entries": [
+            "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of the following schools. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level. ( Bladesinging )"
+          ]
+        }
+      ],
+      "hitDiceValue": 6,
+      "level": 3,
+      "name": "wizard",
+      "subClass": {
+        "name": "Bladesinging",
+        "features": [
+          {
+            "name": "Training in War and Song",
+            "entries": [
+              "When you adopt this tradition at 2nd level, you gain proficiency with light armor, and you gain proficiency with one type of one-handed melee weapon of your choice. ( Rapier )",
+              "You also gain proficiency in the Performance skill if you don't already have it."
+            ]
+          },
+          {
+            "name": "Bladesong",
+            "entries": [
+              "Starting at 2nd level, you can invoke an elven magic called the Bladesong, provided that you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus.",
+              "You can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are incapacitated, if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss the Bladesong at any time (no action required).",
+              "While your Bladesong is active, you gain the following benefits:",
+              {
+                "type": "list",
+                "items": [
+                  "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1)",
+                  "Your walking speed increases by 10 feet.",
+                  "You have advantage on Dexterity (Acrobatics) checks.",
+                  "You gain a bonus to any Constitution saving throw you make to maintain your concentration on a spell. The bonus equals your Intelligence modifier (minimum of +1)."
+                ]
+              },
+              "You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses of it when you finish a long rest."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "conditionImmunities": [],
+  "conditionResistances": [],
+  "conditionVulnerabilities": [],
+  "damageImmunities": [],
+  "damageResistances": [
+    "fire"
+  ],
+  "damageVulnerabilities": [],
+  "feats": [
+    {
+      "name": "Skill Expert",
+      "features": [
+        {
+          "name": "Skill Expert Features",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Increase one ability score of your choice by 1, to a maximum of 20. ( Intelligence )",
+                "You gain proficiency in one skill of your choice. ( Acrobatics )",
+                "Choose one skill in which you have proficiency. You gain expertise with that skill, which means your proficiency bonus is doubled for any ability check you make with it. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus. ( Investigation )"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "hitPoints": {
+    "current": 14,
+    "max": 14,
+    "temporary": 0
+  },
+  "initiative": 0,
+  "inspiration": false,
+  "inventory": [
+    {
+      "name": "Harmonica",
+      "description": "",
+      "total": 1
+    },
+    {
+      "name": "Evidence from a past case",
+      "description": "",
+      "total": 1
+    },
+    {
+      "name": "Common Clothes",
+      "description": "",
+      "total": 1
+    },
+    {
+      "name": "Rapier",
+      "description": "",
+      "total": 1
+    },
+    {
+      "name": "Arcane Focus",
+      "description": "Rapier's hilt",
+      "total": 1
+    },
+    {
+      "name": "Scholar's Pack",
+      "description": "",
+      "total": 1
+    },
+    {
+      "name": "Spellbook",
+      "description": "",
+      "total": 1
+    },
+    {
+      "name": "Gold Pieces",
+      "description": "",
+      "total": 10
+    }
+  ],
+  "languages": [
+    "common",
+    "infernal"
+  ],
+  "pets": [
+    {
+      "abilityScores": {
+        "str": {
+          "mod": -4,
+          "score": 2,
+          "savingThrowProficiency": false
+        },
+        "dex": {
+          "mod": 2,
+          "score": 14,
+          "savingThrowProficiency": false
+        },
+        "con": {
+          "mod": -1,
+          "score": 8,
+          "savingThrowProficiency": false
+        },
+        "int": {
+          "mod": -4,
+          "score": 2,
+          "savingThrowProficiency": false
+        },
+        "wis": {
+          "mod": 1,
+          "score": 12,
+          "savingThrowProficiency": false
+        },
+        "cha": {
+          "mod": -2,
+          "score": 6,
+          "savingThrowProficiency": false
+        }
+      },
+      "ac": 12,
+      "actions": [
+        {
+          "name": "Beak",
+          "attackType": "melee weapon attack",
+          "damageFormulas": [
+            {
+              "average": "1",
+              "damageType": "piercing",
+              "formula": "1d1"
+            }
+          ],
+          "entries": [
+            "Melee Weapon Attack: +4 to hit, reach 5 ft., one target you can see. Hit: 1d1 piercing damage."
+          ],
+          "reach": {
+            "name": "Feet",
+            "indicator": "ft",
+            "value": 5
+          },
+          "target": "one target",
+          "toHit": 4
+        }
+      ],
+      "alignment": "lawful neutral",
+      "conditionImmunities": [],
+      "conditionResistances": [],
+      "conditionVulnerabilities": [],
+      "cr": "0",
+      "creatureType": "beast",
+      "damageImmunities": [],
+      "damageResistances": [],
+      "damageVulnerabilities": [],
+      "features": [
+        {
+          "name": "Mimicry",
+          "entries": [
+            "The raven can mimic simple sounds it has heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check."
+          ]
+        }
+      ],
+      "hitPoints": {
+        "current": 1,
+        "max": 1,
+        "temporary": 0
+      },
+      "languages": [],
+      "lairActions": [],
+      "lairActionsText": "",
+      "legendaryActions": [],
+      "legendaryActionsText": "",
+      "name": "Raven",
+      "proficiencyBonus": 2,
+      "reactions": [],
+      "regionalEffects": [],
+      "senses": [],
+      "size": "tiny",
+      "skills": {
+        "acrobatics": {
+          "ability": "dex",
+          "mod": 2,
+          "proficiency": "none"
+        },
+        "animalHandling": {
+          "ability": "wis",
+          "mod": 1,
+          "proficiency": "none"
+        },
+        "arcana": {
+          "ability": "int",
+          "mod": -4,
+          "proficiency": "none"
+        },
+        "athletics": {
+          "ability": "str",
+          "mod": -4,
+          "proficiency": "none"
+        },
+        "deception": {
+          "ability": "cha",
+          "mod": -2,
+          "proficiency": "none"
+        },
+        "history": {
+          "ability": "int",
+          "mod": -4,
+          "proficiency": "none"
+        },
+        "insight": {
+          "ability": "wis",
+          "mod": 1,
+          "proficiency": "none"
+        },
+        "intimidation": {
+          "ability": "cha",
+          "mod": -2,
+          "proficiency": "none"
+        },
+        "investigation": {
+          "ability": "int",
+          "mod": -4,
+          "proficiency": "none"
+        },
+        "medicine": {
+          "ability": "wis",
+          "mod": 1,
+          "proficiency": "none"
+        },
+        "nature": {
+          "ability": "int",
+          "mod": -4,
+          "proficiency": "none"
+        },
+        "perception": {
+          "ability": "wis",
+          "mod": 3,
+          "proficiency": "proficient"
+        },
+        "performance": {
+          "ability": "cha",
+          "mod": -2,
+          "proficiency": "none"
+        },
+        "persuasion": {
+          "ability": "cha",
+          "mod": -2,
+          "proficiency": "none"
+        },
+        "religion": {
+          "ability": "int",
+          "mod": -4,
+          "proficiency": "none"
+        },
+        "sleightOfHand": {
+          "ability": "dex",
+          "mod": 2,
+          "proficiency": "none"
+        },
+        "stealth": {
+          "ability": "dex",
+          "mod": 2,
+          "proficiency": "none"
+        },
+        "survival": {
+          "ability": "wis",
+          "mod": 1,
+          "proficiency": "none"
+        }
+      },
+      "speed": [
+        {
+          "unit": "feet",
+          "value": 10
+        },
+        {
+          "name": "Fly",
+          "unit": "feet",
+          "value": 50
+        }
+      ],
+      "spellLists": [],
+      "spellSlots": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "token": "raven-token.png"
+    }
+  ],
+  "senses": [
+    "Darkvision 60ft."
+  ],
+  "proficiencies": {
+    "armor": [
+      "light armor"
+    ],
+    "tool": [
+      "thieves' tools",
+      "harmonica"
+    ],
+    "weapon": [
+      "dagger",
+      "dart",
+      "light crossbow",
+      "quarterstaff",
+      "rapier",
+      "sling"
+    ]
+  },
+  "proficiencyBonus": 2,
+  "race": {
+    "name": "custom lineage ( tiefling )",
+    "size": "medium",
+    "subrace": {
+      "name": "N/A",
+      "features": []
+    },
+    "features": [
+      {
+        "name": "Ability Score Increase",
+        "entries": [
+          "One ability score of your choice increases by 2. ( Intelligence +2 )"
+        ]
+      },
+      {
+        "name": "Feat",
+        "entries": [
+          "You gain one feat of your choice for which you qualify. ( Skill Expert )"
+        ]
+      },
+      {
+        "name": "Variable Trait",
+        "entries": [
+          "You gain one of the following options of your choice:",
+          {
+            "type": "list",
+            "items": [
+              "Darkvision with a range of 60 feet.",
+              "Proficiency in one skill of your choice."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Languages",
+        "entries": [
+          "You can speak, read, and write Common and one other language that you and your DM agree is appropriate for your character.",
+          "Infernal"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "mod": 4,
+      "proficiency": "proficient"
+    },
+    "animalHandling": {
+      "ability": "wis",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "arcana": {
+      "ability": "int",
+      "mod": 4,
+      "proficiency": "none"
+    },
+    "athletics": {
+      "ability": "str",
+      "mod": -1,
+      "proficiency": "none"
+    },
+    "deception": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "history": {
+      "ability": "int",
+      "mod": 6,
+      "proficiency": "proficient"
+    },
+    "insight": {
+      "ability": "wis",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "investigation": {
+      "ability": "int",
+      "mod": 8,
+      "proficiency": "expertise"
+    },
+    "medicine": {
+      "ability": "wis",
+      "mod": 3,
+      "proficiency": "proficient"
+    },
+    "nature": {
+      "ability": "int",
+      "mod": 4,
+      "proficiency": "none"
+    },
+    "perception": {
+      "ability": "wis",
+      "mod": 3,
+      "proficiency": "proficient"
+    },
+    "performance": {
+      "ability": "cha",
+      "mod": 3,
+      "proficiency": "proficient"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "mod": 1,
+      "proficiency": "none"
+    },
+    "religion": {
+      "ability": "int",
+      "mod": 4,
+      "proficiency": "none"
+    },
+    "sleightOfHand": {
+      "ability": "dex",
+      "mod": 2,
+      "proficiency": "none"
+    },
+    "stealth": {
+      "ability": "dex",
+      "mod": 2,
+      "proficiency": "none"
+    },
+    "survival": {
+      "ability": "wis",
+      "mod": 1,
+      "proficiency": "none"
+    }
+  },
+  "speed": [
+    {
+      "value": 30,
+      "unit": "feet"
+    }
+  ],
+  "spellSlots": [4, 2, 0, 0, 0, 0, 0, 0, 0],
+  "spellLists": [
+    {
+      "source": "wizard",
+      "ability": "int",
+      "mod": 6,
+      "saveDc": 14,
+      "cantrips": [
+        {
+          "value": "Green-Flame Blade"
+        },
+        {
+          "value": "Mage Hand"
+        },
+        {
+          "value": "Toll the Dead"
+        }
+      ],
+      "first": {
+        "spells": [
+          {
+            "value": "Comprehend Languages"
+          },
+          {
+            "value": "Detect Magic"
+          },
+          {
+            "value": "Find Familiar"
+          },
+          {
+            "value": "Identify"
+          },
+          {
+            "value": "Magic Missile"
+          },
+          {
+            "value": "Magnify Gravity"
+          },
+          {
+            "value": "Shield"
+          },
+          {
+            "value": "Silvery Barbs"
+          }
+        ]
+      },
+      "second": {
+        "spells": [
+          {
+            "value": "Misty Step"
+          },
+          {
+            "value": "Shadow Blade"
+          }
+        ]
+      },
+      "third": {
+        "spells": []
+      },
+      "fourth": {
+        "spells": []
+      },
+      "fifth": {
+        "spells": []
+      },
+      "sixth": {
+        "spells": []
+      },
+      "seventh": {
+        "spells": []
+      },
+      "eighth": {
+        "spells": []
+      },
+      "ninth": {
+        "spells": []
+      }
+    }
+  ],
+  "token": "victoria-faerith-token.png"
+}
